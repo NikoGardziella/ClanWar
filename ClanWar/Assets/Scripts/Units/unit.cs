@@ -56,9 +56,12 @@ public class unit : MonoBehaviour, IDamageable
 
 	private void Update()
 	{
-		if (target != null)
+		if (stats.CurrentHealth > 0)
 		{
-			agent.Agent.SetDestination(target.transform.position);
+			agent.Agent.speed = stats.MovementSpeed;
+			stats.UpdateStats();
+			if (target != null)
+				agent.Agent.SetDestination(target.transform.position);
 		}
 	}
 }

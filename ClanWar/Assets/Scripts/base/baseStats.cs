@@ -85,6 +85,11 @@ public class baseStats
 		get { return maxHealth; }
 	}
 
+	public float percetHealth
+	{
+		get { return currentHealth / maxHealth; }
+	}
+
 	public float CurrentHealth
 	{
 		get { return currentHealth; }
@@ -98,6 +103,17 @@ public class baseStats
 				currentHealth = value;
 		}
 	}
+
+	public void UpdateStats()
+	{
+		healthBar.fillAmount = percetHealth;
+		detectionObject.radius = range;
+		if(currentAttackDelay < attackDelay)
+		{
+			currentAttackDelay += Time.deltaTime;
+		}
+	}
+
 }
 
 
