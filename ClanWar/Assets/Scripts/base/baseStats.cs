@@ -7,14 +7,45 @@ using UnityEngine.UI;
 
 public class baseStats
 {
+	[SerializeField]
 	private float currentHealth;
+	[SerializeField]
 	private float maxHealth;
+	[SerializeField]
 	private float range;
+	[SerializeField]
 	private float baseDamage;
+	[SerializeField]
 	private float attackDelay;
+	[SerializeField]
 	private float currentAttackDelay;
+	[SerializeField]
 	private float movementSpeed;
+	[SerializeField]
 	private Image healthBar;
+	[SerializeField] 
+	private SphereCollider detectionObject;
+	[SerializeField]
+	private GameConstants.OBJECT_TYPE objectType;
+	[SerializeField]
+	private GameConstants.OBJECT_ATTACKABLE objectAttackable;
+
+
+	public GameConstants.OBJECT_ATTACKABLE ObjectAttackable
+	{
+		get { return objectAttackable; }
+	}
+
+
+	public GameConstants.OBJECT_TYPE ObjectType
+	{
+		get { return objectType; }
+	}
+
+	public  SphereCollider DetectionObject
+	{
+		get { return detectionObject; }
+	}
 
 	public Image HealthBar
 	{
@@ -22,13 +53,11 @@ public class baseStats
 		set { healthBar = value; }
 	}
 
-
 	public float MovementSpeed
 	{
 		get { return movementSpeed; }
 		set { movementSpeed = value; }
 	}
-
 
 	public float CurrentAttackDelay
 	{
@@ -36,42 +65,39 @@ public class baseStats
 		set { currentAttackDelay = value; }
 	}
 
-
-
 	public float AttackDelay
 	{
 		get { return attackDelay; }
-		set { attackDelay = value; }
 	}
-
 
 	public  float BaseDamage
 	{
 		get { return baseDamage; }
-		set { baseDamage = value; }
 	}
-
 
 	public float Range
 	{
 		get { return range; }
-		set { range = value; }
 	}
-
 
 	public float MaxHealth
 	{
 		get { return maxHealth; }
-		set { maxHealth = value; }
 	}
-
 
 	public float CurrentHealth
 	{
 		get { return currentHealth; }
-		set { currentHealth = value; }
+		set
+		{
+			if (value <= 0)
+				currentHealth = 0;
+			else if (value >= maxHealth)
+				currentHealth = maxHealth;
+			else
+				currentHealth = value;
+		}
 	}
-
 }
 
 
