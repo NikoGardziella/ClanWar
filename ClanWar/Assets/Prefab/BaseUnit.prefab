@@ -232,7 +232,7 @@ MonoBehaviour:
     baseDamage: 10
     attackDelay: 2
     currentAttackDelay: 0
-    movementSpeed: 0
+    movementSpeed: 2
     healthBar: {fileID: 3942418549172517883}
     detectionObject: {fileID: 3942418549401694524}
     objectType: 0
