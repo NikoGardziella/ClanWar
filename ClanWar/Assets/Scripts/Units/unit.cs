@@ -43,8 +43,11 @@ public class unit : MonoBehaviour, IDamageable
 
 
 
-	baseStats IDamageable.Stats => throw new System.NotImplementedException();
-
+	baseStats IDamageable.Stats
+	{
+		get { return stats; } // changed
+		
+	}
 	List<GameObject> IDamageable.HitTargets => throw new System.NotImplementedException();
 
 	GameObject IDamageable.Target { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
@@ -54,6 +57,12 @@ public class unit : MonoBehaviour, IDamageable
 		stats.CurrentHealth -= amount;
 	}
 
+
+	private void Start()
+	{
+		List<GameObject> objects = GameManager.Instance.Objects;
+		objects = GameManager.GetAllEnemies(transform.position, objects, gameObject.tag);
+	}
 	private void Update()
 	{
 		if (stats.CurrentHealth > 0)
