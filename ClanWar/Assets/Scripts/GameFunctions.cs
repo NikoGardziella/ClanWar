@@ -67,4 +67,40 @@ public static class GameFunctions
 		}
 		return null;
 	}
+
+	public static GameObject GetNearestTarget(List<GameObject> hitTargets, SphereCollider mySc, string tag)
+	{
+		if (hitTargets.Count > 0)
+		{
+			GameObject go = hitTargets[0];
+
+			Component targetComponent = hitTargets[0].GetComponent(typeof(IDamageable));
+			SphereCollider targetSc = (targetComponent as IDamageable).Stats.DetectionObject;
+
+			float dist = Vector3.Distance(mySc.transform.position, targetSc.transform.position);
+
+			foreach (GameObject ht in hitTargets)
+			{
+				targetComponent = ht.GetComponent(typeof(IDamageable));
+
+				if (targetComponent)
+				{
+					targetSc = (targetComponent as IDamageable).Stats.DetectionObject;
+
+					float newDist = Vector3.Distance(mySc.transform.position, targetSc.transform.position);
+
+					if (dist > newDist)
+					{
+						if (!ht.CompareTag(tag))
+						{
+							dist = newDist;
+							go = ht;
+						}
+					}
+				}
+			}
+			return go;
+		}
+		return null;
+	}
 }

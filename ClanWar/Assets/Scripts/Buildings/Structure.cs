@@ -42,13 +42,24 @@ public class Structure : MonoBehaviour, IDamageable
 	{
 		stats.CurrentHealth -= amount;
 	}
-
+	private void Start()
+	{
+		List<GameObject> objects = GameManager.Instance.Objects;
+		objects = GameManager.GetAllEnemies(transform.position, objects, gameObject.tag);
+		target = GameFunctions.GetNearestTarget(objects, stats.DetectionObject, gameObject.tag);
+	}
 	void Update()
 	{
 		if (stats.CurrentHealth > 0)
 		{
 			stats.UpdateStats();
 			Attack();
+		}
+		else
+		{
+			print(gameObject.name + "has Died");
+			GameManager.RemoveObjectFromList(gameObject);
+			Destroy(gameObject);
 		}
 	}
 	void Attack()
@@ -76,9 +87,9 @@ public class Structure : MonoBehaviour, IDamageable
 
 	public void OnTriggerEnter(Collider other)
 	{
-		if (!other.transform.parent.parent.CompareTag(gameObject.tag))
+		if (!other.transform.parent.CompareTag(gameObject.tag))
 		{
-			Component damageable = other.transform.parent.parent.gameObject.GetComponent(typeof(IDamageable));
+			Component damageable = other.transform.parent.gameObject.GetComponent(typeof(IDamageable));
 			if (damageable)
 			{
 				if (!hitTargets.Contains(damageable.gameObject))

@@ -48,9 +48,6 @@ public class unit : MonoBehaviour, IDamageable
 		get { return stats; } // changed
 		
 	}
-	List<GameObject> IDamageable.HitTargets => throw new System.NotImplementedException();
-
-	GameObject IDamageable.Target { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
 	void IDamageable.TakeDamage(float amount)
 	{
@@ -62,6 +59,7 @@ public class unit : MonoBehaviour, IDamageable
 	{
 		List<GameObject> objects = GameManager.Instance.Objects;
 		objects = GameManager.GetAllEnemies(transform.position, objects, gameObject.tag);
+		target = GameFunctions.GetNearestTarget(objects, stats.DetectionObject, gameObject.tag);
 	}
 	private void Update()
 	{
@@ -72,6 +70,12 @@ public class unit : MonoBehaviour, IDamageable
 			Attack();
 			if (target != null)
 				agent.Agent.SetDestination(target.transform.position);
+		}
+		else
+		{
+			print(gameObject.name + "has Died");
+			GameManager.RemoveObjectFromList(gameObject);
+			Destroy(gameObject);
 		}
 	}
 
@@ -95,6 +99,12 @@ public class unit : MonoBehaviour, IDamageable
 					}
 				}
 			}
+		}
+		else
+		{
+			List<GameObject> objects = GameManager.Instance.Objects;
+			objects = GameManager.GetAllEnemies(transform.position, objects, gameObject.tag);
+			target = GameFunctions.GetNearestTarget(objects, stats.DetectionObject, gameObject.tag);
 		}
 	}
 
