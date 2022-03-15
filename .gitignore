@@ -2,7 +2,7 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
-/[Ll]ibrary/
+[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
 /[Bb]uild/
@@ -7280,3 +7280,13 @@ ClanWar/Library/Artifacts/4d/4dfbf590ef505e9e2911a486c2b15025
 ClanWar/Library/Artifacts/9f/9ff74f40766b2dc62b79b81f02ccf046
 ClanWar/Library/Artifacts/b8/b8b2ef3c55ae53428f39d44afef9ea9f
 ClanWar/Library/Artifacts/e1/e1979eeb395f349eff7b0d481e47ae61
+ClanWar/Library/Artifacts/42/42fa7b650e2c0110ca3295d9a3cc4b93
+ClanWar/Library/Artifacts/4f/4f2f573a6786cf1f5baf4e258a54faca
+ClanWar/Library/Artifacts/63/638b59330f84f256729be57a1de0a3b7
+ClanWar/Library/Artifacts/78/7870dcabe21c83f0ad141235664bfbc2
+ClanWar/Library/Artifacts/7b/7b43dba5aeb40e2b4c35eaffa5922969
+ClanWar/Library/Artifacts/8c/8cf836be8ca5c500bbc6924f1d9f9a8a
+ClanWar/Library/Artifacts/c1/c18d5f460ad370a2219303c73f9d1b7a
+ClanWar/Library/Artifacts/dc/dc72029a357f4398a163e2b6318a3d5a
+ClanWar/Library/Artifacts/e6/e6035a972f1602d2e93d63a2f010be45
+ClanWar/Library/Artifacts/f2/f2e872ba02e075f48631dc3a8b61fa38
