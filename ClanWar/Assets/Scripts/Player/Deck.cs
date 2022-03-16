@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class NewBehaviourScript
+public class Deck
 {
 	[SerializeField]
 	private List<CardStats> cards;
@@ -26,7 +26,7 @@ public class NewBehaviourScript
 		get { return cards; }
 	}
 
-	private void Start()
+	public void Start()
 	{
 		nextCard = cards[0];
 	}

@@ -17,6 +17,8 @@ public class PlayerStats : MonoBehaviour
 	[SerializeField]
 	private Text textMaxResource;
 	[SerializeField]
+	private Text textCurrResource;
+	[SerializeField]
 	private Text textScore;
 	[SerializeField]
 	private GameObject cardPrefab;
@@ -59,10 +61,21 @@ public class PlayerStats : MonoBehaviour
 		get { return textMaxResource; }
 		set { textMaxResource = value; }
 	}
+	public Text TextCurrResource
+	{
+		get { return textCurrResource; }
+		set { textCurrResource = value; }
+	}
 	public float CurrResource
 	{
-		get { return currResource; }
-		set { currResource = value; }
+		get
+		{
+			return currResource;
+		}
+		set
+		{
+			currResource = value;
+		}
 	}
 	public int Score
 	{
@@ -77,7 +90,19 @@ public class PlayerStats : MonoBehaviour
 	public Deck PlayersDeck
 	{
 		get { return playersDeck; }
-		set { playersDeck = value; }
+	} 
+
+	public int GetCurrResource
+	{
+		get
+		{
+			return (int)currResource;
+		}
+	}
+
+	private void Start()
+	{
+		playersDeck.Start();
 	}
 
 }

@@ -63,4 +63,9 @@ public class Card : MonoBehaviour
 		cardName.text = cardInfo.Name;
 		cost.text = cardInfo.Cost.ToString();
 	}
+
+	public void Start()
+	{
+		
+	}
 }
