@@ -478,6 +478,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebaad0c60a9cb244aa1261e53155afec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playersDeck:
+    cards: []
+    hand: []
+    nextCard:
+      index: 0
+      name: 
+      icon: {fileID: 0}
+      cost: 0
+      prefab: {fileID: 0}
+  resources: []
+  score: 0
+  currResource: 0
+  textMaxResource: {fileID: 0}
+  textCurrResource: {fileID: 0}
+  textScore: {fileID: 0}
+  cardPrefab: {fileID: 0}
+  handParent: {fileID: 0}
+  nextCard: {fileID: 0}
+  onDragging: 0
 --- !u!1 &179565822
 GameObject:
   m_ObjectHideFlags: 0
@@ -2415,7 +2434,7 @@ GameObject:
   - component: {fileID: 1769583087}
   - component: {fileID: 1769583086}
   m_Layer: 0
-  m_Name: HUD canvas
+  m_Name: HUD - Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

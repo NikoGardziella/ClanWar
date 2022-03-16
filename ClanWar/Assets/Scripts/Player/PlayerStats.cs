@@ -105,4 +105,25 @@ public class PlayerStats : MonoBehaviour
 		playersDeck.Start();
 	}
 
+	private void Update()
+	{
+		if(GetCurrResource < GameConstants.RESOURCE_MAX + 1)
+		{
+			resources[GetCurrResource].fillAmount = currResource - GetCurrResource;
+			currResource += Time.deltaTime * GameConstants.RESOURCE_SPEED;
+		}
+
+		UpdateText();
+		UpdateDeck();
+
+		
+	}
+
+	void UpdateText()
+	{
+		textCurrResource.text = GetCurrResource.ToString();
+		textMaxResource.text = (GameConstants.RESOURCE_MAX + 1).ToString();
+		textScore.text = score.ToString();
+	}
+	
 }
