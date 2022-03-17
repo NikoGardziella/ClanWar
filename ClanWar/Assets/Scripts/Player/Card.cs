@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class Card : MonoBehaviour
+public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
 	[SerializeField]
 	private PlayerStats playerInfo;
@@ -30,7 +31,6 @@ public class Card : MonoBehaviour
 	public Text Cost
 	{
 		get { return cost; }
-		set { cost = value; }
 	}
 
 	public Text CardName
@@ -67,5 +67,36 @@ public class Card : MonoBehaviour
 	public void Start()
 	{
 		
+	}
+
+	public void OnBeginDrag(PointerEventData eventData)
+	{
+		if (!playerInfo.OnDragging)
+		{
+			if (canDrag)
+			{
+				playerInfo.OnDragging = true;
+				transform.SetParent(GameFunctions.GetCanvas());
+			}
+		}
+	}
+
+
+	public void OnDrag(PointerEventData eventData)
+	{
+		if (playerInfo.OnDragging)
+		{
+			transform.position = Input.mousePosition;
+		}
+	}
+
+	public void OnEndDrag(PointerEventData eventData)
+	{
+		GameObject go = eventData.pointerCurrentRaycast.gameObject;
+
+		if(go != null)
+		{
+			//GameFunctions.SpawnUnit(cardInfo.Prefab, );
+		}
 	}
 }

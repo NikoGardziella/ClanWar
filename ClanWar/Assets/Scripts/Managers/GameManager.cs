@@ -72,5 +72,10 @@ public class GameManager : MonoBehaviour
 		return sentObjects;
 	}
 
+	public static void AddObject(GameObject go)
+	{
+		Instance.Objects.Add(go);
+	}
+
 
 }

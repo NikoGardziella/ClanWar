@@ -126,4 +126,20 @@ public class PlayerStats : MonoBehaviour
 		textScore.text = score.ToString();
 	}
 	
+	void UpdateDeck()
+	{
+		if(playersDeck.Hand.Count < GameConstants.MAX_HAND_SIZE)
+		{
+			CardStats cs = playersDeck.DrawCard();
+			GameObject go = Instantiate(cardPrefab, handParent);
+			Card c = go.GetComponent<Card>();
+			c.PlayerInfo = this;
+			c.CardInfo = cs;
+		}
+
+		nextCard.CardInfo = playersDeck.NextCard;
+		nextCard.PlayerInfo = this;
+	}
+
+
 }
