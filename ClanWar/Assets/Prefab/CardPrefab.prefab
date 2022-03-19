@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 2591315480410674034}
   - component: {fileID: 2591315480410674037}
   - component: {fileID: 2319519435072721296}
+  - component: {fileID: -5958463850102861357}
   m_Layer: 0
   m_Name: CardPrefab
   m_TagString: Untagged
@@ -183,6 +184,18 @@ MonoBehaviour:
   cardName: {fileID: 2591315480291289704}
   cost: {fileID: 2591315481331153967}
   canDrag: 1
+--- !u!225 &-5958463850102861357
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2591315480410674039}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2591315480502238193
 GameObject:
   m_ObjectHideFlags: 0

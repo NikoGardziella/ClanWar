@@ -26,8 +26,6 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 		set { canDrag = value; }
 	}
 
-
-
 	public Text Cost
 	{
 		get { return cost; }
@@ -69,13 +67,31 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 		
 	}
 
+	private void SpawnUnit()
+	{
+		if(playerInfo.GetCurrResource >= cardInfo.Cost)
+		{
+			playerInfo.PlayersDeck.RemoveHand(cardInfo.Index);
+			playerInfo.RemoveResource(cardInfo.Cost);
+			Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			GameFunctions.SpawnUnit(cardInfo.Prefab, playerInfo.UnitTransform, pos);
+			Destroy(gameObject);
+		}
+		else
+		{
+			transform.SetParent(playerInfo.HandParent);
+		}
+	}
+
 	public void OnBeginDrag(PointerEventData eventData)
 	{
 		if (!playerInfo.OnDragging)
 		{
 			if (canDrag)
 			{
+				GetComponent<CanvasGroup>().blocksRaycasts = false;
 				playerInfo.OnDragging = true;
+				playerInfo.SpawnZone = true;
 				transform.SetParent(GameFunctions.GetCanvas());
 			}
 		}
@@ -87,7 +103,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 		if (playerInfo.OnDragging)
 		{
 			transform.position = Input.mousePosition;
-		}
+		} 
 	}
 
 	public void OnEndDrag(PointerEventData eventData)
@@ -96,7 +112,22 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
 		if(go != null)
 		{
-			//GameFunctions.SpawnUnit(cardInfo.Prefab, );
+			if(go == playerInfo.LeftArea && playerInfo.LeftZone)
+			{
+				SpawnUnit();
+			}
+			else if (go == playerInfo.RightArea && playerInfo.RightZone)
+			{
+				SpawnUnit();
+			}
 		}
+		else
+		{
+			SpawnUnit();
+		}
+		transform.SetParent(playerInfo.HandParent);
+		GetComponent<CanvasGroup>().blocksRaycasts = true;
+		playerInfo.OnDragging = false;
+		playerInfo.SpawnZone = false;
 	}
 }

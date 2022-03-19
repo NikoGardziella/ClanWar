@@ -10,6 +10,15 @@ public class Structure : MonoBehaviour, IDamageable
 	private List<GameObject> hitTargets;
 	[SerializeField]
 	GameObject target;
+	[SerializeField]
+	private bool leftTower;
+
+	public bool LeftTower
+	{
+		get { return leftTower; }
+		set { leftTower = value; }
+	}
+
 	public baseStats Stats
 	{
 		get
@@ -58,7 +67,7 @@ public class Structure : MonoBehaviour, IDamageable
 		else
 		{
 			print(gameObject.name + "has Died");
-			GameManager.RemoveObjectFromList(gameObject);
+			GameManager.RemoveObjectFromList(gameObject, leftTower);
 			Destroy(gameObject);
 		}
 	}

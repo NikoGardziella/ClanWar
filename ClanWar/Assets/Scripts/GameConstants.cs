@@ -6,6 +6,7 @@ public static class GameConstants
 	public static int RESOURCE_MAX = 9;
 	public static int MAX_HAND_SIZE = 4;
 	public static string HUD_CANVAS = "HUD - Canvas";
+	public static string PLAYER_TAG = "Player";
 
 	public enum OBJECT_TYPE
 	{

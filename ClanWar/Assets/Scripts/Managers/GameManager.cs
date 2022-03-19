@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+	private static GameManager instance;
 	[SerializeField]
 	private List<GameObject> objects;
+	[SerializeField]
+	private List<PlayerStats> players;
+
+	public List<PlayerStats> Players
+	{
+		get { return players; }
+		set { players = value; }
+	}
 
 	public List<GameObject> Objects
 	{
@@ -13,7 +22,7 @@ public class GameManager : MonoBehaviour
 	}
 
 
-	private static GameManager instance;
+
 	public static GameManager Instance {get { return instance; } }
 
 	private void Awake()
@@ -40,6 +49,50 @@ public class GameManager : MonoBehaviour
 			}
 		}
 
+		Instance.Objects.Remove(go);
+
+	}
+	public static void RemoveObjectFromList(GameObject go, bool leftTower)
+	{
+		foreach (GameObject g in Instance.Objects)
+		{
+			Component component = g.GetComponent(typeof(IDamageable));
+			if (component)
+			{
+				if ((component as IDamageable).HitTargets.Contains(go))
+				{
+					(component as IDamageable).HitTargets.Remove(go);
+					if ((component as IDamageable).Target == go)
+					{
+						(component as IDamageable).Target = null;
+					}
+				}
+			}
+		}
+		if (!go.CompareTag(GameConstants.PLAYER_TAG))
+		{
+			if (leftTower)
+			{
+				instance.players[0].LeftZone = true;
+			}
+			else
+			{
+				instance.players[0].RightZone = true;
+			}
+			instance.players[0].Score++;
+		}
+		else
+		{
+			if (leftTower)
+			{
+				instance.players[1].LeftZone = true;
+			}
+			else
+			{
+				instance.players[1].RightZone = true;
+			}
+			instance.players[1].Score++;
+		}
 		Instance.Objects.Remove(go);
 
 	}

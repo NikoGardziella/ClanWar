@@ -28,13 +28,56 @@ public class PlayerStats : MonoBehaviour
 	private Card nextCard;
 	[SerializeField]
 	private bool onDragging;
+	[SerializeField]
+	private Transform unitTransform;
+	[SerializeField]
+	private bool spawnZone;
+	[SerializeField]
+	private bool leftZone;
+	[SerializeField]
+	private bool rightZone;
+	[SerializeField]
+	private GameObject leftArea;
+	[SerializeField]
+	private GameObject rightArea;
 
+	public GameObject RightArea
+	{
+		get { return rightArea; }
+		set { rightArea = value; }
+	}
+	public GameObject LeftArea
+	{
+		get { return leftArea; }
+		set { leftArea = value; }
+	}
+	public bool LeftZone
+	{
+		get { return leftZone; }
+		set { leftZone = value; }
+	}
+	public bool RightZone
+	{
+		get { return rightZone; }
+		set { rightZone = value; }
+	}
+
+	public bool SpawnZone
+	{
+		get { return spawnZone; }
+		set { spawnZone = value; }
+	}
+
+	public Transform UnitTransform
+	{
+		get { return unitTransform; }
+		set { unitTransform = value; }
+	}
 	public bool OnDragging
 	{
 		get { return onDragging; }
 		set { onDragging = value; }
 	}
-
 
 	public Card NextCard
 	{
@@ -113,6 +156,17 @@ public class PlayerStats : MonoBehaviour
 			currResource += Time.deltaTime * GameConstants.RESOURCE_SPEED;
 		}
 
+		if (spawnZone)
+		{
+			leftArea.SetActive(!leftZone ? true : false);
+			rightArea.SetActive(!rightZone ? true : false);
+		}
+		else
+		{
+			leftArea.SetActive(false);
+			rightArea.SetActive(false);
+		}
+
 		UpdateText();
 		UpdateDeck();
 
@@ -139,6 +193,19 @@ public class PlayerStats : MonoBehaviour
 
 		nextCard.CardInfo = playersDeck.NextCard;
 		nextCard.PlayerInfo = this;
+	}
+
+	public void RemoveResource(int cost)
+	{
+		currResource -= cost;
+		for (int i = 0; i < resources.Count; i++)
+		{
+			resources[i].fillAmount = 0;
+			if(i <= GetCurrResource)
+			{
+				resources[i].fillAmount = 1;
+			}
+		}
 	}
 
 
