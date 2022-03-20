@@ -7,6 +7,8 @@ public static class GameConstants
 	public static int MAX_HAND_SIZE = 4;
 	public static string HUD_CANVAS = "HUD - Canvas";
 	public static string PLAYER_TAG = "Player";
+	public static int LOADING_SCENE = 1;
+	public static int GAME_SCENE = 3;
 
 	public enum OBJECT_TYPE
 	{
