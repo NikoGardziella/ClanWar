@@ -1,9 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PlayFab;
 
 public static class GameFunctions
 {
+
+	public static void ChangeMenu(GameObject[] menus, int id)
+	{
+		for (int i = 0; i < menus.Length; i++)
+		{
+			menus[i].SetActive(i == id ? true : false);
+		}
+	}
 	public static bool  CanAttack(string playerTag, string enemyTag, Component damageable, baseStats stats)
 	{
 		if (damageable)
@@ -114,5 +123,10 @@ public static class GameFunctions
 		GameObject go = GameObject.Instantiate(prefab, parent);
 		go.transform.position = new Vector3(pos.x, 0, pos.z);
 		GameManager.AddObject(go);
+	}
+
+	public static void OnAPIError(PlayFabError error)
+	{
+		Debug.LogError(error);
 	}
 }
