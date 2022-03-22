@@ -44,7 +44,7 @@ public class AccountInfo : MonoBehaviour
 		PlayFabClientAPI.RegisterPlayFabUser(request, OnRegister, GameFunctions.OnAPIError);
 	}
 
-	public static void Login(string username, string email, string password)
+	public static void Login(string username, string password)
 	{
 		LoginWithPlayFabRequest request = new LoginWithPlayFabRequest()
 		{
@@ -62,7 +62,9 @@ public class AccountInfo : MonoBehaviour
 	}
 	static void OnLogin(LoginResult result)
 	{
+		GetAccountInfo(result.PlayFabId);
 		Debug.Log("Login with:" + result.PlayFabId);
+		levelManager.LoadLevel(GameConstants.MAIN_SCENE);
 	} 
 
 	public static void GetAccountInfo(string playFabId)
@@ -84,9 +86,14 @@ public class AccountInfo : MonoBehaviour
 			PlayFabId = playFabId,
 			InfoRequestParameters = paramInfo
 		};
-		PlayFabClientAPI.GetPlayerCombinedInfo(request);
+		PlayFabClientAPI.GetPlayerCombinedInfo(request,OnAccountInfo ,GameFunctions.OnAPIError);
 	}
 
+	static void OnAccountInfo(GetPlayerCombinedInfoResult result)
+	{
+		Debug.Log("Updated account info");
+		instance.Info = result.InfoResultPayload;
+	}
 
 }
 

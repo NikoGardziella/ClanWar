@@ -11,7 +11,7 @@ public class LoginManager : MonoBehaviour
 	[SerializeField]
 	private InputField loginUsername;
 	[SerializeField]
-	private InputField password;
+	private InputField loginPassword;
 
 	[SerializeField]
 	private InputField registerUsername;
@@ -25,16 +25,19 @@ public class LoginManager : MonoBehaviour
 
 	public void Login()
 	{
-
+		AccountInfo.Login(loginUsername.text, loginPassword.text);
 	}
 
 	public void Register()
 	{
-
+		if (registerConfirmPassword.text == registerConfirmPassword.text)
+			AccountInfo.Register(registerUsername.text, registerEmail.text, registerPassword.text);
+		else
+			Debug.LogError("password do not match");
 	}
 
 	public void ChangeMenu(int i)
 	{
-
+		GameFunctions.ChangeMenu(menus.ToArray(), i);
 	}
 }
