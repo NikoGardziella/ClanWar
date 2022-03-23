@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PlayFab;
+using PlayFab.ClientModels;
 
 public static class GameFunctions
 {
@@ -123,6 +124,45 @@ public static class GameFunctions
 		GameObject go = GameObject.Instantiate(prefab, parent);
 		go.transform.position = new Vector3(pos.x, 0, pos.z);
 		GameManager.AddObject(go);
+	}
+
+	public static CardStats CreateCard(CatalogItem item, int i)
+	{
+		CardStats cs = new CardStats();
+		cs.Index = i;
+		cs.Name = item.DisplayName;
+		cs.Cost = int.Parse(GetCatalogCustomData(GameConstants.ITEM_COST, item));
+		Sprite icon = Resources.Load(GetCatalogCustomData(GameConstants.ITEM_ICON, item), typeof(Sprite)) as Sprite;
+		cs.Icon = icon;
+		GameObject prefab = Resources.Load(GetCatalogCustomData(GameConstants.ITEM_PREFAB, item), typeof(GameObject)) as GameObject;
+		cs.Prefab = prefab;
+
+		return cs;
+	}
+
+	public static string GetCatalogCustomData(int i, CatalogItem item)
+	{
+		Debug.Log(item.CustomData);
+		string cDataTemp = item.CustomData.Trim();
+		cDataTemp = cDataTemp.TrimStart('{');
+		cDataTemp = cDataTemp.TrimEnd('}');
+		string[] newCData;
+		newCData = cDataTemp.Split(',', ':');
+
+		for (int s = 0; s < newCData.Length; s++)
+		{
+			if (i == s)
+			{
+				newCData[s] = newCData[s].Trim();
+				newCData[s] = newCData[s].TrimStart('"');
+				newCData[s] = newCData[s].TrimEnd('"');
+				newCData[s] = newCData[s].Trim();
+				return newCData[s];
+			}
+
+		}
+		Debug.Log(string.Format("GetCatalogCustomdata - could not find ID: {0} in {1}", i, item.DisplayName));
+		return "ERROR";
 	}
 
 	public static void OnAPIError(PlayFabError error)

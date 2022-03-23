@@ -64,6 +64,7 @@ public class AccountInfo : MonoBehaviour
 	{
 		GetAccountInfo(result.PlayFabId);
 		Debug.Log("Login with:" + result.PlayFabId);
+		database.UpdateDatabase();
 		levelManager.LoadLevel(GameConstants.MAIN_SCENE);
 	} 
 
