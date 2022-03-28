@@ -43,18 +43,19 @@ public class database : MonoBehaviour
 		{
 			CatalogVersion = GameConstants.CATALOG_ITEMS
 		};
-
+		Debug.Log("UpdateDatabase");
 		PlayFabClientAPI.GetCatalogItems(request, OnUpdateDatabase, GameFunctions.OnAPIError);
 	}
 
 	static void OnUpdateDatabase(GetCatalogItemsResult result)
 	{
+		Debug.Log("OnUpdateDatabase");
 		for (int i = 0; i < result.Catalog.Count; i++)
 		{
 			if (result.Catalog[i].ItemClass == GameConstants.ITEM_CARDS)
 			{
-				instance.CatalogCards.Add(result.Catalog[i]);
-				instance.cards.Add(GameFunctions.CreateCard(result.Catalog[i], i));
+				Instance.CatalogCards.Add(result.Catalog[i]);
+				Instance.cards.Add(GameFunctions.CreateCard(result.Catalog[i], i));
 			}
 		}
 	}

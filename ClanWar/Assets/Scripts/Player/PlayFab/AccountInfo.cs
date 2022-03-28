@@ -81,7 +81,7 @@ public class AccountInfo : MonoBehaviour
 			GetUserData = true,
 			GetUserReadOnlyData = true
 		};
-
+		Debug.Log("GetAccountinfo" + playFabId);
 		GetPlayerCombinedInfoRequest request = new GetPlayerCombinedInfoRequest()
 		{
 			PlayFabId = playFabId,
