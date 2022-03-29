@@ -18,6 +18,14 @@ public static class GameConstants
 	public static int GAME_SCENE = 2;
 	public static int LOADING_SCENE = 3;
 
+	public static string GEM_CODE = "PG";
+	public static string COIN_CODE = "PC";
+
+	public static string DATA_EXP = "Exp";
+	public static string DATA_MAX_EXP = "Max Exp";
+	public static string DATA_LEVEL = "Level";
+	public static string STAT_TROPHIES = "Trophies";
+
 	public enum OBJECT_TYPE
 	{
 		GROUND,
