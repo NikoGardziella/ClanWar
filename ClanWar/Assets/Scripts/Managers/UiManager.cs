@@ -92,8 +92,6 @@ public class UiManager : MonoBehaviour
 					gems.text = g.ToString();
 				}
 			}
-
-			UserDataRecord record = new UserDataRecord();
 			float min = -1;
 			float max = -1;
 
@@ -116,9 +114,22 @@ public class UiManager : MonoBehaviour
 				exp.fillAmount = min / max;
 			}
 
+			List<StatisticValue> stats = info.PlayerStatistics;
 
+			foreach (StatisticValue item in stats)
+			{
+				if(item.StatisticName == GameConstants.STAT_TROPHIES)
+				{
+					trophies.text = item.Value.ToString();
+				}
+			}
 		}
 
 	}
 
+
+	public void ChangeMenu(int i)
+	{
+		GameFunctions.ChangeMenu()
+	}
 }

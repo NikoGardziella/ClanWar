@@ -58,6 +58,7 @@ public class AccountInfo : MonoBehaviour
 	}
 	static void OnRegister(RegisterPlayFabUserResult result)
 	{
+		Instance.SetUpAccount();
 		Debug.Log("Registered with:" + result.PlayFabId);
 	}
 	static void OnLogin(LoginResult result)
@@ -94,6 +95,45 @@ public class AccountInfo : MonoBehaviour
 	{
 		Debug.Log("Updated account info");
 		instance.Info = result.InfoResultPayload;
+	}
+
+	void SetUpAccount()
+	{
+		Dictionary<string, string> data = new Dictionary<string, string>();
+		data.Add(GameConstants.DATA_EXP, "1");
+		data.Add(GameConstants.DATA_MAX_EXP, "100");
+		data.Add(GameConstants.DATA_LEVEL, "1");
+
+		UpdateUserDataRequest request = new UpdateUserDataRequest()
+		{
+			Data = data,
+			
+		};
+
+		PlayFabClientAPI.UpdateUserData(request, UpdateDataInfo, GameFunctions.OnAPIError);
+	}
+
+	void UpdateDataInfo(UpdateUserDataResult result)
+	{
+		Debug.Log("UpdateDataInfo");
+
+		List<StatisticUpdate> stats = new List<StatisticUpdate>();
+		StatisticUpdate trophies = new StatisticUpdate();
+		trophies.StatisticName = GameConstants.STAT_TROPHIES;
+		trophies.Value = 0;
+		stats.Add(trophies);
+
+		UpdatePlayerStatisticsRequest request = new UpdatePlayerStatisticsRequest()
+		{
+			Statistics = stats
+		};
+
+		PlayFabClientAPI.UpdatePlayerStatistics(request, UpdateStatInfo, GameFunctions.OnAPIError);
+	}
+
+	void UpdateStatInfo(UpdatePlayerStatisticsResult result)
+	{
+		Debug.Log("UpdateStatInfo");
 	}
 
 }

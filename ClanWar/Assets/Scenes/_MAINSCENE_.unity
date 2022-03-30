@@ -254,12 +254,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09bbc7778af11ab41b29ec72688c5913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: {fileID: 0}
-  gems: {fileID: 0}
-  coins: {fileID: 0}
-  playerName: {fileID: 0}
-  trophies: {fileID: 0}
-  exp: {fileID: 0}
+  level: {fileID: 852575822}
+  gems: {fileID: 2083574994}
+  coins: {fileID: 1822610481}
+  playerName: {fileID: 600893635}
+  trophies: {fileID: 394566162}
+  exp: {fileID: 1028266626}
 --- !u!4 &54242954
 Transform:
   m_ObjectHideFlags: 0
