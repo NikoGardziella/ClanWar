@@ -6,7 +6,9 @@ using PlayFab.ClientModels;
 
 public class UiManager : MonoBehaviour
 {
-	private GetPlayerCombinedInfoResultPayload info;
+	public AccountInfo info;
+	[SerializeField]
+	private List<GameObject> menus;
 	private static UiManager instance;
 	[SerializeField]
 	private Text level;
@@ -63,13 +65,13 @@ public class UiManager : MonoBehaviour
 	{
 		if (instance != this)
 			instance = this;
-		info = GameObject.FindObjectOfType<AccountInfo>().Info;
+		info = FindObjectOfType<AccountInfo>();
 
 	}
 
 	private void Update()
 	{
-		if (info == null)
+		if (info.Info == null)
 			return;
 		UpdateText();
 	}
@@ -78,43 +80,43 @@ public class UiManager : MonoBehaviour
 	{
 		if(info != null)
 		{
-			playerName.text = info.AccountInfo.Username;
+			playerName.text = info.Info.AccountInfo.Username;
 
 			int g = -1;
-			if(info.UserVirtualCurrency != null)
+			if(info.Info.UserVirtualCurrency != null)
 			{
-				if(info.UserVirtualCurrency.TryGetValue(GameConstants.COIN_CODE, out g))
+				if(info.Info.UserVirtualCurrency.TryGetValue(GameConstants.COIN_CODE, out g))
 				{
 					coins.text = g.ToString();
 				}
-				if (info.UserVirtualCurrency.TryGetValue(GameConstants.GEM_CODE, out g))
+				if (info.Info.UserVirtualCurrency.TryGetValue(GameConstants.GEM_CODE, out g))
 				{
 					gems.text = g.ToString();
 				}
 			}
+			UserDataRecord record = new UserDataRecord();
 			float min = -1;
 			float max = -1;
 
-
-			if(info.UserData != null)
+			if(info.Info.UserData != null)
 			{
-				if (info.UserVirtualCurrency.TryGetValue(GameConstants.DATA_EXP, out g))
+				if (info.Info.UserData.TryGetValue(GameConstants.DATA_EXP, out record))
 				{
-					min = g;
+					min = float.Parse(record.Value);
 				}
-				if (info.UserVirtualCurrency.TryGetValue(GameConstants.DATA_LEVEL, out g))
+				if (info.Info.UserData.TryGetValue(GameConstants.DATA_LEVEL, out record))
 				{
-					max = g;
+					level.text = record.Value;
 				}
-				if (info.UserVirtualCurrency.TryGetValue(GameConstants.DATA_MAX_EXP, out g))
+				if (info.Info.UserData.TryGetValue(GameConstants.DATA_MAX_EXP, out record))
 				{
-					level.text = g.ToString();
+					max = float.Parse(record.Value);
 				}
 
 				exp.fillAmount = min / max;
 			}
 
-			List<StatisticValue> stats = info.PlayerStatistics;
+			List<StatisticValue> stats = info.Info.PlayerStatistics;
 
 			foreach (StatisticValue item in stats)
 			{
@@ -130,6 +132,6 @@ public class UiManager : MonoBehaviour
 
 	public void ChangeMenu(int i)
 	{
-		GameFunctions.ChangeMenu()
+		GameFunctions.ChangeMenu(menus.ToArray(), i);
 	}
 }
