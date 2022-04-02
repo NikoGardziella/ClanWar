@@ -6,6 +6,7 @@ using PlayFab.ClientModels;
 
 public class UiManager : MonoBehaviour
 {
+	//profile menu
 	public AccountInfo info;
 	[SerializeField]
 	private List<GameObject> menus;
@@ -22,6 +23,26 @@ public class UiManager : MonoBehaviour
 	private Text trophies;
 	[SerializeField]
 	private Image exp;
+	[SerializeField]
+	private List<Toggle> menuToggle;
+
+	public List<Toggle> MenuToggle
+	{
+		get { return Instance.menuToggle; }
+		set { Instance.menuToggle = value; }
+	}
+
+
+	//Shot menu
+	[SerializeField]
+	private List<GameObject> storeContents;
+
+	public static List<GameObject> StoreContents
+	{
+		get { return Instance.storeContents; }
+		set { Instance.storeContents = value; }
+	}
+
 
 	public static Text Level
 	{
@@ -130,8 +151,21 @@ public class UiManager : MonoBehaviour
 	}
 
 
-	public void ChangeMenu(int i)
+	public void ChangeMenu(int i, GameObject[] m)
 	{
 		GameFunctions.ChangeMenu(menus.ToArray(), i);
+	}
+
+	void UpdateToggles(List<Toggle> togs,GameObject[] m)
+	{
+		for (int i = 0; i < togs.Count; i++)
+		{
+			if (togs[i].isOn)
+			{
+				ChangeMenu(i,m);
+			}
+		} 
+
+		
 	}
 }
