@@ -95,6 +95,30 @@ public class UiManager : MonoBehaviour
 		if (info.Info == null)
 			return;
 		UpdateText();
+		UpdateToggles(menuToggle, menus.ToArray());
+
+		if (menus[GameConstants.MENU_SHOP].activeInHierarchy)
+		{
+			UpdateShopInfo();
+		}
+	}
+
+	private void UpdateShopInfo()
+	{
+		for (int j = 0; j < storeContents[0].transform.GetChild(0).childCount; j++)
+		{
+			if(j < database.Instance.CardStoreItems.Count)
+			{
+				storeContents[0].transform.GetChild(0).GetChild(j).GetComponent<StoreSlot>().Item = database.Instance.CardStoreItems[j];
+				storeContents[0].transform.GetChild(0).GetChild(j).gameObject.SetActive(true);
+				storeContents[0].transform.GetChild(0).GetChild(j).GetChild(1).GetComponent<Text>().text = database.Instance.CardStoreItems[j].ItemId;
+			}
+			else
+			{
+				storeContents[0].transform.GetChild(0).GetChild(j).gameObject.SetActive(false);
+			}
+		}
+
 	}
 
 	void UpdateText()
@@ -168,4 +192,6 @@ public class UiManager : MonoBehaviour
 
 		
 	}
+
+
 }

@@ -30,6 +30,14 @@ public class database : MonoBehaviour
 		set { cards = value; }
 	}
 
+	//private List<StoreItem> cardStoreItems;
+
+	public List<StoreItem> CardStoreItems
+	{
+		get { return cardStoreItems; }
+	}
+
+
 	public static database Instance
 	{
 		get { return instance; }

@@ -29,6 +29,16 @@ public static class GameConstants
 	public static string STORE_CARDS = "BasicCardStore"; 
 	public static string STORE_CHEST = "BasicChestStore";
 
+	//public static int STORE_CARD_ID = 0;
+	//public static int STORE_CHEST_ID = 1;
+	//public static int STORE_BUNDLE_ID = 2;
+
+	public static int MENU_SHOP = 0;
+	public static int MENU_DECK = 1;
+	public static int MENU_BATTLE = 2;
+	public static int MENU_CLAN = 3;
+	public static int MENU_RANKED = 4;
+
 	public enum OBJECT_TYPE
 	{
 		GROUND,
