@@ -99,10 +99,13 @@ public class AccountInfo : MonoBehaviour
 
 	void SetUpAccount()
 	{
-		Dictionary<string, string> data = new Dictionary<string, string>();
-		data.Add(GameConstants.DATA_EXP, "1");
-		data.Add(GameConstants.DATA_MAX_EXP, "100");
-		data.Add(GameConstants.DATA_LEVEL, "1");
+		Dictionary<string, string> data = new Dictionary<string, string>
+		{
+			{ GameConstants.DATA_EXP, "1" },
+			{ GameConstants.DATA_MAX_EXP, "100" },
+			{ GameConstants.DATA_LEVEL, "1" },
+		};
+
 
 		UpdateUserDataRequest request = new UpdateUserDataRequest()
 		{
@@ -118,9 +121,11 @@ public class AccountInfo : MonoBehaviour
 		Debug.Log("UpdateDataInfo");
 
 		List<StatisticUpdate> stats = new List<StatisticUpdate>();
-		StatisticUpdate trophies = new StatisticUpdate();
-		trophies.StatisticName = GameConstants.STAT_TROPHIES;
-		trophies.Value = 0;
+		StatisticUpdate trophies = new StatisticUpdate
+		{
+			StatisticName = GameConstants.STAT_TROPHIES,
+			Value = 0
+		};
 		stats.Add(trophies);
 
 		UpdatePlayerStatisticsRequest request = new UpdatePlayerStatisticsRequest()

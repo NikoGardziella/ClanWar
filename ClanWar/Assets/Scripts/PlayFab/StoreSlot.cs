@@ -19,15 +19,15 @@ public class StoreSlot : MonoBehaviour
 	public void BuydWithCoins()
 	{
 		uint price = 0;
-		if (item.VirtualCurrencyPrices.TryGetValue(GameConstants.COIN_CODE, out price))
+		if (!item.VirtualCurrencyPrices.TryGetValue(GameConstants.COIN_CODE, out price))
 		{
-
-		} 
+			Debug.Log("Code not found");
+		}
 		PurchaseItemRequest request = new PurchaseItemRequest()
 		{
-			ItemId = item.ItemId,  
+			ItemId = item.ItemId,
 			VirtualCurrency = GameConstants.COIN_CODE,
-
+			Price = (int)price,
 		};
 	}
 }
