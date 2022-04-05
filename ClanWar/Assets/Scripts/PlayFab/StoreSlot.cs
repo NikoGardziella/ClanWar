@@ -3,31 +3,72 @@ using System.Collections.Generic;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
+using UnityEngine.UI;
 
 public class StoreSlot : MonoBehaviour
 {
 	[SerializeField]
 	private StoreItem item;
-
+	[SerializeField]
+	private Text coinsText;
+	[SerializeField]
+	private Text gemsText;
+	//
 	public StoreItem Item
 	{
 		get { return item; }
 		set { item = value; }
 	}
-	
 
-	public void BuydWithCoins()
+	private void Update()
+	{
+		if(item != null)
+		{
+			uint price = 0;
+			if (item.VirtualCurrencyPrices.TryGetValue(GameConstants.COIN_CODE, out price))
+			{
+				coinsText.text = string.Format("{0} C", price);
+			}
+			if (item.VirtualCurrencyPrices.TryGetValue(GameConstants.GEM_CODE, out price))
+			{
+				gemsText.text = string.Format("{0} G", price);
+			}
+		}
+	}
+
+
+	public void BuyWithCoins()
 	{
 		uint price = 0;
-		if (!item.VirtualCurrencyPrices.TryGetValue(GameConstants.COIN_CODE, out price))
+		if (item.VirtualCurrencyPrices.TryGetValue(GameConstants.COIN_CODE, out price))
 		{
-			Debug.Log("Code not found");
+			PurchaseItemRequest request = new PurchaseItemRequest()
+			{
+				ItemId = item.ItemId,
+				VirtualCurrency = GameConstants.COIN_CODE,
+				Price = (int)price
+			};
+			PlayFabClientAPI.PurchaseItem(request, OnBoughtItem, GameFunctions.OnAPIError);
 		}
-		PurchaseItemRequest request = new PurchaseItemRequest()
+	}
+	public void BuyWithGems()
+	{
+		uint price = 0;
+		if (item.VirtualCurrencyPrices.TryGetValue(GameConstants.GEM_CODE, out price))
 		{
-			ItemId = item.ItemId,
-			VirtualCurrency = GameConstants.COIN_CODE,
-			Price = (int)price,
-		};
+			PurchaseItemRequest request = new PurchaseItemRequest()
+			{
+				ItemId = item.ItemId,
+				VirtualCurrency = GameConstants.GEM_CODE,
+				Price = (int)price
+			};
+			PlayFabClientAPI.PurchaseItem(request, OnBoughtItem, GameFunctions.OnAPIError);
+		}
+
+	}
+
+	void OnBoughtItem(PurchaseItemResult result)
+	{
+		AccountInfo.GetAccountInfo();
 	}
 }

@@ -63,13 +63,13 @@ public class AccountInfo : MonoBehaviour
 	}
 	static void OnLogin(LoginResult result)
 	{
-		GetAccountInfo(result.PlayFabId);
+		GetAccountInfo();
 		Debug.Log("Login with:" + result.PlayFabId);
 		database.UpdateDatabase();
 		levelManager.LoadLevel(GameConstants.MAIN_SCENE);
 	} 
 
-	public static void GetAccountInfo(string playFabId)
+	public static void GetAccountInfo()
 	{
 		GetPlayerCombinedInfoRequestParams paramInfo = new GetPlayerCombinedInfoRequestParams()
 		{
@@ -82,10 +82,10 @@ public class AccountInfo : MonoBehaviour
 			GetUserData = true,
 			GetUserReadOnlyData = true
 		};
-		Debug.Log("GetAccountinfo" + playFabId);
+		Debug.Log("GetAccountinfo");
 		GetPlayerCombinedInfoRequest request = new GetPlayerCombinedInfoRequest()
 		{
-			PlayFabId = playFabId,
+			PlayFabId = Instance.info.AccountInfo.PlayFabId,
 			InfoRequestParameters = paramInfo
 		};
 		PlayFabClientAPI.GetPlayerCombinedInfo(request,OnAccountInfo ,GameFunctions.OnAPIError);
