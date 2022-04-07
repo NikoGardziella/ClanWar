@@ -9,13 +9,19 @@ public class AccountInfo : MonoBehaviour
 	private static AccountInfo instance;
 	[SerializeField]
 	private GetPlayerCombinedInfoResultPayload info;
-
+	[SerializeField]
+	private List<CardStats> cards;
 	public GetPlayerCombinedInfoResultPayload Info
 	{
 		get { return info; }
 		set { info = value; }
 	}
 
+	public static List<CardStats> Cards
+	{
+		get { return Instance.cards; }
+		set { Instance.cards = value; }
+	}
 
 	public static AccountInfo Instance
 	{
@@ -66,6 +72,7 @@ public class AccountInfo : MonoBehaviour
 		GetAccountInfo();
 		Debug.Log("Login with:" + result.PlayFabId);
 		database.UpdateDatabase();
+		AddCards();
 		levelManager.LoadLevel(GameConstants.MAIN_SCENE);
 	} 
 
@@ -139,6 +146,14 @@ public class AccountInfo : MonoBehaviour
 	void UpdateStatInfo(UpdatePlayerStatisticsResult result)
 	{
 		Debug.Log("UpdateStatInfo");
+	}
+
+	void AddCards()
+	{
+		for (int i = 0; i < info.UserInventory.Count; i++)
+		{
+			Cards.Add(GameFunctions.CreateCard(info.UserInventory[i]);
+		}
 	}
 
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using PlayFab.ClientModels;
+using System;
 
 public class UiManager : MonoBehaviour
 {
@@ -37,10 +38,26 @@ public class UiManager : MonoBehaviour
 	[SerializeField]
 	private List<GameObject> storeContents;
 
+
+	//shop menu	
+	[SerializeField]
+	private List<GameObject> inventoryContents;
+	[SerializeField]
+	private List<GameObject> deckContents;
 	public static List<GameObject> StoreContents
 	{
 		get { return Instance.storeContents; }
 		set { Instance.storeContents = value; }
+	}
+	public static List<GameObject> InventoryContents
+	{
+		get { return Instance.inventoryContents; }
+		set { Instance.inventoryContents = value; }
+	}
+	public static List<GameObject> DeckContents
+	{
+		get { return Instance.deckContents; }
+		set { Instance.deckContents = value; }
 	}
 
 
@@ -100,6 +117,21 @@ public class UiManager : MonoBehaviour
 		if (menus[GameConstants.MENU_SHOP].activeInHierarchy)
 		{
 			UpdateShopInfo();
+		}
+		else if (menus[GameConstants.MENU_DECK].activeInHierarchy)
+		{
+			UpdateDeckInfo();
+		}
+	}
+
+	private void UpdateDeckInfo()
+	{
+		for (int i = 0; i < inventoryContents.Count; i++)
+		{
+			if(AccountInfo.Instance.Info.UserInventory[i].ItemClass == GameConstants.ITEM_CARDS)
+			{
+				inventoryContents[i].transform.GetChild
+			}
 		}
 	}
 

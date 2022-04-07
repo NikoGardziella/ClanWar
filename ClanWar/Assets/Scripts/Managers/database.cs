@@ -70,7 +70,7 @@ public class database : MonoBehaviour
 			if (result.Catalog[i].ItemClass == GameConstants.ITEM_CARDS)
 			{
 				Instance.CatalogCards.Add(result.Catalog[i]);
-				Instance.cards.Add(GameFunctions.CreateCard(result.Catalog[i], i));
+				Instance.Cards.Add(GameFunctions.CreateCard(result.Catalog[i], i)); // changed from card to Card 7.4
 			}
 		}
 
