@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8601328337288854315}
-  - component: {fileID: 3246328131135546885}
+  - component: {fileID: 5757312358154680992}
   m_Layer: 0
   m_Name: DeckSlot
   m_TagString: Untagged
@@ -39,7 +39,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3246328131135546885
+--- !u!114 &5757312358154680992
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,9 +48,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1614252457200229412}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6527f328080e73b4aac2e2117923eab3, type: 3}
+  m_Script: {fileID: 11500000, guid: fa3d453db38745b4e9594d15073d64a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 2427510825326361487}
+  id: {fileID: 8314301365494479757}
+  cost: {fileID: 1917111444263926720}
+  card:
+    index: 0
+    name: 
+    icon: {fileID: 0}
+    cost: 0
+    prefab: {fileID: 0}
+    inDeck: 0
 --- !u!1 &2807659560437768359
 GameObject:
   m_ObjectHideFlags: 0

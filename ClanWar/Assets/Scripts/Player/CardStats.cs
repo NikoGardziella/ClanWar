@@ -15,7 +15,10 @@ public class CardStats
 	private int cost;
 	[SerializeField]
 	private GameObject prefab;
-
+	private int count;
+	[SerializeField]
+	private int inDeck;
+	[SerializeField]
 
 	public GameObject Prefab
 	{
@@ -46,6 +49,15 @@ public class CardStats
 		get { return name; }
 		set { name = value; }
 	}
-
+	public int Count
+	{
+		get { return count; }
+		set { count = value; }
+	}
+	public int InDeck
+	{
+		get { return inDeck; }
+		set { inDeck = value; }
+	}
 
 }

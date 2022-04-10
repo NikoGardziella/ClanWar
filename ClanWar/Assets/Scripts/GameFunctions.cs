@@ -130,18 +130,20 @@ public static class GameFunctions
 	{
 		Sprite icon = Resources.Load(GetCatalogCustomData(GameConstants.ITEM_ICON, item), typeof(Sprite)) as Sprite;
 		GameObject prefab = Resources.Load(GetCatalogCustomData(GameConstants.ITEM_PREFAB, item), typeof(GameObject)) as GameObject;
-		CardStats cs = new CardStats
+		CardStats cs = new CardStats() // wrong?
 		{
 			Index = i,
 			Name = item.DisplayName,
 			Cost = int.Parse(GetCatalogCustomData(GameConstants.ITEM_COST, item)),
 			Icon = icon,
-			Prefab = prefab
+			Prefab = prefab,
+			Count = int.Parse(GetCatalogCustomData(GameConstants.ITEM_COUNT, item)),
+			InDeck = int.Parse(GetCatalogCustomData(GameConstants.ITEM_IN_DECK, item))
 		};
 		return cs;
 	}
 
-	public static CardStats CreateCard(ItemInstance item, int i)
+	/*public static CardStats CreateCard(ItemInstance item, int i)
 	{
 		Sprite icon = Resources.Load(GetCatalogCustomData(GameConstants.ITEM_ICON, item), typeof(Sprite)) as Sprite;
 		GameObject prefab = Resources.Load(GetCatalogCustomData(GameConstants.ITEM_PREFAB, item), typeof(GameObject)) as GameObject;
@@ -154,7 +156,7 @@ public static class GameFunctions
 			Prefab = prefab
 		};
 		return cs;
-	}
+	} DELETE*/
 
 	public static string GetCatalogCustomData(int i, CatalogItem item)
 	{
@@ -180,30 +182,21 @@ public static class GameFunctions
 		Debug.Log(string.Format("GetCatalogCustomdata - could not find ID: {0} in {1}", i, item.DisplayName));
 		return "ERROR";
 	}
-	public static string GetCatalogCustomData(int i, ItemInstance item)
+	/*public static string GetCatalogCustomData(int i, ItemInstance item)
 	{
-		Debug.Log(item.CustomData);
-		string cDataTemp = item.CustomData.Trim();
-		cDataTemp = cDataTemp.TrimStart('{');
-		cDataTemp = cDataTemp.TrimEnd('}');
-		string[] newCData;
-		newCData = cDataTemp.Split(',', ':');
 
-		for (int s = 0; s < newCData.Length; s++)
+		GetCatalogCustomData(i, database.GetCatalogItem(item));
+		/*Debug.Log(item.CustomData);
+		string i = "";
+		if (item.CustomData.TryGetValue(key, out i))
 		{
-			if (i == s)
-			{
-				newCData[s] = newCData[s].Trim();
-				newCData[s] = newCData[s].TrimStart('"');
-				newCData[s] = newCData[s].TrimEnd('"');
-				newCData[s] = newCData[s].Trim();
-				return newCData[s];
-			}
-
+			Debug.Log(string.Format("Key: {0} has been found. Value is {1}", key, i));
+			return i;
 		}
+
 		Debug.Log(string.Format("GetCatalogCustomdata - could not find ID: {0} in {1}", i, item.DisplayName));
 		return "ERROR";
-	}
+	} */
 
 	public static void OnAPIError(PlayFabError error)
 	{

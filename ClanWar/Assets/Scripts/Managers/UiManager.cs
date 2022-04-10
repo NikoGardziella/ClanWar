@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using PlayFab.ClientModels;
-using System;
 
 public class UiManager : MonoBehaviour
 {
@@ -44,6 +43,11 @@ public class UiManager : MonoBehaviour
 	private List<GameObject> inventoryContents;
 	[SerializeField]
 	private List<GameObject> deckContents;
+	[SerializeField]
+	private Text avgCost;
+	[SerializeField]
+	private int currentCost;
+
 	public static List<GameObject> StoreContents
 	{
 		get { return Instance.storeContents; }
@@ -58,6 +62,22 @@ public class UiManager : MonoBehaviour
 	{
 		get { return Instance.deckContents; }
 		set { Instance.deckContents = value; }
+	}
+	public static Text AvgCost
+	{
+		get { return Instance.avgCost; }
+		set { Instance.avgCost = value; }
+	}
+	public static int CurrentCost
+	{
+		get
+		{
+			return Instance.currentCost;
+		}
+		set
+		{
+			Instance.currentCost = value;
+		}
 	}
 
 
@@ -99,12 +119,11 @@ public class UiManager : MonoBehaviour
 		set { instance = value; }
 	}
 
-	private void Awake() 
+	private void Awake()
 	{
 		if (instance != this)
 			instance = this;
-		info = FindObjectOfType<AccountInfo>();
-
+		info = FindObjectOfType<AccountInfo>(); // 10.4 removed GameObject.
 	}
 
 	private void Update()
@@ -120,19 +139,40 @@ public class UiManager : MonoBehaviour
 		}
 		else if (menus[GameConstants.MENU_DECK].activeInHierarchy)
 		{
-			UpdateDeckInfo();
+			UpdateInventoryInfo();
 		}
 	}
 
-	private void UpdateDeckInfo()
+	private void UpdateInventoryInfo() // error?
 	{
-		for (int i = 0; i < inventoryContents.Count; i++)
+		for (int i = 0; i < InventoryContents.Count; i++)
 		{
-			if(AccountInfo.Instance.Info.UserInventory[i].ItemClass == GameConstants.ITEM_CARDS)
+			if (i < AccountInfo.Instance.Info.UserInventory.Count)
 			{
-				inventoryContents[i].transform.GetChild
+				if (AccountInfo.Instance.Info.UserInventory[i].ItemClass == GameConstants.ITEM_CARDS)
+				{
+					InventoryContents[i].GetComponent<ItemSlot>().Card = AccountInfo.Cards[i];
+					InventoryContents[i].SetActive(true);
+					InventoryContents[i].GetComponent<Button>().interactable = true;
+					InventoryContents[i].transform.GetChild(0).GetComponent<Image>().sprite = AccountInfo.Cards[i].Icon;
+					InventoryContents[i].transform.GetChild(1).GetComponent<Text>().text = AccountInfo.Cards[i].Name;
+					InventoryContents[i].transform.GetChild(2).GetComponent<Text>().text = string.Format("Cost: {0}", AccountInfo.Cards[i].Cost);
+				}
+				else
+				{
+					InventoryContents[i].SetActive(false);
+				}
+			}
+			else
+			{
+				InventoryContents[i].SetActive(false);
 			}
 		}
+	}
+
+	public static void UpdateDeckinfo(int i, CardStats card)
+	{
+		DeckContents[i].GetComponent<DeckSlot>().Card = card;
 	}
 
 	private void UpdateShopInfo()

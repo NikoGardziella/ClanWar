@@ -10,7 +10,9 @@ public class AccountInfo : MonoBehaviour
 	[SerializeField]
 	private GetPlayerCombinedInfoResultPayload info;
 	[SerializeField]
-	private List<CardStats> cards;
+	private List<CardStats> cards = new List<CardStats>();
+	[SerializeField]
+	private List<CardStats> deck = new List<CardStats>();
 	public GetPlayerCombinedInfoResultPayload Info
 	{
 		get { return info; }
@@ -22,6 +24,12 @@ public class AccountInfo : MonoBehaviour
 		get { return Instance.cards; }
 		set { Instance.cards = value; }
 	}
+	public static List<CardStats> Deck
+	{
+		get { return Instance.deck; }
+		set { Instance.deck = value; }
+	}
+
 
 	public static AccountInfo Instance
 	{
@@ -36,6 +44,13 @@ public class AccountInfo : MonoBehaviour
 		DontDestroyOnLoad(gameObject);
 	}
 
+	private void Update()
+	{
+		if(Info != null && Cards.Count == 0 && database.Updated)
+		{
+			AddCards();
+		}
+	}
 	public static void Register(string username, string email, string password)
 	{
 		RegisterPlayFabUserRequest request = new RegisterPlayFabUserRequest()
@@ -69,12 +84,11 @@ public class AccountInfo : MonoBehaviour
 	}
 	static void OnLogin(LoginResult result)
 	{
-		GetAccountInfo();
 		Debug.Log("Login with:" + result.PlayFabId);
+		GetAccountInfo(result.PlayFabId); // added: result.PlayFabId 10.4
 		database.UpdateDatabase();
-		AddCards();
 		levelManager.LoadLevel(GameConstants.MAIN_SCENE);
-	} 
+	}
 
 	public static void GetAccountInfo()
 	{
@@ -95,13 +109,34 @@ public class AccountInfo : MonoBehaviour
 			PlayFabId = Instance.info.AccountInfo.PlayFabId,
 			InfoRequestParameters = paramInfo
 		};
-		PlayFabClientAPI.GetPlayerCombinedInfo(request,OnAccountInfo ,GameFunctions.OnAPIError);
+		PlayFabClientAPI.GetPlayerCombinedInfo(request, OnAccountInfo, GameFunctions.OnAPIError);
 	}
-
+	public static void GetAccountInfo(string playfabId)
+	{
+		GetPlayerCombinedInfoRequestParams paramInfo = new GetPlayerCombinedInfoRequestParams()
+		{
+			GetTitleData = true,
+			GetUserInventory = true,
+			GetUserAccountInfo = true,
+			GetUserVirtualCurrency = true,
+			GetPlayerProfile = true,
+			GetPlayerStatistics = true,
+			GetUserData = true,
+			GetUserReadOnlyData = true
+		};
+		Debug.Log("GetAccountinfo");
+		GetPlayerCombinedInfoRequest request = new GetPlayerCombinedInfoRequest()
+		{
+			PlayFabId = playfabId,
+			InfoRequestParameters = paramInfo
+		};
+		PlayFabClientAPI.GetPlayerCombinedInfo(request, OnAccountInfo, GameFunctions.OnAPIError);
+	}
 	static void OnAccountInfo(GetPlayerCombinedInfoResult result)
 	{
-		Debug.Log("Updated account info");
+		AddCards();
 		instance.Info = result.InfoResultPayload;
+		Debug.Log("Updated account info");
 	}
 
 	void SetUpAccount()
@@ -110,16 +145,14 @@ public class AccountInfo : MonoBehaviour
 		{
 			{ GameConstants.DATA_EXP, "1" },
 			{ GameConstants.DATA_MAX_EXP, "100" },
-			{ GameConstants.DATA_LEVEL, "1" },
+			{ GameConstants.DATA_LEVEL, "1" }
 		};
 
 
 		UpdateUserDataRequest request = new UpdateUserDataRequest()
 		{
-			Data = data,
-			
+			Data = data	
 		};
-
 		PlayFabClientAPI.UpdateUserData(request, UpdateDataInfo, GameFunctions.OnAPIError);
 	}
 
@@ -148,11 +181,15 @@ public class AccountInfo : MonoBehaviour
 		Debug.Log("UpdateStatInfo");
 	}
 
-	void AddCards()
+	static void AddCards()
 	{
-		for (int i = 0; i < info.UserInventory.Count; i++)
+		for (int i = 0; i < Instance.Info.UserInventory.Count; i++)
 		{
-			Cards.Add(GameFunctions.CreateCard(info.UserInventory[i]);
+			if(Instance.Info.UserInventory[i].ItemClass == GameConstants.ITEM_CARDS)
+			{
+				Cards.Add(database.GetCardInfo(Instance.Info.UserInventory[i], i));
+			}
+			//Cards.Add(GameFunctions.CreateCard(Instance.Info.UserInventory[i], i));
 		}
 	}
 

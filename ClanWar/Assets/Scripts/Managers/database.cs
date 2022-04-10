@@ -15,6 +15,15 @@ public class database : MonoBehaviour
 	private List<StoreItem> cardStoreItems;
 	[SerializeField]
 	private List<StoreItem> chestStoreItems;
+	[SerializeField]
+	private bool updated = false;
+
+	public static bool Updated
+	{
+		get { return Instance.updated; }
+		set { Instance.updated = value; }
+	}
+
 
 
 	public List<CatalogItem> CatalogCards
@@ -30,7 +39,6 @@ public class database : MonoBehaviour
 		set { cards = value; }
 	}
 
-	//private List<StoreItem> cardStoreItems;
 
 	public List<StoreItem> CardStoreItems
 	{
@@ -51,6 +59,8 @@ public class database : MonoBehaviour
 
 	}
 
+
+
 	public static void UpdateDatabase()
 	{
 		GetCatalogItemsRequest request = new GetCatalogItemsRequest()
@@ -59,6 +69,24 @@ public class database : MonoBehaviour
 		};
 		Debug.Log("UpdateDatabase");
 		PlayFabClientAPI.GetCatalogItems(request, OnUpdateDatabase, GameFunctions.OnAPIError);
+	}
+	
+	public static CatalogItem GetCatalogItem(ItemInstance item)
+	{
+		foreach (CatalogItem c in Instance.catalogCards)
+		{
+			Debug.Log(item.ItemId + " " + c.ItemId);
+			if (item.ItemId == c.ItemId)
+				return c;
+		}
+		Debug.Log(string.Format("IteM {0} was not found", item.ItemId));
+		return null;
+	}
+
+	public static CardStats GetCardInfo(ItemInstance item, int i)
+	{
+		CatalogItem ci = GetCatalogItem(item);
+		return GameFunctions.CreateCard(ci, i);
 	}
 
 	static void OnUpdateDatabase(GetCatalogItemsResult result)
@@ -99,6 +127,9 @@ public class database : MonoBehaviour
 		else if(result.StoreId == GameConstants.STORE_CHEST)
 		{
 			Instance.chestStoreItems = result.Store;
+			Updated = true;
 		}
 	}
+
+
 }

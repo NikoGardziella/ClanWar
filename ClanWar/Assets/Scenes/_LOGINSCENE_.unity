@@ -1926,6 +1926,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cards: []
   catalogCards: []
+  cardStoreItems: []
+  chestStoreItems: []
+  updated: 0
 --- !u!4 &865893106
 Transform:
   m_ObjectHideFlags: 0
@@ -4156,6 +4159,22 @@ MonoBehaviour:
     UserDataVersion: 0
     UserInventory: []
     UserReadOnlyDataVersion: 0
+  cards:
+  - index: 0
+    name: 
+    icon: {fileID: 0}
+    cost: 0
+    prefab: {fileID: 0}
+  - index: 0
+    name: 
+    icon: {fileID: 0}
+    cost: 0
+    prefab: {fileID: 0}
+  - index: 0
+    name: 
+    icon: {fileID: 0}
+    cost: 0
+    prefab: {fileID: 0}
 --- !u!4 &1884873944
 Transform:
   m_ObjectHideFlags: 0
