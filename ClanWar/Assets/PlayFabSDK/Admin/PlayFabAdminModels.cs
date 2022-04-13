@@ -2365,6 +2365,8 @@ namespace PlayFab.AdminModels
         NoValidIdentityForAad,
         PlayerIdentityLinkNotFound,
         PhotonApplicationIdAlreadyInUse,
+        CloudScriptUnableToDeleteProductionRevision,
+        CustomIdNotFound,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,

@@ -7,9 +7,11 @@ using PlayFab.ClientModels;
 public class UiManager : MonoBehaviour
 {
 	//profile menu
+	
 	public AccountInfo info;
 	[SerializeField]
 	private List<GameObject> menus;
+	[SerializeField]
 	private static UiManager instance;
 	[SerializeField]
 	private Text level;
@@ -135,7 +137,7 @@ public class UiManager : MonoBehaviour
 
 		if (menus[GameConstants.MENU_SHOP].activeInHierarchy)
 		{
-			UpdateShopInfo();
+			UpdateShopInfo(); // error
 		}
 		else if (menus[GameConstants.MENU_DECK].activeInHierarchy)
 		{
@@ -143,9 +145,12 @@ public class UiManager : MonoBehaviour
 		}
 	}
 
-	private void UpdateInventoryInfo() // error?
+	private void UpdateInventoryInfo()
 	{
-		for (int i = 0; i < InventoryContents.Count; i++)
+		//Debug.Log("Updateinventory: InventoryContents.Count" + InventoryContents.Count);
+	//	Debug.Log("AccountInfo.Instance.Info.UserInventory.Count" + AccountInfo.Instance.Info.UserInventory.Count);
+
+		for (int i = 0; i < InventoryContents.Count; i++)  // error?
 		{
 			if (i < AccountInfo.Instance.Info.UserInventory.Count)
 			{
@@ -179,7 +184,7 @@ public class UiManager : MonoBehaviour
 	{
 		for (int j = 0; j < storeContents[0].transform.GetChild(0).childCount; j++)
 		{
-			if(j < database.Instance.CardStoreItems.Count)
+			if(j < database.Instance.CardStoreItems.Count) // ERROR
 			{
 				storeContents[0].transform.GetChild(0).GetChild(j).GetComponent<StoreSlot>().Item = database.Instance.CardStoreItems[j];
 				storeContents[0].transform.GetChild(0).GetChild(j).gameObject.SetActive(true);
@@ -261,9 +266,5 @@ public class UiManager : MonoBehaviour
 				ChangeMenu(i,m);
 			}
 		} 
-
-		
 	}
-
-
 }

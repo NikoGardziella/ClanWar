@@ -128,9 +128,11 @@ public static class GameFunctions
 
 	public static CardStats CreateCard(CatalogItem item, int i)
 	{
+		Debug.Log("CreateCard" + item);
+		Debug.Log(i);
 		Sprite icon = Resources.Load(GetCatalogCustomData(GameConstants.ITEM_ICON, item), typeof(Sprite)) as Sprite;
 		GameObject prefab = Resources.Load(GetCatalogCustomData(GameConstants.ITEM_PREFAB, item), typeof(GameObject)) as GameObject;
-		CardStats cs = new CardStats() // wrong?
+		CardStats cs = new CardStats () // wrong? add () ? ERROR
 		{
 			Index = i,
 			Name = item.DisplayName,

@@ -46,8 +46,9 @@ public class AccountInfo : MonoBehaviour
 
 	private void Update()
 	{
-		if(Info != null && Cards.Count == 0 && database.Updated)
+		if(Info != null && instance.cards.Count == 0 && database.Updated) // 12.4 changed from Cards.Count
 		{
+			
 			AddCards();
 		}
 	}
@@ -134,8 +135,8 @@ public class AccountInfo : MonoBehaviour
 	}
 	static void OnAccountInfo(GetPlayerCombinedInfoResult result)
 	{
+		Instance.Info = result.InfoResultPayload;
 		AddCards();
-		instance.Info = result.InfoResultPayload;
 		Debug.Log("Updated account info");
 	}
 
@@ -185,11 +186,12 @@ public class AccountInfo : MonoBehaviour
 	{
 		for (int i = 0; i < Instance.Info.UserInventory.Count; i++)
 		{
-			if(Instance.Info.UserInventory[i].ItemClass == GameConstants.ITEM_CARDS)
+			Debug.Log("Add Cards" + Instance.Info.UserInventory[i]);
+			if (Instance.Info.UserInventory[i].ItemClass == GameConstants.ITEM_CARDS)
 			{
+				Debug.Log("Add Cards" + Instance.Info.UserInventory[i]);
 				Cards.Add(database.GetCardInfo(Instance.Info.UserInventory[i], i));
 			}
-			//Cards.Add(GameFunctions.CreateCard(Instance.Info.UserInventory[i], i));
 		}
 	}
 

@@ -28,7 +28,7 @@ public static class GameConstants
 	public static string DATA_LEVEL = "Level";
 	public static string STAT_TROPHIES = "Trophies";
 
-	public static string STORE_CARDS = "BasicCardStore"; 
+	public static string STORE_CARDS = "BasicCardStore";
 	public static string STORE_CHEST = "BasicChestStore";
 
 	//public static int STORE_CARD_ID = 0;

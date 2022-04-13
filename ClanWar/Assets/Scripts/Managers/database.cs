@@ -71,9 +71,9 @@ public class database : MonoBehaviour
 		PlayFabClientAPI.GetCatalogItems(request, OnUpdateDatabase, GameFunctions.OnAPIError);
 	}
 	
-	public static CatalogItem GetCatalogItem(ItemInstance item)
+	public static CatalogItem GetCatalogItem(ItemInstance item) // 13.4 something wrong here
 	{
-		foreach (CatalogItem c in Instance.catalogCards)
+		foreach (CatalogItem c in Instance.CatalogCards)
 		{
 			Debug.Log(item.ItemId + " " + c.ItemId);
 			if (item.ItemId == c.ItemId)
@@ -91,44 +91,52 @@ public class database : MonoBehaviour
 
 	static void OnUpdateDatabase(GetCatalogItemsResult result)
 	{
+		GetStoreItems(GameConstants.STORE_CHEST); // 13.4 moved up
+		GetStoreItems(GameConstants.STORE_CARDS); // 13.4 moved up
 		Debug.Log("OnUpdateDatabase");
-		for (int i = 0; i < result.Catalog.Count; i++)
+		//Debug.Log("on Update database: result.Catalog.Count" + result.Catalog.Count);
+		for (int i = 0; i < result.Catalog.Count; i++) // 12.4 changed to <=
 		{
-
+			//Debug.Log("OnUpdateDatabase for loop "+ i);
 			if (result.Catalog[i].ItemClass == GameConstants.ITEM_CARDS)
 			{
+				Debug.Log("OnUpdateDatabase result.Catalog[i].ItemClass: " + result.Catalog[i].ItemClass);
 				Instance.CatalogCards.Add(result.Catalog[i]);
-				Instance.Cards.Add(GameFunctions.CreateCard(result.Catalog[i], i)); // changed from card to Card 7.4
+				Instance.cards.Add(GameFunctions.CreateCard(result.Catalog[i], i)); // changed from card to Card 7.4 ERROR ___
 			}
 		}
 
-		GetStoreItems(GameConstants.STORE_CHEST);
-		GetStoreItems(GameConstants.STORE_CARDS);
 	}
 
 
 	static void GetStoreItems(string id)
 	{
+		Debug.Log("GET storetems: id" + id);
 		GetStoreItemsRequest request = new GetStoreItemsRequest()
 		{
 			CatalogVersion = GameConstants.CATALOG_ITEMS,
 			StoreId = id
 		};
 
-		PlayFabClientAPI.GetStoreItems(request,GotStoreItem , GameFunctions.OnAPIError);
+		PlayFabClientAPI.GetStoreItems(request,GotStoreItems , GameFunctions.OnAPIError);
 	}
 
-	static void GotStoreItem(GetStoreItemsResult result)
+	static void GotStoreItems(GetStoreItemsResult result)
 	{
+	
+		Debug.Log("got store items: result.StoreId" + result.StoreId);
 		if(result.StoreId == GameConstants.STORE_CARDS)
 		{
+			Debug.Log("Got Store items CARDS");
 			Instance.cardStoreItems = result.Store;
 		}
 		else if(result.StoreId == GameConstants.STORE_CHEST)
 		{
+			Debug.Log("Got Store items CHEST");
 			Instance.chestStoreItems = result.Store;
 			Updated = true;
 		}
+
 	}
 
 
