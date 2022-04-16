@@ -73,13 +73,18 @@ public class database : MonoBehaviour
 	
 	public static CatalogItem GetCatalogItem(ItemInstance item) // 13.4 something wrong here
 	{
+		Debug.Log("GetCatalogItem ITEM: " + item + "    Instance.CatalogCards: " + Instance.CatalogCards);
 		foreach (CatalogItem c in Instance.CatalogCards)
 		{
 			Debug.Log(item.ItemId + " " + c.ItemId);
 			if (item.ItemId == c.ItemId)
+			{
+				Debug.Log("IF" + item.ItemId + " " + c.ItemId);
 				return c;
+			}
+
 		}
-		Debug.Log(string.Format("IteM {0} was not found", item.ItemId));
+		Debug.Log(string.Format("ERROR! Item {0} was not found", item.ItemId));
 		return null;
 	}
 
@@ -101,6 +106,7 @@ public class database : MonoBehaviour
 			if (result.Catalog[i].ItemClass == GameConstants.ITEM_CARDS)
 			{
 				Debug.Log("OnUpdateDatabase result.Catalog[i].ItemClass: " + result.Catalog[i].ItemClass);
+				Debug.Log("OnUpdateDatabase result.Catalog[i] : " + result.Catalog[i]);
 				Instance.CatalogCards.Add(result.Catalog[i]);
 				Instance.cards.Add(GameFunctions.CreateCard(result.Catalog[i], i)); // changed from card to Card 7.4 ERROR ___
 			}

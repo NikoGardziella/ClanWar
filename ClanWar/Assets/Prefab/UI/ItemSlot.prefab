@@ -52,6 +52,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6527f328080e73b4aac2e2117923eab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  card:
+    index: 0
+    name: 
+    icon: {fileID: 0}
+    cost: 0
+    prefab: {fileID: 0}
+    inDeck: 0
 --- !u!114 &7491372794193601818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,7 +102,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9026893178971298332}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2627299897676343541}
+        m_TargetAssemblyTypeName: ItemSlot, Assembly-CSharp
+        m_MethodName: AddToDeck
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4953389187604450955
 GameObject:
   m_ObjectHideFlags: 0

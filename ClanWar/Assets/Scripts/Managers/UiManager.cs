@@ -40,7 +40,7 @@ public class UiManager : MonoBehaviour
 	private List<GameObject> storeContents;
 
 
-	//shop menu	
+	//deck  menu	
 	[SerializeField]
 	private List<GameObject> inventoryContents;
 	[SerializeField]
@@ -48,7 +48,9 @@ public class UiManager : MonoBehaviour
 	[SerializeField]
 	private Text avgCost;
 	[SerializeField]
-	private int currentCost;
+	private float currentCost;
+	[SerializeField]
+	private int currentCount;
 
 	public static List<GameObject> StoreContents
 	{
@@ -70,7 +72,7 @@ public class UiManager : MonoBehaviour
 		get { return Instance.avgCost; }
 		set { Instance.avgCost = value; }
 	}
-	public static int CurrentCost
+	public static float CurrentCost
 	{
 		get
 		{
@@ -79,6 +81,17 @@ public class UiManager : MonoBehaviour
 		set
 		{
 			Instance.currentCost = value;
+		}
+	}
+	public static int CurrentCount
+	{
+		get
+		{
+			return Instance.currentCount;
+		}
+		set
+		{
+			Instance.currentCount = value;
 		}
 	}
 
@@ -142,6 +155,7 @@ public class UiManager : MonoBehaviour
 		else if (menus[GameConstants.MENU_DECK].activeInHierarchy)
 		{
 			UpdateInventoryInfo();
+			AvgCost.text = string.Format("Avg cost: {0}", CurrentCost / (AccountInfo.Deck.Count));
 		}
 	}
 
@@ -197,6 +211,7 @@ public class UiManager : MonoBehaviour
 		}
 
 	}
+
 
 	void UpdateText()
 	{
@@ -254,7 +269,7 @@ public class UiManager : MonoBehaviour
 
 	public void ChangeMenu(int i, GameObject[] m)
 	{
-		GameFunctions.ChangeMenu(menus.ToArray(), i);
+		GameFunctions.ChangeMenu(m, i); // 14.4 menus.ToArray() changed 1st arg
 	}
 
 	void UpdateToggles(List<Toggle> togs,GameObject[] m)

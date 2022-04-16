@@ -23,16 +23,11 @@ public class ItemSlot : MonoBehaviour
 
 	public void AddToDeck()
 	{
-		for (int i = 0; i < AccountInfo.Deck.Count; i++)
-		{
-			if(AccountInfo.Deck[i].Name == "")
-			{
-				AccountInfo.Deck.Add(card);
-				GetComponent<Button>().interactable = false;
-				UiManager.UpdateDeckinfo(i,card);
-				return ;
-			}
 
-		}
+		AccountInfo.Deck.Add(card);
+		GetComponent<Button>().interactable = false;
+		UiManager.UpdateDeckinfo(UiManager.CurrentCount, card);
+		UiManager.CurrentCount++;
+		UiManager.CurrentCost += card.Cost;
 	}
 }

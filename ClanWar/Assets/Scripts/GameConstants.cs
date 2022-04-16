@@ -5,8 +5,8 @@ public static class GameConstants
 	public static int ITEM_COST = 1;
 	public static int ITEM_ICON = 3;
 	public static int ITEM_PREFAB = 5;
-	public static int ITEM_COUNT = 5;
-	public static int ITEM_IN_DECK = 5;
+	public static int ITEM_COUNT = 7;
+	public static int ITEM_IN_DECK = 9;
 
 	public static float MELEE_DISTANCE = 0.5f;
 	public static float RANGE_DISTANCE = 0.9f;

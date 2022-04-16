@@ -132,8 +132,11 @@ public static class GameFunctions
 		Debug.Log(i);
 		Sprite icon = Resources.Load(GetCatalogCustomData(GameConstants.ITEM_ICON, item), typeof(Sprite)) as Sprite;
 		GameObject prefab = Resources.Load(GetCatalogCustomData(GameConstants.ITEM_PREFAB, item), typeof(GameObject)) as GameObject;
-		CardStats cs = new CardStats () // wrong? add () ? ERROR
+		Debug.Log("CreateCard prefab: " + prefab);
+		// wrong? add () ? ERROR
+		CardStats cs = new CardStats()
 		{
+
 			Index = i,
 			Name = item.DisplayName,
 			Cost = int.Parse(GetCatalogCustomData(GameConstants.ITEM_COST, item)),
@@ -142,6 +145,7 @@ public static class GameFunctions
 			Count = int.Parse(GetCatalogCustomData(GameConstants.ITEM_COUNT, item)),
 			InDeck = int.Parse(GetCatalogCustomData(GameConstants.ITEM_IN_DECK, item))
 		};
+		Debug.Log("cs.Index:" + cs.Index + "cs.Name" + cs.Name + "cs.Cost: " + cs.Cost + "cs.Icon: " + cs.Icon + "cs.Prefab:" + cs.Prefab + "cs.Count:" + cs.Count + "cs.InDeck:" + cs.InDeck);
 		return cs;
 	}
 

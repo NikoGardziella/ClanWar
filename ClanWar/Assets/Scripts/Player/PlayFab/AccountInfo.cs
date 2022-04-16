@@ -186,7 +186,6 @@ public class AccountInfo : MonoBehaviour
 	{
 		for (int i = 0; i < Instance.Info.UserInventory.Count; i++)
 		{
-			Debug.Log("Add Cards" + Instance.Info.UserInventory[i]);
 			if (Instance.Info.UserInventory[i].ItemClass == GameConstants.ITEM_CARDS)
 			{
 				Debug.Log("Add Cards" + Instance.Info.UserInventory[i]);
