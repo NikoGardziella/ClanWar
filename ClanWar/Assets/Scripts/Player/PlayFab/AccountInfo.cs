@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
+using System;
 
 public class AccountInfo : MonoBehaviour
 {
+	public string[] deckInfo;
 	private static AccountInfo instance;
 	[SerializeField]
 	private GetPlayerCombinedInfoResultPayload info;
@@ -133,6 +135,34 @@ public class AccountInfo : MonoBehaviour
 		};
 		PlayFabClientAPI.GetPlayerCombinedInfo(request, OnAccountInfo, GameFunctions.OnAPIError);
 	}
+
+	public static void AddToDeck()
+	{
+		string deckContents = "";
+		foreach  (CardStats item in Deck)
+		{
+			deckContents += item.Name + ",";
+		}
+		Dictionary<string, string> data = new Dictionary<string, string>
+		{
+			{ GameConstants.DATA_DECK, deckContents }
+		};
+
+		UpdateUserDataRequest request = new UpdateUserDataRequest()
+		{
+			Data = data
+
+		};
+
+		PlayFabClientAPI.UpdateUserData(request, GotData, GameFunctions.OnAPIError);
+
+	}
+
+	private static void GotData(UpdateUserDataResult result)
+	{
+		Debug.Log("Updated data!");
+	}
+
 	static void OnAccountInfo(GetPlayerCombinedInfoResult result)
 	{
 		Instance.Info = result.InfoResultPayload;
@@ -192,6 +222,25 @@ public class AccountInfo : MonoBehaviour
 				Cards.Add(database.GetCardInfo(Instance.Info.UserInventory[i], i));
 			}
 		}
+		UserDataRecord temp;
+		if(Instance.info.UserData.TryGetValue(GameConstants.DATA_DECK, out temp))
+		{
+			Instance.deckInfo = temp.Value.Split(',');
+			for (int i = 0; i < Instance.deckInfo.Length - 1; i++)
+			{
+				for (int j = 0; j < Instance.Info.UserInventory.Count; j++)
+				{
+					if(Instance.deckInfo[i] == Instance.Info.UserInventory[j].ItemId)
+					{
+						Deck.Add(database.GetCardInfo(Instance.Info.UserInventory[j], j));
+						break ;
+					}
+
+				}
+			}
+		}
+
+
 	}
 
 }

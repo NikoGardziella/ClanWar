@@ -26,6 +26,8 @@ public static class GameConstants
 	public static string DATA_EXP = "Exp";
 	public static string DATA_MAX_EXP = "Max Exp";
 	public static string DATA_LEVEL = "Level";
+	public static string DATA_DECK = "Deck";
+
 	public static string STAT_TROPHIES = "Trophies";
 
 	public static string STORE_CARDS = "BasicCardStore";

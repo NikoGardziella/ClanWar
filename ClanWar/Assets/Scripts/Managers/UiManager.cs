@@ -194,6 +194,11 @@ public class UiManager : MonoBehaviour
 		DeckContents[i].GetComponent<DeckSlot>().Card = card;
 	}
 
+	public void AddToDeck()
+	{
+		AccountInfo.AddToDeck(); 
+	}
+
 	private void UpdateShopInfo()
 	{
 		for (int j = 0; j < storeContents[0].transform.GetChild(0).childCount; j++)
