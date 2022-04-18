@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using PlayFab.ClientModels;
+using System;
 
 public class UiManager : MonoBehaviour
 {
@@ -155,7 +156,24 @@ public class UiManager : MonoBehaviour
 		else if (menus[GameConstants.MENU_DECK].activeInHierarchy)
 		{
 			UpdateInventoryInfo();
+			UpdateDeckinfo();
 			AvgCost.text = string.Format("Avg cost: {0}", CurrentCost / (AccountInfo.Deck.Count));
+		}
+	}
+
+	private void UpdateDeckinfo()
+	{
+		currentCost = 0;
+		for (int i = 0; i < DeckContents.Count; i++)  // error?
+		{
+			if (i < AccountInfo.Deck.Count)
+			{
+				if (AccountInfo.Deck[i] != null)
+				{
+					DeckContents[i].GetComponent<DeckSlot>().Card = AccountInfo.Deck[i];
+					currentCost += AccountInfo.Deck[i].Cost;
+				}
+			}
 		}
 	}
 

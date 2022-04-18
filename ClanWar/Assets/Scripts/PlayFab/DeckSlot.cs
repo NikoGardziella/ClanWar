@@ -32,6 +32,19 @@ public class DeckSlot : MonoBehaviour
 			id.text = card.Name;
 			cost.text = string.Format("Cost: {0}", card.Cost);
 		}
+		else
+		{
+			icon.sprite = null;
+			id.text = "";
+			cost.text = string.Format("Cost: {0}", 0);
+		}
+	}
+
+	public void RemoveFromDeck()
+	{
+		AccountInfo.Deck.Remove(card);
+		UiManager.CurrentCost -= card.Cost;
+		card = null;
 	}
 
 }
