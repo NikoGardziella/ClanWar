@@ -13,6 +13,8 @@ public class UiManager : MonoBehaviour
 	[SerializeField]
 	private List<GameObject> menus;
 	[SerializeField]
+	private List<GameObject> leaderboardMenus;
+	[SerializeField]
 	private static UiManager instance;
 	[SerializeField]
 	private Text level;
@@ -53,6 +55,11 @@ public class UiManager : MonoBehaviour
 	[SerializeField]
 	private int currentCount;
 
+	public static List<GameObject> LeaderboardMenus
+	{
+		get { return Instance.leaderboardMenus; }
+		set { Instance.leaderboardMenus = value; }
+	}
 	public static List<GameObject> StoreContents
 	{
 		get { return Instance.storeContents; }
@@ -286,7 +293,11 @@ public class UiManager : MonoBehaviour
 				}
 			}
 		}
+	}
 
+	public void GetLeaderboards(int i)
+	{
+		ChangeMenu(i, leaderboardMenus.ToArray());
 	}
 
 
