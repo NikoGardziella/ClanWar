@@ -28,6 +28,11 @@ public class LoginManager : MonoBehaviour
 		AccountInfo.Login(loginUsername.text, loginPassword.text);
 	}
 
+	public void QuickLogin()
+	{
+		AccountInfo.Login("test", "123456");
+	}
+
 	public void Register()
 	{
 		if (registerConfirmPassword.text == registerConfirmPassword.text)

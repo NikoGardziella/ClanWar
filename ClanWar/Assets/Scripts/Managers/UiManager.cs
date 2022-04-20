@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using PlayFab.ClientModels;
-using System;
+
 
 public class UiManager : MonoBehaviour
 {
@@ -12,6 +12,10 @@ public class UiManager : MonoBehaviour
 	public AccountInfo info;
 	[SerializeField]
 	private List<GameObject> menus;
+	[SerializeField]
+	private List<GameObject> profileMenus;
+	[SerializeField]
+	GameObject leadBoardmenus;
 	[SerializeField]
 	private List<GameObject> leaderboardMenus;
 	[SerializeField]
@@ -31,6 +35,10 @@ public class UiManager : MonoBehaviour
 	[SerializeField]
 	private List<Toggle> menuToggle;
 
+	[SerializeField]
+	private List<PlayerLeaderboardEntry> leaderboardEntries = new List<PlayerLeaderboardEntry>();
+	[SerializeField]
+	private string leaderBoardKey = "";
 	public List<Toggle> MenuToggle
 	{
 		get { return Instance.menuToggle; }
@@ -155,8 +163,14 @@ public class UiManager : MonoBehaviour
 			return;
 		UpdateText();
 		UpdateToggles(menuToggle, menus.ToArray());
-
-		if (menus[GameConstants.MENU_SHOP].activeInHierarchy)
+		if ((menus[GameConstants.MENU_BATTLE].activeInHierarchy))
+		{
+			if (profileMenus[1].activeInHierarchy)
+			{
+				UpdateLeaderboards();
+			}
+		}
+		else if (menus[GameConstants.MENU_SHOP].activeInHierarchy)
 		{
 			UpdateShopInfo(); // error
 		}
@@ -165,6 +179,16 @@ public class UiManager : MonoBehaviour
 			UpdateInventoryInfo();
 			UpdateDeckinfo();
 			AvgCost.text = string.Format("Avg cost: {0}", CurrentCost / (AccountInfo.Deck.Count));
+		}
+	}
+
+	private void UpdateLeaderboards()
+	{
+		if (leaderboardEntries.Count == 0)
+			AccountInfo.UpdateLeaderBoards(leaderBoardKey);
+		else
+		{
+
 		}
 	}
 
@@ -295,8 +319,14 @@ public class UiManager : MonoBehaviour
 		}
 	}
 
+	public void ChangeProfileMenus(int i)
+	{
+		GameFunctions.ChangeMenu(profileMenus.ToArray(), i);
+	}
+
 	public void GetLeaderboards(int i)
 	{
+		leaderBoardKey = LeaderboardMenus[i].name;
 		ChangeMenu(i, leaderboardMenus.ToArray());
 	}
 

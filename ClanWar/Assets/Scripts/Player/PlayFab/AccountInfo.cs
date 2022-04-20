@@ -58,6 +58,7 @@ public class AccountInfo : MonoBehaviour
 	{
 		RegisterPlayFabUserRequest request = new RegisterPlayFabUserRequest()
 		{
+			DisplayName = username,
 			TitleId = PlayFabSettings.TitleId,
 			Email = email,
 			Username = username,
@@ -80,6 +81,7 @@ public class AccountInfo : MonoBehaviour
 
 		PlayFabClientAPI.LoginWithPlayFab(request, OnLogin, GameFunctions.OnAPIError);
 	}
+	
 	static void OnRegister(RegisterPlayFabUserResult result)
 	{
 		Instance.SetUpAccount();
@@ -135,6 +137,23 @@ public class AccountInfo : MonoBehaviour
 		};
 		PlayFabClientAPI.GetPlayerCombinedInfo(request, OnAccountInfo, GameFunctions.OnAPIError);
 	}
+
+	public static void UpdateLeaderBoards(string key)
+	{
+		GetLeaderboardRequest request = new GetLeaderboardRequest()
+		{
+			StatisticName = key,
+			StartPosition = 0
+		};
+		PlayFabClientAPI.GetLeaderboard(request, GotLeaderBoards, GameFunctions.OnAPIError);
+
+	}
+
+	public static void GotLeaderBoards(GetLeaderboardResult result)
+	{
+		result.Leaderboard
+	}
+
 
 	public static void AddToDeck()
 	{
