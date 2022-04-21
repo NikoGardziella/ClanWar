@@ -149,9 +149,11 @@ public class AccountInfo : MonoBehaviour
 
 	}
 
+
+
 	public static void GotLeaderBoards(GetLeaderboardResult result)
 	{
-		result.Leaderboard
+		UiManager.LeaderBoardEntries = result.Leaderboard;
 	}
 
 

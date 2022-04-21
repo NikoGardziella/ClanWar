@@ -17,7 +17,7 @@ public class UiManager : MonoBehaviour
 	[SerializeField]
 	GameObject leadBoardmenus;
 	[SerializeField]
-	private List<GameObject> leaderboardMenus;
+	private List<GameObject> leaderBoardMenus;
 	[SerializeField]
 	private static UiManager instance;
 	[SerializeField]
@@ -35,6 +35,8 @@ public class UiManager : MonoBehaviour
 	[SerializeField]
 	private List<Toggle> menuToggle;
 
+	[SerializeField]
+	private List<GameObject> leaderboardGameObjects;
 	[SerializeField]
 	private List<PlayerLeaderboardEntry> leaderboardEntries = new List<PlayerLeaderboardEntry>();
 	[SerializeField]
@@ -63,10 +65,10 @@ public class UiManager : MonoBehaviour
 	[SerializeField]
 	private int currentCount;
 
-	public static List<GameObject> LeaderboardMenus
+	public static List<GameObject> LeaderBoardMenus
 	{
-		get { return Instance.leaderboardMenus; }
-		set { Instance.leaderboardMenus = value; }
+		get { return Instance.leaderBoardMenus; }
+		set { Instance.leaderBoardMenus = value; }
 	}
 	public static List<GameObject> StoreContents
 	{
@@ -182,13 +184,38 @@ public class UiManager : MonoBehaviour
 		}
 	}
 
+
+	public static List<PlayerLeaderboardEntry> LeaderBoardEntries 
+	{
+		get 
+		{
+			return Instance.leaderboardEntries;
+		}
+		set
+		{
+			Instance.leaderboardEntries = value;
+		}
+	}
+
 	private void UpdateLeaderboards()
 	{
-		if (leaderboardEntries.Count == 0)
+		Debug.Log("updateleadebaord key: " + leaderBoardKey);
+		if (leaderboardEntries.Count == 0 && leaderBoardKey != "")
+		{
+			Debug.Log("Getting leaderboard key");
 			AccountInfo.UpdateLeaderBoards(leaderBoardKey);
+		}
+
 		else
 		{
+			for (int i = 0; i < leaderboardEntries.Count; i++)
+			{
+				Debug.Log("Updating leadeboard objects");
+				leaderboardGameObjects[i].transform.GetChild(0).GetComponent<Text>().text = leaderboardEntries[i].DisplayName;
+				leaderboardGameObjects[i].transform.GetChild(1).GetComponent<Text>().text = leaderboardEntries[i].StatValue.ToString();
+				leaderboardGameObjects[i].SetActive(true);
 
+			}
 		}
 	}
 
@@ -326,8 +353,9 @@ public class UiManager : MonoBehaviour
 
 	public void GetLeaderboards(int i)
 	{
-		leaderBoardKey = LeaderboardMenus[i].name;
-		ChangeMenu(i, leaderboardMenus.ToArray());
+		Debug.Log("Getleaderboards i:" + i);
+		leaderBoardKey = LeaderBoardMenus[i].name;
+		ChangeMenu(i, leaderBoardMenus.ToArray());
 	}
 
 
