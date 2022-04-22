@@ -199,13 +199,13 @@ public class UiManager : MonoBehaviour
 
 	private void UpdateLeaderboards()
 	{
-		Debug.Log("updateleadebaord key: " + leaderBoardKey);
+		//Debug.Log("updateleadebaord key: " + leaderBoardKey);
 		if (leaderboardEntries.Count == 0 && leaderBoardKey != "")
 		{
-			Debug.Log("Getting leaderboard key");
-			AccountInfo.UpdateLeaderBoards(leaderBoardKey);
-		}
+			Debug.Log("Getting leaderboard with key: " + leaderBoardKey);
+			AccountInfo.UpdateLeaderBoards(leaderBoardKey); // key is Leadboard  _// is it right?
 
+		}
 		else
 		{
 			for (int i = 0; i < leaderboardEntries.Count; i++)
@@ -354,7 +354,9 @@ public class UiManager : MonoBehaviour
 	public void GetLeaderboards(int i)
 	{
 		Debug.Log("Getleaderboards i:" + i);
+		Debug.Log(LeaderBoardMenus[i].name);
 		leaderBoardKey = LeaderBoardMenus[i].name;
+		Debug.Log("GetLeaderboards key:" + leaderBoardKey);
 		ChangeMenu(i, leaderBoardMenus.ToArray());
 	}
 
