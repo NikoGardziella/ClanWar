@@ -1,5 +1,9 @@
 public static class GameConstants 
 {
+	public static string VERSION = "0.1";
+	public static string PHOTON_PLAYER = "PhotonPlayer";
+
+
 	public static string CATALOG_ITEMS = "Items";
 	public static string ITEM_CARDS = "Card";
 	public static int ITEM_COST = 1;

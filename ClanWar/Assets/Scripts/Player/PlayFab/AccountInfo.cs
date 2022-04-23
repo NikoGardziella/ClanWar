@@ -92,7 +92,26 @@ public class AccountInfo : MonoBehaviour
 		Debug.Log("Login with:" + result.PlayFabId);
 		GetAccountInfo(result.PlayFabId); // added: result.PlayFabId 10.4
 		database.UpdateDatabase();
+
+		GetPhotonAuthenticationTokenRequest request = new GetPhotonAuthenticationTokenRequest()
+		{
+			PhotonApplicationId = PhotonNetwork.PhotonServerSettings.AppID.Trim()
+		};
+		PlayFabClientAPI.GetPhotonAuthenticationToken(request, OnPhotonAuthSuccess, GameFunctions.OnAPIError);
+
 		levelManager.LoadLevel(GameConstants.MAIN_SCENE);
+	}
+
+	static void OnPhotonAuthSuccess(GetPhotonAuthenticationTokenResult result)
+	{
+		PhotonNetwork.AuthValues = new AuthenticationValues
+		{
+			AuthType = CustomAuthenticationType.Custom,
+			UserId = Instance.Info.AccountInfo.PlayFabId
+		};
+		PhotonNetwork.AuthValues.AddAuthParameter("username", Instance.Info.AccountInfo.PlayFabId);
+		PhotonNetwork.AuthValues.AddAuthParameter("Token", result.PhotonCustomAuthenticationToken);
+		PhotonNetwork.ConnectUsingSettings(GameConstants.VERSION);
 	}
 
 	public static void GetAccountInfo()

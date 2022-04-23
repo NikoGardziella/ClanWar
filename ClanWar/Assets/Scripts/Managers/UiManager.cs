@@ -210,7 +210,7 @@ public class UiManager : MonoBehaviour
 		{
 			for (int i = 0; i < leaderboardEntries.Count; i++)
 			{
-				Debug.Log("Updating leadeboard objects");
+				Debug.Log("Updating leadeboard objects, entry:" + leaderboardEntries[i].DisplayName);
 				leaderboardGameObjects[i].transform.GetChild(0).GetComponent<Text>().text = leaderboardEntries[i].DisplayName;
 				leaderboardGameObjects[i].transform.GetChild(1).GetComponent<Text>().text = leaderboardEntries[i].StatValue.ToString();
 				leaderboardGameObjects[i].SetActive(true);
