@@ -5,7 +5,8 @@ using PlayFab;
 using PlayFab.ClientModels;
 using System;
 
-public class AccountInfo : MonoBehaviour
+
+public class AccountInfo : MonoBehaviour 
 {
 	public string[] deckInfo;
 	private static AccountInfo instance;
@@ -15,6 +16,8 @@ public class AccountInfo : MonoBehaviour
 	private List<CardStats> cards = new List<CardStats>();
 	[SerializeField]
 	private List<CardStats> deck = new List<CardStats>();
+
+	private string playFabId = "";
 	public GetPlayerCombinedInfoResultPayload Info
 	{
 		get { return info; }
@@ -90,6 +93,7 @@ public class AccountInfo : MonoBehaviour
 	static void OnLogin(LoginResult result)
 	{
 		Debug.Log("Login with:" + result.PlayFabId);
+		Instance.playFabId = result.PlayFabId;
 		GetAccountInfo(result.PlayFabId); // added: result.PlayFabId 10.4
 		database.UpdateDatabase();
 
@@ -104,14 +108,25 @@ public class AccountInfo : MonoBehaviour
 
 	static void OnPhotonAuthSuccess(GetPhotonAuthenticationTokenResult result)
 	{
-		PhotonNetwork.AuthValues = new AuthenticationValues
+		AuthenticationValues customAuth = new AuthenticationValues();
+		Debug.Log("OnPhotonAuthSuccess" + Instance.playFabId);
+		customAuth.UserId = instance.playFabId;
+		customAuth.AuthType = CustomAuthenticationType.Custom;
+		customAuth.AddAuthParameter("username", Instance.playFabId);
+		customAuth.AddAuthParameter("Token", result.PhotonCustomAuthenticationToken);
+		customAuth.Token = result.PhotonCustomAuthenticationToken;
+
+		PhotonNetwork.AuthValues = customAuth;
+		PhotonNetwork.ConnectUsingSettings(GameConstants.VERSION);
+
+	/*	PhotonNetwork.AuthValues = new AuthenticationValues
 		{
 			AuthType = CustomAuthenticationType.Custom,
 			UserId = Instance.Info.AccountInfo.PlayFabId
 		};
 		PhotonNetwork.AuthValues.AddAuthParameter("username", Instance.Info.AccountInfo.PlayFabId);
 		PhotonNetwork.AuthValues.AddAuthParameter("Token", result.PhotonCustomAuthenticationToken);
-		PhotonNetwork.ConnectUsingSettings(GameConstants.VERSION);
+		PhotonNetwork.ConnectUsingSettings(GameConstants.VERSION); */
 	}
 
 	public static void GetAccountInfo()

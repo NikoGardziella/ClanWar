@@ -2,6 +2,7 @@ public static class GameConstants
 {
 	public static string VERSION = "0.1";
 	public static string PHOTON_PLAYER = "PhotonPlayer";
+	public static string ROOM_ONE = "Room 1";
 
 
 	public static string CATALOG_ITEMS = "Items";
