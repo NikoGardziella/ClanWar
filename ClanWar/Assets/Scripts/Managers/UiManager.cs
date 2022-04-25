@@ -361,6 +361,20 @@ public class UiManager : MonoBehaviour
 	}
 
 
+	public void StartBattle()
+	{
+		foreach (AccountStats acc in LobbyManager.Players)
+		{
+			if (acc.me)
+			{
+				acc.looking = true;
+				LobbyManager.Looking = true;
+
+			}
+		}
+	}
+
+
 	public void ChangeMenu(int i, GameObject[] m)
 	{
 		GameFunctions.ChangeMenu(m, i); // 14.4 menus.ToArray() changed 1st arg

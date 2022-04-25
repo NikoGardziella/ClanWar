@@ -4,6 +4,7 @@ public static class GameConstants
 	public static string PHOTON_PLAYER = "PhotonPlayer";
 	public static string ROOM_ONE = "Room 1";
 
+	public static float LOOKING_TIMER = 60;
 
 	public static string CATALOG_ITEMS = "Items";
 	public static string ITEM_CARDS = "Card";

@@ -126,6 +126,19 @@ public static class GameFunctions
 		GameManager.AddObject(go);
 	}
 
+	public static bool FoundPlayer(int mmr, AccountStats[] accountStats)
+	{
+		foreach (AccountStats acc in accountStats)
+		{
+			if(acc.looking == true && !acc.me)
+			{
+				return mmr <= acc.trophies - 50 && mmr <= acc.trophies + 50;
+			}
+		}
+
+		return false;
+	}
+
 	public static CardStats CreateCard(CatalogItem item, int i)
 	{
 		Debug.Log("CreateCard" + item);
@@ -149,20 +162,7 @@ public static class GameFunctions
 		return cs;
 	}
 
-	/*public static CardStats CreateCard(ItemInstance item, int i)
-	{
-		Sprite icon = Resources.Load(GetCatalogCustomData(GameConstants.ITEM_ICON, item), typeof(Sprite)) as Sprite;
-		GameObject prefab = Resources.Load(GetCatalogCustomData(GameConstants.ITEM_PREFAB, item), typeof(GameObject)) as GameObject;
-		CardStats cs = new CardStats
-		{
-			Index = i,
-			Name = item.DisplayName,
-			Cost = int.Parse(GetCatalogCustomData(GameConstants.ITEM_COST, item)),
-			Icon = icon,
-			Prefab = prefab
-		};
-		return cs;
-	} DELETE*/
+
 
 	public static string GetCatalogCustomData(int i, CatalogItem item)
 	{
@@ -188,21 +188,7 @@ public static class GameFunctions
 		Debug.Log(string.Format("GetCatalogCustomdata - could not find ID: {0} in {1}", i, item.DisplayName));
 		return "ERROR";
 	}
-	/*public static string GetCatalogCustomData(int i, ItemInstance item)
-	{
 
-		GetCatalogCustomData(i, database.GetCatalogItem(item));
-		/*Debug.Log(item.CustomData);
-		string i = "";
-		if (item.CustomData.TryGetValue(key, out i))
-		{
-			Debug.Log(string.Format("Key: {0} has been found. Value is {1}", key, i));
-			return i;
-		}
-
-		Debug.Log(string.Format("GetCatalogCustomdata - could not find ID: {0} in {1}", i, item.DisplayName));
-		return "ERROR";
-	} */
 
 	public static void OnAPIError(PlayFabError error)
 	{

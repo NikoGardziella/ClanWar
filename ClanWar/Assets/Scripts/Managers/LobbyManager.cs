@@ -6,17 +6,51 @@ using ExitGames.Client.Photon;
 
 public class LobbyManager : MonoBehaviour, IPunCallbacks
 {
+
+	private static  LobbyManager instance;
+
+	public static LobbyManager Instance
+	{
+		get { return  instance; }
+		set { instance = value; }
+	}
+
 	[SerializeField]
 	bool firstLoad = false;
 	[SerializeField]
+	float currTime = 0;
+	[SerializeField]
+	AccountStats myPlayer;
+	[SerializeField]
 	List<AccountStats> players = new List<AccountStats>();
 
-	void Start()
-	{
 
+	public static List<AccountStats> Players
+	{
+		get { return Instance.players; }
+		set { Instance.players = value; }
 	}
 
-	private void Update()
+	private void Awake()
+	{
+		if (instance != this)
+			instance = this;
+	}
+
+	List<AccountStats> GetPlayers()
+	{
+		List<AccountStats> gotPlayers = new List<AccountStats>();
+
+		GameObject[] gos = GameObject.FindGameObjectsWithTag(GameConstants.PHOTON_PLAYER);
+		foreach (GameObject go in gos)
+		{
+			gotPlayers.Add(go.GetComponent<AccountStats>());
+		}
+
+		return gotPlayers;
+	}
+
+	private void LateUpdate()
 	{
 		if (!firstLoad)
 		{
@@ -37,14 +71,23 @@ public class LobbyManager : MonoBehaviour, IPunCallbacks
 				PhotonNetwork.JoinLobby();
 			}
 		}
+		else
+		{
+			players = GetPlayers();
+			if (myPlayer.looking &&  currTime < GameConstants.LOOKING_TIMER)
+			{
+				currTime += Time.deltaTime;
+				if(GameFunctions.FoundPlayer(myPlayer.trophies, players.ToArray()))
+				{
+
+				}
+			}
+		}
 	}
 
 
 
-	void OnJoinLobby()
-	{
 
-	}
 
 	void OnPhotonJoinRoomFailed()
 	{
@@ -58,15 +101,17 @@ public class LobbyManager : MonoBehaviour, IPunCallbacks
 		firstLoad = true;
 		GameObject go = PhotonNetwork.Instantiate(GameConstants.PHOTON_PLAYER, Vector3.zero, Quaternion.identity, 0);
 		AccountStats stats = go.GetComponent<AccountStats>();
+		stats.levelName = GameConstants.ROOM_ONE;
 		go.name = AccountInfo.Instance.Info.AccountInfo.PlayFabId;
 		stats.me = true;
 		stats.trophies = AccountInfo.Instance.Info.PlayerStatistics[0].Value;
-
 		UserDataRecord record = new UserDataRecord();
 		if (AccountInfo.Instance.Info.UserData.TryGetValue(GameConstants.DATA_LEVEL, out record))
 		{
 			stats.level = int.Parse(record.Value);
 		}
+
+		myPlayer = stats;
 
 		players.Add(stats);
 	}

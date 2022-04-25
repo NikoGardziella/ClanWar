@@ -119,14 +119,6 @@ public class AccountInfo : MonoBehaviour
 		PhotonNetwork.AuthValues = customAuth;
 		PhotonNetwork.ConnectUsingSettings(GameConstants.VERSION);
 
-	/*	PhotonNetwork.AuthValues = new AuthenticationValues
-		{
-			AuthType = CustomAuthenticationType.Custom,
-			UserId = Instance.Info.AccountInfo.PlayFabId
-		};
-		PhotonNetwork.AuthValues.AddAuthParameter("username", Instance.Info.AccountInfo.PlayFabId);
-		PhotonNetwork.AuthValues.AddAuthParameter("Token", result.PhotonCustomAuthenticationToken);
-		PhotonNetwork.ConnectUsingSettings(GameConstants.VERSION); */
 	}
 
 	public static void GetAccountInfo()
