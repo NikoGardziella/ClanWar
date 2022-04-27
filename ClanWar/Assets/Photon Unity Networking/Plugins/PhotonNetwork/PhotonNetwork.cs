@@ -3221,6 +3221,7 @@ public static class PhotonNetwork
 
         PhotonNetwork.isMessageQueueRunning = false;
         networkingPeer.loadingLevelAndPausedNetwork = true;
+        Debug.Log("Loading level: " + levelNumber);
         SceneManager.LoadScene(levelNumber);
     }
 
@@ -3284,6 +3285,7 @@ public static class PhotonNetwork
 
         PhotonNetwork.isMessageQueueRunning = false;
         networkingPeer.loadingLevelAndPausedNetwork = true;
+        Debug.Log("photonnetwork loadlevel: " + levelName);
         SceneManager.LoadScene(levelName);
     }
 

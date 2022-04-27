@@ -50,7 +50,7 @@ public class LobbyManager : MonoBehaviour, IPunCallbacks
 		return gotPlayers;
 	}
 
-	private void LateUpdate()
+	private void Update()
 	{
 		if (!firstLoad)
 		{
@@ -77,9 +77,13 @@ public class LobbyManager : MonoBehaviour, IPunCallbacks
 			if (myPlayer.looking &&  currTime < GameConstants.LOOKING_TIMER)
 			{
 				currTime += Time.deltaTime;
-				if(GameFunctions.FoundPlayer(myPlayer.trophies, players.ToArray()))
-				{
+				AccountStats acc = (GameFunctions.FoundPlayer(myPlayer.trophies, players.ToArray()));
 
+				if(acc != null)
+				{
+					string roomName = "GameArea" + Random.Range(0, 100);
+					myPlayer.levelName = roomName;
+					acc.levelName = roomName;
 				}
 			}
 		}

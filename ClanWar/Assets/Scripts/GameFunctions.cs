@@ -126,17 +126,18 @@ public static class GameFunctions
 		GameManager.AddObject(go);
 	}
 
-	public static bool FoundPlayer(int mmr, AccountStats[] accountStats)
+	public static AccountStats FoundPlayer(int mmr, AccountStats[] accountStats)
 	{
 		foreach (AccountStats acc in accountStats)
 		{
-			if(acc.looking == true && !acc.me)
+			if(acc.looking && !acc.me)
 			{
-				return mmr <= acc.trophies - 50 && mmr <= acc.trophies + 50;
+				if (mmr <= acc.trophies - 50 && mmr <= acc.trophies + 50)
+					return acc;
 			}
 		}
 
-		return false;
+		return null;
 	}
 
 	public static CardStats CreateCard(CatalogItem item, int i)

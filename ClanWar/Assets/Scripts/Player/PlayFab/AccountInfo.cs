@@ -214,7 +214,7 @@ public class AccountInfo : MonoBehaviour
 	{
 		Instance.Info = result.InfoResultPayload;
 		AddCards();
-		Debug.Log("Updated account info");
+		Debug.Log("Updated account info :" + instance.info);
 	}
 
 	void SetUpAccount()

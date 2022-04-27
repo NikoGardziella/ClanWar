@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class AccountStats : MonoBehaviour
 {
-	public string levelName = "";
+	public string levelName = GameConstants.ROOM_ONE;
 	public bool me = false;
 	public bool looking = false;
 	public int trophies = 0; // Match Makng Rating
 	public int level = 1;
 
-	private void Update()
+	private void LateUpdate()
 	{
 		if(levelName != GameConstants.ROOM_ONE)
 		{
@@ -21,16 +21,15 @@ public class AccountStats : MonoBehaviour
 				MaxPlayers = 2
 			};
 			PhotonNetwork.JoinOrCreateRoom(levelName, ro, TypedLobby.Default);
-			levelManager.LoadLevel(GameConstants.GAME_SCENE);
+			//levelManager.LoadLevel(GameConstants.GAME_SCENE);
 		}
 	}
 
-	private void OnSerializeNetworkView(PhotonStream stream, PhotonMessageInfo info)
+	private void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
 	{
 		if (stream.isWriting)
 		{
 			// Me. Send my data to other players
-
 			stream.SendNext(looking);
 			stream.SendNext(trophies);
 			stream.SendNext(level);

@@ -14,8 +14,8 @@ public class UiManager : MonoBehaviour
 	private List<GameObject> menus;
 	[SerializeField]
 	private List<GameObject> profileMenus;
-	[SerializeField]
-	GameObject leadBoardmenus;
+	//[SerializeField]
+	//GameObject leadBoardmenus;
 	[SerializeField]
 	private List<GameObject> leaderBoardMenus;
 	[SerializeField]
@@ -161,6 +161,7 @@ public class UiManager : MonoBehaviour
 
 	private void Update()
 	{
+
 		if (info.Info == null)
 			return;
 		UpdateText();
@@ -368,7 +369,7 @@ public class UiManager : MonoBehaviour
 			if (acc.me)
 			{
 				acc.looking = true;
-				LobbyManager.Looking = true;
+				// LobbyManager looking
 
 			}
 		}

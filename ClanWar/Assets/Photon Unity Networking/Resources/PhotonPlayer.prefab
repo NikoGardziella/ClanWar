@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2725258986606516942
+--- !u!1 &7447006128510528205
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8818595341058356257}
-  - component: {fileID: 4369508859026383322}
-  - component: {fileID: 350133107739138992}
+  - component: {fileID: 4101360584151991330}
+  - component: {fileID: 9090684269934219737}
+  - component: {fileID: 5066804878437559219}
   m_Layer: 0
   m_Name: PhotonPlayer
-  m_TagString: Untagged
+  m_TagString: PhotonPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8818595341058356257
+--- !u!4 &4101360584151991330
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2725258986606516942}
+  m_GameObject: {fileID: 7447006128510528205}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,30 +32,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4369508859026383322
+--- !u!114 &9090684269934219737
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2725258986606516942}
+  m_GameObject: {fileID: 7447006128510528205}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f985fac1793d994abb7e74ad575c75b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelName: 
   me: 0
-  count: 0
-  ready: 0
+  looking: 0
   trophies: 0
   level: 1
---- !u!114 &350133107739138992
+--- !u!114 &5066804878437559219
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2725258986606516942}
+  m_GameObject: {fileID: 7447006128510528205}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
@@ -70,7 +70,7 @@ MonoBehaviour:
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 4369508859026383322}
+  - {fileID: 9090684269934219737}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
