@@ -74,16 +74,25 @@ public class LobbyManager : MonoBehaviour, IPunCallbacks
 		else
 		{
 			players = GetPlayers();
-			if (myPlayer.looking &&  currTime < GameConstants.LOOKING_TIMER)
+			if (myPlayer.looking)
 			{
-				currTime += Time.deltaTime;
-				AccountStats acc = (GameFunctions.FoundPlayer(myPlayer.trophies, players.ToArray()));
-
-				if(acc != null)
+				if (currTime < GameConstants.LOOKING_TIMER)
 				{
-					string roomName = "GameArea" + Random.Range(0, 100);
-					myPlayer.levelName = roomName;
-					acc.levelName = roomName;
+					currTime += Time.deltaTime;
+					AccountStats acc = (GameFunctions.FoundPlayer(myPlayer.trophies, players.ToArray()));
+
+					if (acc != null)
+					{
+						string roomName = "GameArea";
+						Debug.Log("roomName: " + roomName);
+						acc.gameObject.GetComponent<PhotonView>().RPC("ChangeRoomName", PhotonTargets);
+						myPlayer.levelName = roomName;
+					}
+				}
+				else
+				{
+					myPlayer.looking = false;
+					currTime = 0;
 				}
 			}
 		}
@@ -106,6 +115,7 @@ public class LobbyManager : MonoBehaviour, IPunCallbacks
 		GameObject go = PhotonNetwork.Instantiate(GameConstants.PHOTON_PLAYER, Vector3.zero, Quaternion.identity, 0);
 		AccountStats stats = go.GetComponent<AccountStats>();
 		stats.levelName = GameConstants.ROOM_ONE;
+		Debug.Log("onjoined levelname: " + stats.levelName);
 		go.name = AccountInfo.Instance.Info.AccountInfo.PlayFabId;
 		stats.me = true;
 		stats.trophies = AccountInfo.Instance.Info.PlayerStatistics[0].Value;

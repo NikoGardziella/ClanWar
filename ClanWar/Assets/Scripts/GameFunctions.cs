@@ -132,7 +132,7 @@ public static class GameFunctions
 		{
 			if(acc.looking && !acc.me)
 			{
-				if (mmr <= acc.trophies - 50 && mmr <= acc.trophies + 50)
+				if (mmr <= acc.trophies + 50 || mmr >= acc.trophies - 50)
 					return acc;
 			}
 		}
