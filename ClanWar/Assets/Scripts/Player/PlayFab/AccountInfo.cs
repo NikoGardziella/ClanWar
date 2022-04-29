@@ -51,7 +51,7 @@ public class AccountInfo : MonoBehaviour
 
 	private void Update()
 	{
-		if(Info != null && instance.cards.Count == 0 && database.Updated) // 12.4 changed from Cards.Count
+		if(Info != null && Cards.Count == 0 && database.Updated) //  29.4 changed from instance.cards.count
 		{
 			
 			AddCards();

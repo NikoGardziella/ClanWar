@@ -41,6 +41,18 @@ public class PlayerStats : MonoBehaviour
 	[SerializeField]
 	private GameObject rightArea;
 
+	public Card NextCard
+	{
+		get
+		{
+			return nextCard;
+		}
+		set
+		{
+			nextCard = value;
+		}
+	}
+
 	public GameObject RightArea
 	{
 		get { return rightArea; }
@@ -79,11 +91,6 @@ public class PlayerStats : MonoBehaviour
 		set { onDragging = value; }
 	}
 
-	public Card NextCard
-	{
-		get { return nextCard; }
-		set { nextCard = value; }
-	}
 	public Transform HandParent
 	{
 		get { return handParent; }

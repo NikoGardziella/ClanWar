@@ -29,6 +29,14 @@ public class GameManager : MonoBehaviour
 	{
 		if (instance != this)
 			instance = this;
+
+		GameObject go = PhotonNetwork.Instantiate(GameConstants.GAME_PLAYER, Vector3.zero, Quaternion.identity, 0);
+		go.transform.position = GameConstants.PLAYER_START;
+		go.transform.rotation = GameConstants.PLAYER_ROT;
+		go.tag = GameConstants.PLAYER_TAG;
+		PlayerStats ps = go.GetComponent<PlayerStats>();
+		ps.enabled = true;
+		go.transform.GetChild(1).gameObject.SetActive(true);
 	}
 
 	public static void RemoveObjectFromList(GameObject go)

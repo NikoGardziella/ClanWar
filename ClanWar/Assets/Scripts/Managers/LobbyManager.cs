@@ -85,8 +85,9 @@ public class LobbyManager : MonoBehaviour, IPunCallbacks
 					{
 						string roomName = "GameArea";
 						Debug.Log("roomName: " + roomName);
-						acc.gameObject.GetComponent<PhotonView>().RPC("ChangeRoomName", PhotonTargets);
+						acc.gameObject.GetComponent<PhotonView>().RPC("ChangeRoomName", PhotonTargets.All, roomName);
 						myPlayer.levelName = roomName;
+						levelManager.LoadLevel(GameConstants.GAME_SCENE);
 					}
 				}
 				else
@@ -119,6 +120,7 @@ public class LobbyManager : MonoBehaviour, IPunCallbacks
 		go.name = AccountInfo.Instance.Info.AccountInfo.PlayFabId;
 		stats.me = true;
 		stats.trophies = AccountInfo.Instance.Info.PlayerStatistics[0].Value;
+
 		UserDataRecord record = new UserDataRecord();
 		if (AccountInfo.Instance.Info.UserData.TryGetValue(GameConstants.DATA_LEVEL, out record))
 		{
@@ -157,17 +159,18 @@ public class LobbyManager : MonoBehaviour, IPunCallbacks
 
 	public void OnCreatedRoom()
 	{
-		throw new System.NotImplementedException();
+		Debug.Log("OnCreatedRoom");
 	}
 
 	public void OnJoinedLobby()
 	{
-		throw new System.NotImplementedException();
+		Debug.Log("OnJoinedLobby");
+		//OnJoinedRoom();
 	}
 
 	public void OnLeftLobby()
 	{
-		throw new System.NotImplementedException();
+		Debug.Log("OnLeftLobby");
 	}
 
 	public void OnFailedToConnectToPhoton(DisconnectCause cause)
@@ -177,12 +180,12 @@ public class LobbyManager : MonoBehaviour, IPunCallbacks
 
 	public void OnConnectionFail(DisconnectCause cause)
 	{
-		throw new System.NotImplementedException();
+		Debug.Log("OnConnectionFail");
 	}
 
 	public void OnDisconnectedFromPhoton()
 	{
-		throw new System.NotImplementedException();
+		Debug.Log("OnDisconnectedFromPhoton");
 	}
 
 	public void OnPhotonInstantiate(PhotonMessageInfo info)
@@ -218,7 +221,7 @@ public class LobbyManager : MonoBehaviour, IPunCallbacks
 
 	public void OnConnectedToMaster()
 	{
-		throw new System.NotImplementedException();
+		Debug.Log("OnConnectedToMaster");
 	}
 
 	public void OnPhotonMaxCccuReached()
@@ -228,7 +231,7 @@ public class LobbyManager : MonoBehaviour, IPunCallbacks
 
 	public void OnPhotonCustomRoomPropertiesChanged(Hashtable propertiesThatChanged)
 	{
-		throw new System.NotImplementedException();
+		Debug.Log("OnPhotonCustomRoomPropertiesChanged");
 	}
 
 	public void OnPhotonPlayerPropertiesChanged(object[] playerAndUpdatedProps)
@@ -263,7 +266,7 @@ public class LobbyManager : MonoBehaviour, IPunCallbacks
 
 	public void OnLobbyStatisticsUpdate()
 	{
-		throw new System.NotImplementedException();
+		Debug.Log("OnLobbyStatisticsUpdate");
 	}
 
 	public void OnPhotonPlayerActivityChanged(PhotonPlayer otherPlayer)

@@ -1,8 +1,13 @@
+using UnityEngine;
+
 public static class GameConstants 
 {
 	public static string VERSION = "0.1";
 	public static string PHOTON_PLAYER = "PhotonPlayer";
 	public static string ROOM_ONE = "Room 1";
+	public static string GAME_PLAYER = "InGamePlayer";
+	public static Vector3 PLAYER_START = new Vector3(6.5f, 0, 8.5f);
+	public static Quaternion PLAYER_ROT = new Quaternion(0, 180, 0, 0);
 
 	public static float LOOKING_TIMER = 60;
 
