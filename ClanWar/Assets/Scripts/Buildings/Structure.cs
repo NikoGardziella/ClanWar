@@ -51,12 +51,12 @@ public class Structure : MonoBehaviour, IDamageable
 	{
 		stats.CurrentHealth -= amount;
 	}
-	private void Start()
+	/*private void Start()
 	{
 		List<GameObject> objects = GameManager.Instance.Objects;
 		objects = GameManager.GetAllEnemies(transform.position, objects, gameObject.tag);
 		target = GameFunctions.GetNearestTarget(objects, stats.DetectionObject, gameObject.tag);
-	}
+	} */
 	void Update()
 	{
 		if (stats.CurrentHealth > 0)

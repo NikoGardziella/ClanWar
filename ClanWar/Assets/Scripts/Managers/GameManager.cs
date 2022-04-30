@@ -30,13 +30,26 @@ public class GameManager : MonoBehaviour
 		if (instance != this)
 			instance = this;
 
+
 		GameObject go = PhotonNetwork.Instantiate(GameConstants.GAME_PLAYER, Vector3.zero, Quaternion.identity, 0);
+		Debug.Log("Ingameplayer instantiated");
 		go.transform.position = GameConstants.PLAYER_START;
 		go.transform.rotation = GameConstants.PLAYER_ROT;
 		go.tag = GameConstants.PLAYER_TAG;
 		PlayerStats ps = go.GetComponent<PlayerStats>();
 		ps.enabled = true;
 		go.transform.GetChild(1).gameObject.SetActive(true);
+		go.transform.GetChild(2).gameObject.SetActive(true);
+		ps.PlayersDeck.Cards = AccountInfo.Deck;
+		Debug.Log("Players Deck: " + ps.PlayersDeck.Cards);
+
+		PhotonNetwork.Instantiate(GameConstants.PLAYER_KEEP, , , 0)
+
+		//////Players.Add(ps);
+		//////Objects.Add(go.transform.GetChild(3).GetChild(0).gameObject);
+		//////Objects.Add(go.transform.GetChild(3).GetChild(1).gameObject);
+		//////Objects.Add(go.transform.GetChild(3).GetChild(2).gameObject);
+
 	}
 
 	public static void RemoveObjectFromList(GameObject go)
@@ -138,5 +151,8 @@ public class GameManager : MonoBehaviour
 		Instance.Objects.Add(go);
 	}
 
-
+	public void GoToLogin()
+	{
+		levelManager.LoadLevel(0);
+	}
 }

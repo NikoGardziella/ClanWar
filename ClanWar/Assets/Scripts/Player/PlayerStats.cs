@@ -140,6 +140,7 @@ public class PlayerStats : MonoBehaviour
 	public Deck PlayersDeck
 	{
 		get { return playersDeck; }
+		set { playersDeck = value; }
 	} 
 
 	public int GetCurrResource

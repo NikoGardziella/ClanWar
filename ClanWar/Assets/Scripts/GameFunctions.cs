@@ -143,7 +143,6 @@ public static class GameFunctions
 	public static CardStats CreateCard(CatalogItem item, int i)
 	{
 		Debug.Log("CreateCard" + item);
-		Debug.Log(i);
 		Sprite icon = Resources.Load(GetCatalogCustomData(GameConstants.ITEM_ICON, item), typeof(Sprite)) as Sprite;
 		GameObject prefab = Resources.Load(GetCatalogCustomData(GameConstants.ITEM_PREFAB, item), typeof(GameObject)) as GameObject;
 		Debug.Log("CreateCard prefab: " + prefab);
@@ -167,7 +166,7 @@ public static class GameFunctions
 
 	public static string GetCatalogCustomData(int i, CatalogItem item)
 	{
-		Debug.Log(item.CustomData);
+		//Debug.Log(item.CustomData);
 		string cDataTemp = item.CustomData.Trim();
 		cDataTemp = cDataTemp.TrimStart('{');
 		cDataTemp = cDataTemp.TrimEnd('}');

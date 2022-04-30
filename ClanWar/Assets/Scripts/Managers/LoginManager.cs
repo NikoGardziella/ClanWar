@@ -32,6 +32,11 @@ public class LoginManager : MonoBehaviour
 	{
 		AccountInfo.Login("test", "123456");
 	}
+	public void QuickLogin1()
+	{
+		AccountInfo.Login("myUsername", "myPassword");
+	}
+
 
 	public void Register()
 	{

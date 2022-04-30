@@ -7,7 +7,7 @@ public class InGameUiManager : MonoBehaviour
 {
 	private static InGameUiManager instance;
 
-	public InGameUiManager Instance
+	public static InGameUiManager Instance
 	{
 		get { return instance; }
 		set { instance = value; }
@@ -19,44 +19,42 @@ public class InGameUiManager : MonoBehaviour
 	private Text maxResource;
 	[SerializeField]
 	private Text score;
-	[SerializeField]
+	[SerializeField]	
 	private Transform handParent;
 	[SerializeField]
 	private Card nextCard;
 	[SerializeField]
-	private Transform handparent;
+	private List<Image> allResources;
 
 
 	public static Text CurrResource
 	{
-		get { return instance.currResource; }
+		get { return Instance.currResource; }
 	}
 	public static Text MaxResource
 	{
-		get { return instance.maxResource; }
+		get { return Instance.maxResource; }
 	}
 	public static Text Score
 	{
-		get { return instance.score; }
+		get { return Instance.score; }
 	}
 	public static Transform Handparent
 	{
-		get { return instance.handparent; }
+		get { return Instance.handParent; }
 	}
 	public static Card NextCard
 	{
-		get { return instance.nextCard; }
+		get { return Instance.nextCard; }
 	}
-
-
-	public static void PlayerSetup(PlayerStats ps)
+	public static List<Image> AllResources
 	{
-		ps.TextCurrResource = CurrResource;
-		ps.TextCurrResource = MaxResource;
-		ps.TextCurrResource = Score;
-		ps.HandParent = Handparent;
-		ps.NextCard = NextCard;
+		get { return Instance.allResources; }
+		set { Instance.allResources = value; }
 	}
+
+
+
 
 
 

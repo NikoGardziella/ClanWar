@@ -54,8 +54,8 @@ public class LobbyManager : MonoBehaviour, IPunCallbacks
 	{
 		if (!firstLoad)
 		{
-			Debug.Log(PhotonNetwork.connectionState);
-			Debug.Log(PhotonNetwork.insideLobby);
+			//Debug.Log(PhotonNetwork.connectionState);
+			//Debug.Log(PhotonNetwork.insideLobby);
 			if (PhotonNetwork.connectionState == ConnectionState.Connected && PhotonNetwork.insideLobby)
 			{
 				RoomOptions roomOptions = new RoomOptions()
@@ -87,7 +87,7 @@ public class LobbyManager : MonoBehaviour, IPunCallbacks
 						Debug.Log("roomName: " + roomName);
 						acc.gameObject.GetComponent<PhotonView>().RPC("ChangeRoomName", PhotonTargets.All, roomName);
 						myPlayer.levelName = roomName;
-						levelManager.LoadLevel(GameConstants.GAME_SCENE);
+						//levelManager.LoadLevel(GameConstants.GAME_SCENE);
 					}
 				}
 				else
@@ -149,7 +149,8 @@ public class LobbyManager : MonoBehaviour, IPunCallbacks
 
 	public void OnPhotonCreateRoomFailed(object[] codeAndMsg)
 	{
-		throw new System.NotImplementedException();
+		Debug.Log("OnPhotonCreateRoomFailed");
+		
 	}
 
 	public void OnPhotonJoinRoomFailed(object[] codeAndMsg)
@@ -236,7 +237,7 @@ public class LobbyManager : MonoBehaviour, IPunCallbacks
 
 	public void OnPhotonPlayerPropertiesChanged(object[] playerAndUpdatedProps)
 	{
-		throw new System.NotImplementedException();
+		Debug.Log("OnPhotonPlayerPropertiesChanged");
 	}
 
 	public void OnUpdatedFriendList()

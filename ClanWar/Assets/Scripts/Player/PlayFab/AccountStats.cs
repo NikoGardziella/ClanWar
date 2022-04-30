@@ -10,12 +10,12 @@ public class AccountStats : MonoBehaviour
 	public bool looking = false;
 	public int trophies = 0; // Match Makng Rating
 	public int level = 1;
-	public string levelName = "Room 1";
+	public string levelName = GameConstants.ROOM_ONE;
 
 	private void Update()
 	{
 		//levelName = GameConstants.ROOM_ONE;
-		if(levelName != "Room 1")
+		if(levelName != GameConstants.ROOM_ONE)
 		{
 			//Debug.Log("levelname: " + levelName);
 			//levelManager.LoadLevel(GameConstants.GAME_SCENE);
@@ -33,7 +33,7 @@ public class AccountStats : MonoBehaviour
 	{
 		if (stream.isWriting)
 		{
-			Debug.Log("Stream is writingh");
+			//Debug.Log("Stream is writingh");
 			// Me. Send my data to other players
 			stream.SendNext(looking);
 			stream.SendNext(trophies);

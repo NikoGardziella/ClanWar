@@ -9,6 +9,9 @@ public static class GameConstants
 	public static Vector3 PLAYER_START = new Vector3(6.5f, 0, 8.5f);
 	public static Quaternion PLAYER_ROT = new Quaternion(0, 180, 0, 0);
 
+	public static string PLAYER_KEEP = "BasicKeep";
+	public static string PLAYER_TOWER = "BasicTower";
+
 	public static float LOOKING_TIMER = 60;
 
 	public static string CATALOG_ITEMS = "Items";
