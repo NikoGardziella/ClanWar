@@ -119,9 +119,11 @@ public static class GameFunctions
 		return GameObject.Find(GameConstants.HUD_CANVAS).transform;
 	}
 
-	public static void SpawnUnit(GameObject prefab, Transform parent, Vector3 pos)
+	public static void SpawnUnit(string prefab, Transform parent, Vector3 pos)
 	{
-		GameObject go = GameObject.Instantiate(prefab, parent);
+		GameObject go = PhotonNetwork.Instantiate(prefab, Vector3.zero, Quaternion.identity, 0);
+		go.tag = GameConstants.PLAYER_TAG;
+		go.transform.SetParent(parent, false);
 		go.transform.position = new Vector3(pos.x, 0, pos.z);
 		GameManager.AddObject(go);
 	}

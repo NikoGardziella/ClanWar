@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField]
 	private List<PlayerStats> players;
 
+
 	public List<PlayerStats> Players
 	{
 		get { return players; }
@@ -43,13 +44,35 @@ public class GameManager : MonoBehaviour
 		ps.PlayersDeck.Cards = AccountInfo.Deck;
 		Debug.Log("Players Deck: " + ps.PlayersDeck.Cards);
 
-		PhotonNetwork.Instantiate(GameConstants.PLAYER_KEEP, , , 0)
+		for (int i = 0; i < go.transform.GetChild(3).childCount; i++)
+		{
+			go.transform.GetChild(3).GetChild(i).gameObject.tag = GameConstants.PLAYER_TAG;
+		}
+
+		//GameObject keep = PhotonNetwork.Instantiate(GameConstants.PLAYER_KEEP, Vector3.zero,Quaternion.identity, 0);
+		//keep.tag = GameConstants.PLAYER_TAG;
+		//keep.transform.SetParent(go.transform.GetChild(3), false);
+
+		//GameObject towerRight = PhotonNetwork.Instantiate(GameConstants.PLAYER_TOWER, GameConstants.PLAYER_TOWER_RIGHT, Quaternion.identity, 0);
+		//towerRight.tag = GameConstants.PLAYER_TAG;
+		//towerRight.transform.SetParent(go.transform.GetChild(3), false);
+
+		//GameObject towerLeft = PhotonNetwork.Instantiate(GameConstants.PLAYER_TOWER, GameConstants.PLAYER_TOWER_RIGHT, Quaternion.identity, 0);
+		//towerLeft.GetComponent<Structure>().LeftTower = true;
+		//towerLeft.tag = GameConstants.PLAYER_TAG;
+		//towerLeft.transform.SetParent(go.transform.GetChild(3), false);
 
 		//////Players.Add(ps);
 		//////Objects.Add(go.transform.GetChild(3).GetChild(0).gameObject);
 		//////Objects.Add(go.transform.GetChild(3).GetChild(1).gameObject);
 		//////Objects.Add(go.transform.GetChild(3).GetChild(2).gameObject);
 
+	}
+
+	private void Update()
+	{
+		objects = FindAllObjects();
+		players = FindAllPlayerStats();
 	}
 
 	public static void RemoveObjectFromList(GameObject go)
@@ -155,4 +178,51 @@ public class GameManager : MonoBehaviour
 	{
 		levelManager.LoadLevel(0);
 	}
+
+	List<GameObject> FindAllObjects()
+	{
+		List<GameObject> gotObjects = new List<GameObject>();
+
+
+		GameObject[] players = GameObject.FindGameObjectsWithTag(GameConstants.PLAYER_TAG);
+		foreach (GameObject go in players)
+		{
+			if (go.GetComponent<Structure>() != null || go.GetComponent<unit>() != null)
+				gotObjects.Add(go);
+		}
+
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag(GameConstants.ENEMY_TAG);
+		foreach (GameObject go in enemies)
+		{
+			if (go.GetComponent<Structure>() != null || go.GetComponent<unit>() != null)
+				gotObjects.Add(go);
+		}
+
+		return gotObjects;
+	}
+
+	List<PlayerStats> FindAllPlayerStats()
+	{
+		List<PlayerStats> gotObjects = new List<PlayerStats>();
+
+
+		GameObject[] players = GameObject.FindGameObjectsWithTag(GameConstants.PLAYER_TAG);
+		foreach (GameObject go in players)
+		{
+			if(go.GetComponent<PlayerStats>() != null)
+				gotObjects.Add(go.GetComponent<PlayerStats>());
+		}
+
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag(GameConstants.ENEMY_TAG);
+		foreach (GameObject go in enemies)
+		{
+			if (go.GetComponent<PlayerStats>() != null)
+				gotObjects.Add(go.GetComponent<PlayerStats>());
+		}
+
+		return gotObjects;
+	}
+
 }
+
+

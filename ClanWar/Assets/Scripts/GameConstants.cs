@@ -6,7 +6,7 @@ public static class GameConstants
 	public static string PHOTON_PLAYER = "PhotonPlayer";
 	public static string ROOM_ONE = "Room 1";
 	public static string GAME_PLAYER = "InGamePlayer";
-	public static Vector3 PLAYER_START = new Vector3(6.5f, 0, 8.5f);
+	public static Vector3 PLAYER_START = new Vector3(0, 0, 2);
 	public static Quaternion PLAYER_ROT = new Quaternion(0, 180, 0, 0);
 
 	public static string PLAYER_KEEP = "BasicKeep";
@@ -29,6 +29,7 @@ public static class GameConstants
 	public static int MAX_HAND_SIZE = 4;
 	public static string HUD_CANVAS = "HUD - Canvas";
 	public static string PLAYER_TAG = "Player";
+	public static string ENEMY_TAG = "Enemy";
 	public static int LOGIN_SCENE = 0;
 	public static int MAIN_SCENE = 1;
 	public static int GAME_SCENE = 2;
