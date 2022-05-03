@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class GameManager : MonoBehaviour
 	private List<GameObject> objects;
 	[SerializeField]
 	private List<PlayerStats> players;
-
+	[SerializeField]
+	Text enemyScore;
 
 	public List<PlayerStats> Players
 	{
@@ -39,6 +41,9 @@ public class GameManager : MonoBehaviour
 		go.tag = GameConstants.PLAYER_TAG;
 		PlayerStats ps = go.GetComponent<PlayerStats>();
 		ps.enabled = true;
+
+		ps.TextScore = go.transform.GetChild(2).GetChild(1).GetChild(1).GetComponent<Text>(); // is this causing not being able to drag cards
+
 		go.transform.GetChild(1).gameObject.SetActive(true);
 		go.transform.GetChild(2).gameObject.SetActive(true);
 		ps.PlayersDeck.Cards = AccountInfo.Deck;
@@ -73,6 +78,7 @@ public class GameManager : MonoBehaviour
 	{
 		objects = FindAllObjects();
 		players = FindAllPlayerStats();
+
 	}
 
 	public static void RemoveObjectFromList(GameObject go)

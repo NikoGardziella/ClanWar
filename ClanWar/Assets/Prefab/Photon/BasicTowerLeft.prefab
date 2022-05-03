@@ -285,8 +285,8 @@ GameObject:
   - component: {fileID: 1551012169333792034}
   - component: {fileID: 4955558115978923610}
   - component: {fileID: 7597922567400158608}
-  - component: {fileID: 2669969055491416272}
-  m_Layer: 9
+  - component: {fileID: 3683474588260595583}
+  m_Layer: 0
   m_Name: BasicTowerLeft
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -413,7 +413,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2669969055491416272
+--- !u!114 &3683474588260595583
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -46,7 +46,7 @@ public class unit : MonoBehaviour, IDamageable
 	baseStats IDamageable.Stats
 	{
 		get { return stats; } // changed
-		
+
 	}
 
 	void IDamageable.TakeDamage(float amount)
@@ -83,10 +83,10 @@ public class unit : MonoBehaviour, IDamageable
 	{
 		if (target != null)
 		{
-			if(stats.CurrentAttackDelay >= stats.AttackDelay)
+			if (stats.CurrentAttackDelay >= stats.AttackDelay)
 			{
 				Component damageable = target.GetComponent(typeof(IDamageable));
-				
+
 				if (damageable)
 				{
 					if (hitTargets.Contains(target))
@@ -127,15 +127,30 @@ public class unit : MonoBehaviour, IDamageable
 	{
 		if (!other.gameObject.CompareTag(gameObject.tag))
 		{
-			if(hitTargets.Count > 0)
+			if (hitTargets.Count > 0)
 			{
 				GameObject go = GameFunctions.GetNearestTarget(hitTargets, stats.DetectionObject, gameObject.tag, stats.Range);
-				
-				if(go != null)
+
+				if (go != null)
 				{
 					target = go;
 				}
 			}
 		}
 	}
+
+	private void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+	{
+		if (stream.isWriting)
+		{
+			stream.SendNext(stats.CurrentHealth);
+			stream.SendNext(stats.HealthBar.fillAmount);
+		}
+		else
+		{
+			stats.CurrentHealth = (float)stream.ReceiveNext();
+			stats.HealthBar.fillAmount = (float)stream.ReceiveNext();
+		}
+	}
+
 }

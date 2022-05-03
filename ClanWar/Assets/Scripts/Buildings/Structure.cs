@@ -121,6 +121,22 @@ public class Structure : MonoBehaviour, IDamageable
 		}
 	}
 
+	private void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+	{
+		if (stream.isWriting)
+		{
+			stream.SendNext(stats.CurrentHealth);
+			stream.SendNext(stats.HealthBar.fillAmount);
+			stream.SendNext(leftTower);
+		}
+		else
+		{
+			stats.CurrentHealth = (float)stream.ReceiveNext();
+			stats.HealthBar.fillAmount = (float)stream.ReceiveNext();
+			leftTower = (bool)stream.ReceiveNext();
+		}
+	}
+
 	public void OnTriggerStay(Collider other)
 	{
 		if (!other.gameObject.CompareTag(gameObject.tag))

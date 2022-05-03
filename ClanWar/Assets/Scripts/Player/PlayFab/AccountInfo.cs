@@ -51,9 +51,8 @@ public class AccountInfo : MonoBehaviour
 
 	private void Update()
 	{
-		if(Info != null && Cards.Count == 0 && database.Updated) //  29.4 changed from instance.cards.count
+		if(Info != null && instance.cards.Count == 0 && database.Updated) //  29.4 changed from instance.cards.count // 3.5 was Cards.Count
 		{
-			
 			AddCards();
 		}
 	}
@@ -269,9 +268,10 @@ public class AccountInfo : MonoBehaviour
 				Cards.Add(database.GetCardInfo(Instance.Info.UserInventory[i], i));
 			}
 		}
-		UserDataRecord temp;
-		if(Instance.info.UserData.TryGetValue(GameConstants.DATA_DECK, out temp))
+		UserDataRecord temp; // this is not working
+		if (Instance.info.UserData.TryGetValue(GameConstants.DATA_DECK, out temp))
 		{
+			Debug.Log("Trying get values");
 			Instance.deckInfo = temp.Value.Split(',');
 			for (int i = 0; i < Instance.deckInfo.Length - 1; i++)
 			{
@@ -279,6 +279,7 @@ public class AccountInfo : MonoBehaviour
 				{
 					if(Instance.deckInfo[i] == Instance.Info.UserInventory[j].ItemId)
 					{
+						Debug.Log("adding to deck:" + Instance.Info.UserInventory[j]);
 						Deck.Add(database.GetCardInfo(Instance.Info.UserInventory[j], j));
 						break ;
 					}

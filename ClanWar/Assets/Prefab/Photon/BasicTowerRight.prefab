@@ -279,7 +279,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1166814286779514603}
-  - component: {fileID: 8193808732758184303}
   - component: {fileID: 2556759418000534790}
   m_Layer: 0
   m_Name: GameArt
@@ -304,22 +303,6 @@ Transform:
   m_Father: {fileID: 7485105710937192032}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8193808732758184303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6609041559334630227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19ade949387a80048b720403de3bf56d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followTarget: {fileID: 0}
-  anim: {fileID: 0}
-  agent: {fileID: 0}
-  isFlying: 0
 --- !u!95 &2556759418000534790
 Animator:
   serializedVersion: 3
@@ -353,8 +336,8 @@ GameObject:
   - component: {fileID: 7485105710937192035}
   - component: {fileID: 7485105710937191967}
   - component: {fileID: 7148117258944754582}
-  - component: {fileID: -7868780697404336738}
-  m_Layer: 9
+  - component: {fileID: 3580200907126858791}
+  m_Layer: 0
   m_Name: BasicTowerRight
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -481,7 +464,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-7868780697404336738
+--- !u!114 &3580200907126858791
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

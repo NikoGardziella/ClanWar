@@ -4,7 +4,7 @@ using UnityEngine;
 using ExitGames.Client.Photon;
 
 
-public class LobbyManager : MonoBehaviour, IPunCallbacks
+public class LobbyManager : MonoBehaviour , IPunCallbacks
 {
 
 	private static  LobbyManager instance;
@@ -196,7 +196,7 @@ public class LobbyManager : MonoBehaviour, IPunCallbacks
 
 	public void OnReceivedRoomListUpdate()
 	{
-		throw new System.NotImplementedException();
+		Debug.Log("OnReceivedRoomListUpdate");
 	}
 
 	/*public void IPunCallbacks.OnJoinedRoom()
@@ -278,5 +278,5 @@ public class LobbyManager : MonoBehaviour, IPunCallbacks
 	public void OnOwnershipTransfered(object[] viewAndPlayers)
 	{
 		throw new System.NotImplementedException();
-	}
+	} 
 }

@@ -122,6 +122,7 @@ public static class GameFunctions
 	public static void SpawnUnit(string prefab, Transform parent, Vector3 pos)
 	{
 		GameObject go = PhotonNetwork.Instantiate(prefab, Vector3.zero, Quaternion.identity, 0);
+		go.GetComponent<unit>().enabled = true;
 		go.tag = GameConstants.PLAYER_TAG;
 		go.transform.SetParent(parent, false);
 		go.transform.position = new Vector3(pos.x, 0, pos.z);
