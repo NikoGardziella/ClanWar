@@ -38,11 +38,5 @@ public class Actor2D : MonoBehaviour
 		}
 	}
 
-	private void LateUpdate()
-	{
-		if(followTarget != null)
-		{
-			transform.localPosition = new Vector3(followTarget.transform.localPosition.x, followTarget.transform.localPosition.y, followTarget.transform.localPosition.z);
-		}
-	}
+
 }

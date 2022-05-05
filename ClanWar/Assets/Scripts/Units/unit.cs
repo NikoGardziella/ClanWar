@@ -7,8 +7,6 @@ public class unit : MonoBehaviour, IDamageable
 	[SerializeField]
 	private Actor3D agent;
 	[SerializeField]
-	private Actor2D unitSprite;
-	[SerializeField]
 	private GameObject target;
 	[SerializeField]
 	private baseStats stats;
@@ -30,10 +28,6 @@ public class unit : MonoBehaviour, IDamageable
 	public Actor3D Agent
 	{
 		get { return agent; }
-	}
-	public Actor2D UnitSprite
-	{
-		get { return unitSprite; }
 	}
 	public GameObject Target
 	{

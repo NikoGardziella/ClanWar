@@ -5,6 +5,12 @@ using UnityEngine.AI;
 
 public class Actor3D : MonoBehaviour
 {
+
+	[SerializeField]
+	Animator anim;
+	[SerializeField]
+	bool isFlying;
+
 	private NavMeshAgent agent;
 
 	public NavMeshAgent Agent
@@ -18,6 +24,25 @@ public class Actor3D : MonoBehaviour
 	private void Awake()
 	{
 		agent = GetComponent<NavMeshAgent>();
+		anim = GetComponent<Animator>();
 	}
 
+
+	private void Update()
+	{
+		if (!isFlying)
+		{
+			anim.SetBool("isWalking", agent.velocity == Vector3.zero ? false : true);
+			if (Mathf.Abs(agent.velocity.z) >= Mathf.Abs(agent.velocity.x))
+			{
+				anim.SetFloat("TargetZ", -agent.velocity.z);
+				anim.SetFloat("TargetX", 0);
+			}
+			else if (Mathf.Abs(agent.velocity.z) >= Mathf.Abs(agent.velocity.x))
+			{
+				anim.SetFloat("TargetX", agent.velocity.x);
+				anim.SetFloat("TargetZ", 0);
+			}
+		}
+	}
 }
