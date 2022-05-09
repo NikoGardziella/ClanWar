@@ -124,7 +124,7 @@ public static class GameFunctions
 		GameObject go = PhotonNetwork.Instantiate(prefab, Vector3.zero, Quaternion.identity, 0);
 		go.GetComponent<unit>().enabled = true;
 		go.tag = GameConstants.PLAYER_TAG;
-		go.transform.SetParent(parent, false);
+		//go.transform.SetParent(parent, false); 9.5 commented
 		go.transform.position = new Vector3(pos.x, 0, pos.z);
 		GameManager.AddObject(go);
 	}
@@ -135,7 +135,7 @@ public static class GameFunctions
 		{
 			if(acc.looking && !acc.me)
 			{
-				if (mmr <= acc.trophies + 50 || mmr >= acc.trophies - 50)
+				if (mmr <= acc.trophies + 50 || mmr >= acc.trophies - 50) // try removng this
 					return acc;
 			}
 		}

@@ -10,7 +10,7 @@ public class Actor3D : MonoBehaviour
 	Animator anim;
 	[SerializeField]
 	bool isFlying;
-
+	[SerializeField]
 	private NavMeshAgent agent;
 
 	public NavMeshAgent Agent
@@ -23,8 +23,8 @@ public class Actor3D : MonoBehaviour
 
 	private void Awake()
 	{
-		agent = GetComponent<NavMeshAgent>();
-		anim = GetComponent<Animator>();
+	//	agent = GetComponent<NavMeshAgent>();
+	//	anim = GetComponent<Animator>();
 	}
 
 

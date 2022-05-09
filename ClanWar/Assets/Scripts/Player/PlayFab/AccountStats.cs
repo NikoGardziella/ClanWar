@@ -10,14 +10,18 @@ public class AccountStats : MonoBehaviour
 	public bool looking = false;
 	public int trophies = 0; // Match Makng Rating
 	public int level = 1;
+	public bool inGame = false;
 	public string levelName = GameConstants.ROOM_ONE;
 
-	private void Update()
+	private void LateUpdate()
 	{
 		//levelName = GameConstants.ROOM_ONE;
-		if(levelName != GameConstants.ROOM_ONE)
+		if(levelName != GameConstants.ROOM_ONE && !inGame && me) // 9,.5 level !=""
 		{
-			//Debug.Log("levelname: " + levelName);
+
+			inGame = true;
+			Debug.Log("Loaded levelname: " + levelName);
+			StateMachine.ChangeState();
 			//levelManager.LoadLevel(GameConstants.GAME_SCENE);
 		}
 	}
@@ -26,7 +30,8 @@ public class AccountStats : MonoBehaviour
 	public void ChangeRoomName(string roomName)
 	{
 		levelName = roomName;
-		levelManager.LoadLevel(GameConstants.GAME_SCENE);
+		//StateMachine.ChangeState();
+		//levelManager.LoadLevel(GameConstants.GAME_SCENE);
 	}
 
 	private void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

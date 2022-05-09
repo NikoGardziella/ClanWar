@@ -35,7 +35,12 @@ public class GameManager : MonoBehaviour
 
 
 		GameObject go = PhotonNetwork.Instantiate(GameConstants.GAME_PLAYER, Vector3.zero, Quaternion.identity, 0);
-		Debug.Log("Ingameplayer instantiated");
+		if (!go)
+		{
+			Debug.Log("failed to instantiate ingameplayer");
+		}
+		else
+			Debug.Log("Ingameplayer instantiated");
 		go.transform.position = GameConstants.PLAYER_START;
 		go.transform.rotation = GameConstants.PLAYER_ROT;
 		go.tag = GameConstants.PLAYER_TAG;
@@ -76,8 +81,10 @@ public class GameManager : MonoBehaviour
 
 	private void Update()
 	{
+
 		objects = FindAllObjects();
 		players = FindAllPlayerStats();
+
 
 	}
 

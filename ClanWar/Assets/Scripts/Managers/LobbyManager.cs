@@ -15,6 +15,7 @@ public class LobbyManager : MonoBehaviour , IPunCallbacks
 		set { instance = value; }
 	}
 
+
 	[SerializeField]
 	bool firstLoad = false;
 	[SerializeField]
@@ -54,10 +55,11 @@ public class LobbyManager : MonoBehaviour , IPunCallbacks
 	{
 		if (!firstLoad)
 		{
-			//Debug.Log(PhotonNetwork.connectionState);
-			//Debug.Log(PhotonNetwork.insideLobby);
+
+			
 			if (PhotonNetwork.connectionState == ConnectionState.Connected && PhotonNetwork.insideLobby)
 			{
+				Debug.Log("connection state: " + PhotonNetwork.connectionState);
 				RoomOptions roomOptions = new RoomOptions()
 				{
 					IsVisible = true,
@@ -69,6 +71,7 @@ public class LobbyManager : MonoBehaviour , IPunCallbacks
 			else if(PhotonNetwork.connectionState == ConnectionState.Connected)
 			{
 				PhotonNetwork.JoinLobby();
+				Debug.Log("is in lobby: " + PhotonNetwork.insideLobby);
 			}
 		}
 		else
@@ -84,9 +87,9 @@ public class LobbyManager : MonoBehaviour , IPunCallbacks
 					if (acc != null)
 					{
 						string roomName = "GameArea";
-						Debug.Log("roomName: " + roomName);
+						//Debug.Log("roomName: " + roomName);
 						acc.gameObject.GetComponent<PhotonView>().RPC("ChangeRoomName", PhotonTargets.All, roomName);
-						myPlayer.levelName = roomName;
+						myPlayer.levelName = roomName; // move hgher
 						//levelManager.LoadLevel(GameConstants.GAME_SCENE);
 					}
 				}

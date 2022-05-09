@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7160676869931344138}
   m_Layer: 0
   m_Name: PhotonPlayer
-  m_TagString: Untagged
+  m_TagString: PhotonPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,10 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   me: 0
-  count: 0
-  ready: 0
+  looking: 0
   trophies: 0
   level: 1
+  inGame: 0
+  levelName: Room 1
 --- !u!114 &7160676869931344138
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -58,6 +58,12 @@ public static class GameConstants
 	public static int MENU_CLAN = 3;
 	public static int MENU_RANKED = 4;
 
+	public enum MANAGER_STATE
+	{
+		LOBBY,
+		IN_GAME
+	}
+
 	public enum OBJECT_TYPE
 	{
 		GROUND,
