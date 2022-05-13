@@ -71,7 +71,7 @@ public class LobbyManager : MonoBehaviour , IPunCallbacks
 			else if(PhotonNetwork.connectionState == ConnectionState.Connected)
 			{
 				PhotonNetwork.JoinLobby();
-				Debug.Log("is in lobby: " + PhotonNetwork.insideLobby);
+				//Debug.Log("is in lobby: " + PhotonNetwork.insideLobby);
 			}
 		}
 		else
@@ -108,7 +108,7 @@ public class LobbyManager : MonoBehaviour , IPunCallbacks
 
 	void OnPhotonJoinRoomFailed()
 	{
-		Debug.Log("OnPhotonRoomFailed");
+		//Debug.Log("OnPhotonRoomFailed");
 		PhotonNetwork.CreateRoom(GameConstants.ROOM_ONE);
 	}
 	
@@ -179,7 +179,8 @@ public class LobbyManager : MonoBehaviour , IPunCallbacks
 
 	public void OnFailedToConnectToPhoton(DisconnectCause cause)
 	{
-		throw new System.NotImplementedException();
+		Debug.Log("OnFailedToConnectToPhoton:" + cause);
+		GetPlayers();
 	}
 
 	public void OnConnectionFail(DisconnectCause cause)
@@ -194,7 +195,7 @@ public class LobbyManager : MonoBehaviour , IPunCallbacks
 
 	public void OnPhotonInstantiate(PhotonMessageInfo info)
 	{
-		throw new System.NotImplementedException();
+		Debug.Log("OnPhotonInstantiate:" + info);
 	}
 
 	public void OnReceivedRoomListUpdate()
@@ -204,13 +205,12 @@ public class LobbyManager : MonoBehaviour , IPunCallbacks
 
 	/*public void IPunCallbacks.OnJoinedRoom()
 	{
-
-		throw new System.NotImplementedException();
+		Debug.Log("IPunCallbacks. OnJoinedRoom"); /
 	} */
 
 	public void OnPhotonPlayerConnected(PhotonPlayer newPlayer)
 	{
-		throw new System.NotImplementedException();
+		Debug.Log("OnPhotonPlayerConnected:" + newPlayer);
 	}
 
 	public void OnPhotonPlayerDisconnected(PhotonPlayer otherPlayer)

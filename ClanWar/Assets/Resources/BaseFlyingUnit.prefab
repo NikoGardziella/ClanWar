@@ -411,7 +411,6 @@ GameObject:
   - component: {fileID: 6761407674752940876}
   - component: {fileID: 6761407674752940879}
   - component: {fileID: 6761407674752940878}
-  - component: {fileID: 6761407674752940850}
   m_Layer: 0
   m_Name: Agent
   m_TagString: Untagged
@@ -427,7 +426,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6761407674752940872}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2.92, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 6761407673042697994}
@@ -496,21 +495,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6761407674752940850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6761407674752940872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2560ae419dc5c442970570acfb71a6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 0}
-  isFlying: 0
-  agent: {fileID: 0}
 --- !u!1 &6761407675011675909
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,7 +549,7 @@ MonoBehaviour:
   stats:
     currentHealth: 100
     maxHealth: 100
-    range: 0.8
+    range: 1
     baseDamage: 10
     attackDelay: 2
     currentAttackDelay: 0
@@ -607,6 +591,7 @@ MonoBehaviour:
   agentLocation: {fileID: 6761407674752940872}
   newUnitPosition: {x: 0, y: 0, z: 0}
   oldAgentPosition: {x: 0, y: 0, z: 0}
+  newUnitRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &3983286238760100664
 MonoBehaviour:
   m_ObjectHideFlags: 0

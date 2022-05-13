@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitNetwork : UnityEngine.MonoBehaviour
+
+public class UnitNetwork : Photon.MonoBehaviour
 {
 
 	[SerializeField]
@@ -13,32 +14,64 @@ public class UnitNetwork : UnityEngine.MonoBehaviour
 	Vector3 newUnitPosition;
 	[SerializeField]
 	Vector3 oldAgentPosition;
+	[SerializeField]
+	Quaternion newUnitRotation;
+
 
 	private void Update()
 	{
-		//if(newUnitPosition != unitLocation.transform.position)
+
+		if (photonView.isMine)
+		{
+
+		}
+		else
+		{
+			unitLocation.transform.rotation = Quaternion.Lerp(unitLocation.transform.rotation, newUnitRotation, 0.1f);
+			unitLocation.transform.position = Vector3.Lerp(unitLocation.transform.position, newUnitPosition, .1f);
+		}
+		//if (newUnitPosition != unitLocation.transform.position)
 		//{
 		//	unitLocation.transform.position  = Vector3.Lerp(unitLocation.transform.position, newUnitPosition, .1f);
 		//}
-		if (oldAgentPosition != agentLocation.transform.localPosition)
-		{
-			agentLocation.transform.localPosition = Vector3.Lerp(agentLocation.transform.localPosition, oldAgentPosition, .1f);
-		}
+
+		//if (oldAgentPosition != agentLocation.transform.localPosition)
+		//{
+		//	agentLocation.transform.localPosition = Vector3.Lerp(agentLocation.transform.localPosition, oldAgentPosition, .1f);
+		//}
 	}
 
+	/*private void Awake()
+	{
+		if(newUnitPosition != unitLocation.transform.position)
+		{
+			unitLocation.transform.position  = Vector3.Lerp(unitLocation.transform.position, newUnitPosition, .1f);
+		}
+	} */
 
 
-	private void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo winfo)
+
+
+	private void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
 	{
 		if (stream.isWriting)
 		{
 			stream.SendNext(unitLocation.transform.position);
-			stream.SendNext(agentLocation.transform.localPosition);
+			stream.SendNext(unitLocation.transform.rotation);
+			//stream.SendNext(agentLocation.transform.localPosition);
 		}
 		else
 		{
 			newUnitPosition = (Vector3)stream.ReceiveNext();
-			oldAgentPosition = (Vector3)stream.ReceiveNext();
+			newUnitRotation = (Quaternion)stream.ReceiveNext();
+			newUnitRotation.x *= -1f;
+			newUnitRotation.w *= -1f;
+			newUnitPosition = -newUnitPosition; // this is the weirdest possible solutution.
+			//oldAgentPosition = (Vector3)stream.ReceiveNext();
 		}
 	}
-}
+
+
+
+
+} 

@@ -52,6 +52,7 @@ public class AccountStats : MonoBehaviour
 			trophies = (int)stream.ReceiveNext();
 			level = (int)stream.ReceiveNext();
 			levelName = (string)stream.ReceiveNext();
+			//Debug.Log("Stream is receivinng");
 		}
 	}
 }

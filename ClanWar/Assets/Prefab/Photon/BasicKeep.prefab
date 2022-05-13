@@ -114,7 +114,7 @@ MonoBehaviour:
   stats:
     currentHealth: 200
     maxHealth: 200
-    range: 0.7
+    range: 4
     baseDamage: 20
     attackDelay: 5
     currentAttackDelay: 0
@@ -253,7 +253,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6338597439343303573}
-  - component: {fileID: 2607013676723032574}
   - component: {fileID: 3744210868713435306}
   m_Layer: 0
   m_Name: GameArt
@@ -278,22 +277,6 @@ Transform:
   m_Father: {fileID: 240084547636159565}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2607013676723032574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1734675767359508890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19ade949387a80048b720403de3bf56d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followTarget: {fileID: 0}
-  anim: {fileID: 0}
-  agent: {fileID: 0}
-  isFlying: 0
 --- !u!95 &3744210868713435306
 Animator:
   serializedVersion: 3
@@ -506,7 +489,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5159505278926323843
 GameObject:

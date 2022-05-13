@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class unit : MonoBehaviour, IDamageable
+public class unit : Photon.MonoBehaviour, IDamageable
 {
 	[SerializeField]
 	private Actor3D agent;
@@ -77,6 +77,11 @@ public class unit : MonoBehaviour, IDamageable
 	{
 		if (target != null)
 		{
+			List<GameObject> objects = GameManager.Instance.Objects;
+			objects = GameManager.GetAllEnemies(transform.position, objects, gameObject.tag);
+			target = GameFunctions.GetNearestTarget(objects, stats.DetectionObject, gameObject.tag); // error
+			if (target == null)
+				Debug.LogError("target null");
 			if (stats.CurrentAttackDelay >= stats.AttackDelay)
 			{
 				Component damageable = target.GetComponent(typeof(IDamageable));
@@ -90,9 +95,13 @@ public class unit : MonoBehaviour, IDamageable
 							GameFunctions.Attack(damageable, stats.BaseDamage);
 							stats.CurrentAttackDelay = 0;
 						}
+						Debug.Log("CanT Attack");
 					}
+					//else
+					//	Debug.Log("hitTargets does not Contains(target):" + target);
 				}
 			}
+
 		}
 		else
 		{
@@ -102,23 +111,29 @@ public class unit : MonoBehaviour, IDamageable
 		}
 	}
 
-	public void OnTriggerEnter(Collider other)
+	public void OnTriggerEnter(Collider other) // 13.5 does not work
 	{
-		if (!other.transform.parent.parent.CompareTag(gameObject.tag))
+		Debug.Log("OnTriggerEnter : " + other);
+		if (!other.CompareTag(gameObject.tag)) // 10.5  if (!other.transform.parent.parent.CompareTag(gameObject.tag))
 		{
-			Component damageable = other.transform.parent.parent.gameObject.GetComponent(typeof(IDamageable));
+			Component damageable = other.gameObject.GetComponent(typeof(IDamageable)); // Component damageable = other.transform.parent.parent.gameObject.GetComponent(typeof(IDamageable));
 			if (damageable)
 			{
 				if (!hitTargets.Contains(damageable.gameObject))
 				{
 					hitTargets.Add(damageable.gameObject);
 				}
+				else
+					Debug.Log("hitTargets.Contains(damageable.gameObject");
 			}
+			else
+				Debug.Log("not damageable");
 		}
 	}
 
 	public void OnTriggerStay(Collider other)
 	{
+		Debug.Log("OnTriggerStay" + other);
 		if (!other.gameObject.CompareTag(gameObject.tag))
 		{
 			if (hitTargets.Count > 0)
@@ -129,7 +144,11 @@ public class unit : MonoBehaviour, IDamageable
 				{
 					target = go;
 				}
+				else
+					Debug.Log("go is null");
 			}
+			else
+				Debug.Log("not hit targets");
 		}
 	}
 
@@ -137,13 +156,20 @@ public class unit : MonoBehaviour, IDamageable
 	{
 		if (stream.isWriting)
 		{
+			if (photonView.isMine)
+			{
 			stream.SendNext(stats.CurrentHealth);
 			stream.SendNext(stats.HealthBar.fillAmount);
+			}
 		}
 		else
 		{
-			stats.CurrentHealth = (float)stream.ReceiveNext();
-			stats.HealthBar.fillAmount = (float)stream.ReceiveNext();
+		//	if (!photonView.isMine)
+			//{
+			//	stats.CurrentHealth = (float)stream.ReceiveNext();
+			//	stats.HealthBar.fillAmount = (float)stream.ReceiveNext();
+			//}
+
 		}
 	}
 

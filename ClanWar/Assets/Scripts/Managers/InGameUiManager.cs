@@ -53,10 +53,4 @@ public class InGameUiManager : MonoBehaviour
 		set { Instance.allResources = value; }
 	}
 
-
-
-
-
-
-
 }

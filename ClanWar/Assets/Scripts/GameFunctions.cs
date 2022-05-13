@@ -42,9 +42,9 @@ public static class GameFunctions
 		}
 	}
 
-	public static GameObject GetNearestTarget(List<GameObject> hitTargets, SphereCollider mySc, string tag, float range)
+	public static GameObject GetNearestTarget(List<GameObject> hitTargets, SphereCollider mySc, string tag, float range) //FOR BUILDING
 	{
-		if(hitTargets.Count > 0)
+		if (hitTargets.Count > 0)
 		{
 			GameObject go = hitTargets[0];
 
@@ -56,29 +56,42 @@ public static class GameFunctions
 			foreach (GameObject ht in hitTargets)
 			{
 				targetComponent = ht.GetComponent(typeof(IDamageable));
-
+				//Debug.Log("found ht target:" + ht);
 				if (targetComponent)
 				{
 					targetSc = (targetComponent as IDamageable).Stats.DetectionObject;
 
 					float newDist = Vector3.Distance(mySc.transform.position, targetSc.transform.position);
+					//Debug.Log("mypos:" + mySc.transform.position + " target pos" + targetSc.transform.position);
+					//Debug.Log("newdist" + newDist);
+					//Debug.Log("range" + range);
+					//Debug.Log("dist" + dist);
 
-					if(dist > newDist && newDist <= range)
+					if (dist >= newDist && newDist <= range) // if (dist > newDist && newDist <= range)
 					{
 						if (!ht.CompareTag(tag))
 						{
+							Debug.Log("Structure: go = ht");
 							dist = newDist;
 							go = ht;
 						}
+						else
+							Debug.Log("wrong tag");
 					}
+					//else
+						//Debug.Log("not in range");
 				}
+				//else
+				//	Debug.Log("no target component");
 			}
 			return go;
 		}
+		else
+			Debug.Log("no ht targets");
 		return null;
 	}
 
-	public static GameObject GetNearestTarget(List<GameObject> hitTargets, SphereCollider mySc, string tag)
+	public static GameObject GetNearestTarget(List<GameObject> hitTargets, SphereCollider mySc, string tag) // FOR UNIT
 	{
 		if (hitTargets.Count > 0)
 		{
@@ -99,10 +112,11 @@ public static class GameFunctions
 
 					float newDist = Vector3.Distance(mySc.transform.position, targetSc.transform.position);
 
-					if (dist > newDist)
+					if (dist >= newDist)
 					{
 						if (!ht.CompareTag(tag))
 						{
+							//Debug.Log("UNIT: go = ht");
 							dist = newDist;
 							go = ht;
 						}
@@ -119,12 +133,14 @@ public static class GameFunctions
 		return GameObject.Find(GameConstants.HUD_CANVAS).transform;
 	}
 
-	public static void SpawnUnit(string prefab, Transform parent, Vector3 pos)
+	public static void SpawnUnit(string prefab, Transform parent, Vector3 pos) // GameFunctions.SpawnUnit(cardInfo.Prefab.name, playerInfo.UnitTransform, pos);
 	{
-		GameObject go = PhotonNetwork.Instantiate(prefab, Vector3.zero, Quaternion.identity, 0);
+		
+		Vector3 newPos = new Vector3(pos.x, 0, pos.z);
+		GameObject go = PhotonNetwork.Instantiate(prefab, newPos, Quaternion.identity, 0); // 10.5 Vector3.zero to pos
 		go.GetComponent<unit>().enabled = true;
 		go.tag = GameConstants.PLAYER_TAG;
-		//go.transform.SetParent(parent, false); 9.5 commented
+		go.transform.SetParent(parent, true); // 9.5 commented
 		go.transform.position = new Vector3(pos.x, 0, pos.z);
 		GameManager.AddObject(go);
 	}

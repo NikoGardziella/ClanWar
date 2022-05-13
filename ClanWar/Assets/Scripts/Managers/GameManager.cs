@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
 		PlayerStats ps = go.GetComponent<PlayerStats>();
 		ps.enabled = true;
 
-		ps.TextScore = go.transform.GetChild(2).GetChild(1).GetChild(1).GetComponent<Text>(); // is this causing not being able to drag cards
+		ps.TextScore = go.transform.GetChild(2).GetChild(1).GetChild(1).GetComponent<Text>(); 
 
 		go.transform.GetChild(1).gameObject.SetActive(true);
 		go.transform.GetChild(2).gameObject.SetActive(true);

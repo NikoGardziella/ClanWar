@@ -73,7 +73,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 		{
 			playerInfo.PlayersDeck.RemoveHand(cardInfo.Index);
 			playerInfo.RemoveResource(cardInfo.Cost);
-			Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition); // other value??
 			GameFunctions.SpawnUnit(cardInfo.Prefab.name, playerInfo.UnitTransform, pos);
 			Destroy(gameObject);
 		}

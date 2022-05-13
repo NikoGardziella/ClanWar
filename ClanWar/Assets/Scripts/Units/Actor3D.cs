@@ -32,7 +32,7 @@ public class Actor3D : MonoBehaviour
 	{
 		if (!isFlying)
 		{
-			anim.SetBool("isWalking", agent.velocity == Vector3.zero ? false : true);
+			//anim.SetBool("isWalking", agent.velocity == Vector3.zero ? false : true); commented 10.5
 			if (Mathf.Abs(agent.velocity.z) >= Mathf.Abs(agent.velocity.x))
 			{
 				anim.SetFloat("TargetZ", -agent.velocity.z);

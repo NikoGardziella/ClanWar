@@ -91,8 +91,14 @@ public class Structure : MonoBehaviour, IDamageable
 							GameFunctions.Attack(damageable, stats.BaseDamage);
 							stats.CurrentAttackDelay = 0;
 						}
+						//else
+						//	Debug.Log("STRUCTURE: can attack false");
 					}
+					//else
+					//	Debug.Log("STRUCTURE: hitTargets does not Contain" + target);
 				}
+				//else
+					//Debug.Log("STRUCTURE: damageable" + damageable);
 			}
 		}
 		else
