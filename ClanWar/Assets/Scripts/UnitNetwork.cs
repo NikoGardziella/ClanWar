@@ -64,8 +64,8 @@ public class UnitNetwork : Photon.MonoBehaviour
 		{
 			newUnitPosition = (Vector3)stream.ReceiveNext();
 			newUnitRotation = (Quaternion)stream.ReceiveNext();
-			newUnitRotation.x *= -1f;
-			newUnitRotation.w *= -1f;
+			newUnitRotation.y -= 180f;
+			//newUnitRotation.w *= -1f;
 			newUnitPosition = -newUnitPosition; // this is the weirdest possible solutution.
 			//oldAgentPosition = (Vector3)stream.ReceiveNext();
 		}

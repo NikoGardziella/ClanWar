@@ -23,7 +23,7 @@ public class ItemSlot : MonoBehaviour
 
 	public void AddToDeck()
 	{
-
+		
 		AccountInfo.Deck.Add(card);
 		GetComponent<Button>().interactable = false;
 		UiManager.UpdateDeckinfo(UiManager.CurrentCount, card);

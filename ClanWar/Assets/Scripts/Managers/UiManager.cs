@@ -220,7 +220,7 @@ public class UiManager : MonoBehaviour
 		}
 	}
 
-	private void UpdateDeckinfo()
+	private void UpdateDeckinfo() // does not update or save
 	{
 		currentCost = 0;
 		for (int i = 0; i < DeckContents.Count; i++)  // error?
@@ -231,6 +231,10 @@ public class UiManager : MonoBehaviour
 				{
 					DeckContents[i].GetComponent<DeckSlot>().Card = AccountInfo.Deck[i];
 					currentCost += AccountInfo.Deck[i].Cost;
+				}
+				else
+				{
+					Debug.Log("AccountInfo.Deck is null. i : " + i);
 				}
 			}
 		}
@@ -247,6 +251,7 @@ public class UiManager : MonoBehaviour
 			{
 				if (AccountInfo.Instance.Info.UserInventory[i].ItemClass == GameConstants.ITEM_CARDS)
 				{
+					//Debug.Log("AccountInfo.Cards[i];" + AccountInfo.Cards[i]);
 					InventoryContents[i].GetComponent<ItemSlot>().Card = AccountInfo.Cards[i];
 					InventoryContents[i].SetActive(true);
 					InventoryContents[i].GetComponent<Button>().interactable = true;

@@ -51,8 +51,9 @@ public class AccountInfo : MonoBehaviour
 
 	private void Update()
 	{
-		if(Info != null && instance.cards.Count == 0 && database.Updated) //  29.4 changed from instance.cards.count // 3.5 was Cards.Count
+		if(Info != null && Cards.Count == 0 && database.Updated) //  29.4 changed from instance.cards.count // 3.5 was Cards.Count
 		{
+			Debug.Log("adding card");
 			AddCards();
 		}
 	}
@@ -187,6 +188,7 @@ public class AccountInfo : MonoBehaviour
 		string deckContents = "";
 		foreach  (CardStats item in Deck)
 		{
+			Debug.Log(item.Name + "addding to deck");
 			deckContents += item.Name + ",";
 		}
 		Dictionary<string, string> data = new Dictionary<string, string>
@@ -207,6 +209,7 @@ public class AccountInfo : MonoBehaviour
 	private static void GotData(UpdateUserDataResult result)
 	{
 		Debug.Log("Updated data!");
+		AddCards();
 	}
 
 	static void OnAccountInfo(GetPlayerCombinedInfoResult result)
@@ -269,7 +272,7 @@ public class AccountInfo : MonoBehaviour
 			}
 		}
 		UserDataRecord temp; // this is not working
-		if (Instance.info.UserData.TryGetValue(GameConstants.DATA_DECK, out temp))
+		if (Instance.Info.UserData.TryGetValue(GameConstants.DATA_DECK, out temp))
 		{
 			Debug.Log("Trying get values");
 			Instance.deckInfo = temp.Value.Split(',');
@@ -286,6 +289,10 @@ public class AccountInfo : MonoBehaviour
 
 				}
 			}
+		}
+		else
+		{
+			Debug.Log("failed to get deck");
 		}
 
 

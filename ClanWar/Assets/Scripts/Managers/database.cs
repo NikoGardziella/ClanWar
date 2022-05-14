@@ -108,7 +108,7 @@ public class database : MonoBehaviour
 				Debug.Log("OnUpdateDatabase result.Catalog[i].ItemClass: " + result.Catalog[i].ItemClass);
 				Debug.Log("OnUpdateDatabase result.Catalog[i] : " + result.Catalog[i]);
 				Instance.CatalogCards.Add(result.Catalog[i]);
-				Instance.cards.Add(GameFunctions.CreateCard(result.Catalog[i], i)); // changed from card to Card 7.4 ERROR ___
+				Instance.Cards.Add(GameFunctions.CreateCard(result.Catalog[i], i)); // changed from card to Card 7.4 ERROR ___
 			}
 		}
 

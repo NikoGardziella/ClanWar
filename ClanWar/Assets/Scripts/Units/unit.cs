@@ -90,12 +90,18 @@ public class unit : Photon.MonoBehaviour, IDamageable
 				{
 					if (hitTargets.Contains(target))
 					{
-						if (GameFunctions.CanAttack(gameObject.tag, target.tag, damageable, stats))
+						float distance = Vector3.Distance(target.transform.position, gameObject.transform.position);
+						if (distance < stats.Range)
 						{
-							GameFunctions.Attack(damageable, stats.BaseDamage);
-							stats.CurrentAttackDelay = 0;
+							if (GameFunctions.CanAttack(gameObject.tag, target.tag, damageable, stats))
+							{
+								Debug.Log(gameObject.tag + "attacking" + target.tag);
+								GameFunctions.Attack(damageable, stats.BaseDamage);
+								stats.CurrentAttackDelay = 0;
+							}
+							else
+								Debug.Log("CanT Attack");
 						}
-						Debug.Log("CanT Attack");
 					}
 					//else
 					//	Debug.Log("hitTargets does not Contains(target):" + target);
@@ -131,7 +137,7 @@ public class unit : Photon.MonoBehaviour, IDamageable
 		}
 	}
 
-	public void OnTriggerStay(Collider other)
+	/*public void OnTriggerStay(Collider other)
 	{
 		Debug.Log("OnTriggerStay" + other);
 		if (!other.gameObject.CompareTag(gameObject.tag))
@@ -150,7 +156,7 @@ public class unit : Photon.MonoBehaviour, IDamageable
 			else
 				Debug.Log("not hit targets");
 		}
-	}
+	}*/
 
 	private void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
 	{
@@ -160,6 +166,11 @@ public class unit : Photon.MonoBehaviour, IDamageable
 			{
 			stream.SendNext(stats.CurrentHealth);
 			stream.SendNext(stats.HealthBar.fillAmount);
+				if(stats.CurrentHealth < 0)
+				{
+					PhotonNetwork.Destroy(gameObject);
+					Debug.Log("photon destroyd gameobject");
+				}
 			}
 		}
 		else

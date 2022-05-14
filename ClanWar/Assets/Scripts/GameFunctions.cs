@@ -71,7 +71,7 @@ public static class GameFunctions
 					{
 						if (!ht.CompareTag(tag))
 						{
-							Debug.Log("Structure: go = ht");
+							//Debug.Log("Structure: go = ht");
 							dist = newDist;
 							go = ht;
 						}

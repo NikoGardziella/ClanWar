@@ -86,19 +86,25 @@ public class Structure : MonoBehaviour, IDamageable
 				{
 					if (hitTargets.Contains(target))
 					{
-						if (GameFunctions.CanAttack(gameObject.tag, target.tag, damageable, stats))
+						float distance = Vector3.Distance(target.transform.position, gameObject.transform.position);
+
+						if (distance < stats.Range) // 14.5 added
 						{
-							GameFunctions.Attack(damageable, stats.BaseDamage);
-							stats.CurrentAttackDelay = 0;
+							if (GameFunctions.CanAttack(gameObject.tag, target.tag, damageable, stats))
+							{
+								GameFunctions.Attack(damageable, stats.BaseDamage);
+								stats.CurrentAttackDelay = 0;
+							}
 						}
+
 						//else
-						//	Debug.Log("STRUCTURE: can attack false");
+							//Debug.Log("STRUCTURE: can attack false");
 					}
 					//else
 					//	Debug.Log("STRUCTURE: hitTargets does not Contain" + target);
 				}
 				//else
-					//Debug.Log("STRUCTURE: damageable" + damageable);
+				//	Debug.Log("STRUCTURE: damageable" + damageable);
 			}
 		}
 		else
@@ -114,9 +120,9 @@ public class Structure : MonoBehaviour, IDamageable
 
 	public void OnTriggerEnter(Collider other)
 	{
-		if (!other.transform.parent.CompareTag(gameObject.tag))
+		if (!other.transform.CompareTag(gameObject.tag)) // (!other.transform.parent.CompareTag(gameObject.tag))
 		{
-			Component damageable = other.transform.parent.gameObject.GetComponent(typeof(IDamageable));
+			Component damageable = other.transform.gameObject.GetComponent(typeof(IDamageable)); // Component damageable = other.transform.parent.gameObject.GetComponent(typeof(IDamageable));
 			if (damageable)
 			{
 				if (!hitTargets.Contains(damageable.gameObject))
