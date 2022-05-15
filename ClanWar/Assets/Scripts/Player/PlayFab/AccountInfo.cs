@@ -6,6 +6,7 @@ using PlayFab.ClientModels;
 using System;
 
 
+
 public class AccountInfo : MonoBehaviour 
 {
 	public string[] deckInfo;
@@ -209,7 +210,7 @@ public class AccountInfo : MonoBehaviour
 	private static void GotData(UpdateUserDataResult result)
 	{
 		Debug.Log("Updated data!");
-		AddCards();
+		//AddDeckInfo();
 	}
 
 	static void OnAccountInfo(GetPlayerCombinedInfoResult result)
@@ -271,10 +272,11 @@ public class AccountInfo : MonoBehaviour
 				Cards.Add(database.GetCardInfo(Instance.Info.UserInventory[i], i));
 			}
 		}
-		UserDataRecord temp; // this is not working
+		AddDeckInfo();
+	/*	UserDataRecord temp; // this is not working
 		if (Instance.Info.UserData.TryGetValue(GameConstants.DATA_DECK, out temp))
 		{
-			Debug.Log("Trying get values");
+			Debug.Log("deckinfo: " + instance.deckInfo);
 			Instance.deckInfo = temp.Value.Split(',');
 			for (int i = 0; i < Instance.deckInfo.Length - 1; i++)
 			{
@@ -293,9 +295,39 @@ public class AccountInfo : MonoBehaviour
 		else
 		{
 			Debug.Log("failed to get deck");
+		}¨*/
+
+
+	}
+
+	static void AddDeckInfo()
+	{
+		Debug.Log("add deck info");
+		UserDataRecord temp; // this is not working
+		if (Instance.Info.UserData.TryGetValue(GameConstants.DATA_DECK, out temp))
+		{
+			Debug.Log("deckinfo: " + instance.deckInfo);
+			Instance.deckInfo = temp.Value.Split(',');
+			for (int i = 0; i < Instance.deckInfo.Length - 1; i++)
+			{
+				for (int j = 0; j < Instance.Info.UserInventory.Count; j++)
+				{
+					if (Instance.deckInfo[i] == Instance.Info.UserInventory[j].ItemId)
+					{
+						Debug.Log("adding to deck:" + Instance.Info.UserInventory[j]);
+						Deck.Add(database.GetCardInfo(Instance.Info.UserInventory[j], j));
+						break;
+					}
+					else
+						Debug.Log("ERROR: Instance.deckInfo[i] == Instance.Info.UserInventory[j].ItemId");
+
+				}
+			}
 		}
-
-
+		else
+		{
+			Debug.Log("failed to get deck");
+		}
 	}
 
 }

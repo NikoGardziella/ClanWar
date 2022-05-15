@@ -48,7 +48,7 @@ public class UiManager : MonoBehaviour
 	}
 
 
-	//Shot menu
+	//Shop menu
 	[SerializeField]
 	private List<GameObject> storeContents;
 
@@ -237,6 +237,8 @@ public class UiManager : MonoBehaviour
 					Debug.Log("AccountInfo.Deck is null. i : " + i);
 				}
 			}
+			//else
+			//	Debug.Log("AccountInfo.Deck.Count: " + AccountInfo.Deck.Count);
 		}
 	}
 

@@ -13,12 +13,13 @@ public class StoreSlot : MonoBehaviour
 	private Text coinsText;
 	[SerializeField]
 	private Text gemsText;
-	//
+
 	public StoreItem Item
 	{
 		get { return item; }
 		set { item = value; }
 	}
+
 
 	private void Update()
 	{
@@ -48,6 +49,15 @@ public class StoreSlot : MonoBehaviour
 				VirtualCurrency = GameConstants.COIN_CODE,
 				Price = (int)price
 			};
+			for (int i = 0; i < AccountInfo.Cards.Count; i++)
+			{
+				Debug.Log("itemid: " + item.ItemId + "accountinfo card: " + AccountInfo.Cards[i].Name);
+				if (item.ItemId == AccountInfo.Cards[i].Name)
+				{
+					Debug.Log("Card already inventory");
+					return;
+				}
+			}
 			PlayFabClientAPI.PurchaseItem(request, OnBoughtItem, GameFunctions.OnAPIError);
 		}
 	}
@@ -62,6 +72,15 @@ public class StoreSlot : MonoBehaviour
 				VirtualCurrency = GameConstants.GEM_CODE,
 				Price = (int)price
 			};
+			for (int i = 0; i < AccountInfo.Cards.Count; i++) 
+			{
+				Debug.Log("itemid: " + item.ItemId + "accountinfo card: " + AccountInfo.Cards[i].Name);
+				if (item.ItemId == AccountInfo.Cards[i].Name)
+				{
+					Debug.Log("Card already inventory");
+					return ;
+				}
+			}
 			PlayFabClientAPI.PurchaseItem(request, OnBoughtItem, GameFunctions.OnAPIError);
 		}
 
