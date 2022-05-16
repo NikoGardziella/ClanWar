@@ -13,6 +13,16 @@ public class GameManager : MonoBehaviour
 	[SerializeField]
 	Text enemyScore;
 
+	[SerializeField]
+	private Text endGameText;
+	public Text EndGameText
+	{
+		get { return endGameText; }
+		set { endGameText = value; }
+	}
+
+
+
 	public List<PlayerStats> Players
 	{
 		get { return players; }
@@ -235,6 +245,7 @@ public class GameManager : MonoBehaviour
 
 		return gotObjects;
 	}
+
 
 }
 

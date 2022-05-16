@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDamageable 
+public interface IDamageable
 {
 	baseStats Stats { get; }
 	List<GameObject> HitTargets { get; }

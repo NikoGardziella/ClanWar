@@ -69,9 +69,10 @@ public class Structure : MonoBehaviour, IDamageable
 		}
 		else
 		{
+
 			print(gameObject.name + "has Died");
-			GameManager.RemoveObjectFromList(gameObject, leftTower);
-			Destroy(gameObject);
+			GameManager.RemoveObjectFromList(gameObject, leftTower); // why lefttower?
+ 			Destroy(gameObject);
 		}
 	}
 	void Attack()

@@ -76,7 +76,7 @@ public static class GameConstants
 		BOTH
 	}
 
-	public enum UNIT_RANGE
+	public enum UNIT_TYPE
 	{
 		MELEE,
 		RANGE

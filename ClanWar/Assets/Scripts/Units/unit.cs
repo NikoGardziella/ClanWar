@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class unit : Photon.MonoBehaviour, IDamageable
 {
+	public GameObject attackGameObjectArrow;
+
 	[SerializeField]
 	private Actor3D agent;
 	[SerializeField]
@@ -96,7 +98,10 @@ public class unit : Photon.MonoBehaviour, IDamageable
 							if (GameFunctions.CanAttack(gameObject.tag, target.tag, damageable, stats))
 							{
 								Debug.Log(gameObject.tag + "attacking" + target.tag);
-								GameFunctions.Attack(damageable, stats.BaseDamage);
+								if (stats.UnitType == GameConstants.UNIT_TYPE.RANGE)
+									rangedAttack(damageable, stats.BaseDamage, target);
+								else
+									GameFunctions.Attack(damageable, stats.BaseDamage);
 								stats.CurrentAttackDelay = 0;
 							}
 							else
@@ -115,6 +120,15 @@ public class unit : Photon.MonoBehaviour, IDamageable
 			objects = GameManager.GetAllEnemies(transform.position, objects, gameObject.tag);
 			target = GameFunctions.GetNearestTarget(objects, stats.DetectionObject, gameObject.tag);
 		}
+	}
+	public void rangedAttack(Component damageable, float baseDamage, GameObject arget)
+	{
+		var myInfo = gameObject.GetComponent<unit>();
+		var shoot = Instantiate(attackGameObjectArrow, transform.position, Quaternion.identity);
+		var shootInfo = shoot.GetComponent<>();
+		shootInfo.objective = target;
+		//shootInfo.projectileOfTeam = myInfo.team;
+
 	}
 
 	public void OnTriggerEnter(Collider other) // 13.5 does not work

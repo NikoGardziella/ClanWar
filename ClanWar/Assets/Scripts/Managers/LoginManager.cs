@@ -30,11 +30,11 @@ public class LoginManager : MonoBehaviour
 
 	public void QuickLogin()
 	{
-		AccountInfo.Login("test", "123456");
+		AccountInfo.Login("Helsinki", "Helsinki");
 	}
 	public void QuickLogin1()
 	{
-		AccountInfo.Login("myUsername", "myPassword");
+		AccountInfo.Login("Stockholm", "Stockholm");
 	}
 
 

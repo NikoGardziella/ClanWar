@@ -29,6 +29,8 @@ public class baseStats
 	private GameConstants.OBJECT_TYPE objectType;
 	[SerializeField]
 	private GameConstants.OBJECT_ATTACKABLE objectAttackable;
+	[SerializeField]
+	private GameConstants.UNIT_TYPE unitType;
 
 
 	public GameConstants.OBJECT_ATTACKABLE ObjectAttackable
@@ -42,6 +44,10 @@ public class baseStats
 		get { return objectType; }
 	}
 
+	public GameConstants.UNIT_TYPE UnitType
+	{
+		get { return unitType; }
+	}
 	public  SphereCollider DetectionObject
 	{
 		get { return detectionObject; }

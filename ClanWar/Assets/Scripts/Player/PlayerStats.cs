@@ -151,6 +151,14 @@ public class PlayerStats : MonoBehaviour
 		}
 	}
 
+	[SerializeField]
+	private Text endGameText;
+	public Text EndGameText
+	{
+		get { return endGameText; }
+		set { endGameText = value; }
+	}
+
 	private void Start()
 	{
 		playersDeck.Start();
@@ -177,6 +185,7 @@ public class PlayerStats : MonoBehaviour
 
 		UpdateText();
 		UpdateDeck();
+		
 
 		
 	}
@@ -216,7 +225,21 @@ public class PlayerStats : MonoBehaviour
 		}
 	}
 
+	public void YouLost()
+	{
+		Debug.Log("you lost");
+		endGameText.gameObject.SetActive(true);
+		endGameText.text = "You Lost";
 
+	}
+
+	public void YouWon()
+	{
+		Debug.Log("you won");
+		endGameText.gameObject.SetActive(true);
+		endGameText.text = "You Won";
+
+	}
 
 
 }

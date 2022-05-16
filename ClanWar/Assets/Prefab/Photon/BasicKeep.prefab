@@ -126,6 +126,7 @@ MonoBehaviour:
   hitTargets: []
   target: {fileID: 0}
   leftTower: 0
+  playerStats: {fileID: 4873055721109353295, guid: e730b687bc0d4694880e78d8ff4e8c2f, type: 3}
 --- !u!54 &2267536452813032130
 Rigidbody:
   m_ObjectHideFlags: 0

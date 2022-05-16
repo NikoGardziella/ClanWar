@@ -34,6 +34,8 @@ public static class GameFunctions
 		return false;
 	}
 
+
+
 	public static void Attack(Component damageable, float baseDamage)
 	{
 		if(damageable)
