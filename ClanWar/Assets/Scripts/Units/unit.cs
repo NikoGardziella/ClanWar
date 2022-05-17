@@ -125,8 +125,8 @@ public class unit : Photon.MonoBehaviour, IDamageable
 	{
 		var myInfo = gameObject.GetComponent<unit>();
 		var shoot = Instantiate(attackGameObjectArrow, transform.position, Quaternion.identity);
-		var shootInfo = shoot.GetComponent<>();
-		shootInfo.objective = target;
+		var shootInfo = shoot.GetComponent<unit>();
+		shootInfo.target = target;
 		//shootInfo.projectileOfTeam = myInfo.team;
 
 	}

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Structure : MonoBehaviour, IDamageable
 {
+	public GameObject attackGameObjectArrow;
+
 	[SerializeField]
 	private baseStats stats;
 	[SerializeField]
@@ -93,7 +95,8 @@ public class Structure : MonoBehaviour, IDamageable
 						{
 							if (GameFunctions.CanAttack(gameObject.tag, target.tag, damageable, stats))
 							{
-								GameFunctions.Attack(damageable, stats.BaseDamage);
+								rangedAttack(damageable, stats.BaseDamage, target);
+								//GameFunctions.Attack(damageable, stats.BaseDamage);
 								stats.CurrentAttackDelay = 0;
 							}
 						}
@@ -118,7 +121,15 @@ public class Structure : MonoBehaviour, IDamageable
 			}
 		}
 	}
+	public void rangedAttack(Component damageable, float baseDamage, GameObject arget)
+	{
+		var myInfo = gameObject.GetComponent<Structure>();
+		var shoot = Instantiate(attackGameObjectArrow, transform.position, Quaternion.identity);
+		var shootInfo = shoot.GetComponent<projectileScript>();
+		shootInfo.target = target;
+		//shootInfo.projectileOfTeam = myInfo.team;
 
+	}
 	public void OnTriggerEnter(Collider other)
 	{
 		if (!other.transform.CompareTag(gameObject.tag)) // (!other.transform.parent.CompareTag(gameObject.tag))

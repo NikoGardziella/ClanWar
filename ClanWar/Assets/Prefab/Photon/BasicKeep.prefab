@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b24d4b036681140a32779b926a6f5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackGameObjectArrow: {fileID: 5052389538394308349, guid: cc4f8dcd9bdf59b4ca435844c3e15152, type: 3}
   stats:
     currentHealth: 200
     maxHealth: 200
@@ -123,6 +124,7 @@ MonoBehaviour:
     detectionObject: {fileID: 4290953778747020776}
     objectType: 0
     objectAttackable: 2
+    unitType: 0
   hitTargets: []
   target: {fileID: 0}
   leftTower: 0
