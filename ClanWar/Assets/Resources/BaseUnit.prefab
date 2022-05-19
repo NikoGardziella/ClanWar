@@ -227,6 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e89e7edbf68eeca48a4d72bdfa4fc4d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackGameObjectArrow: {fileID: 0}
   agent: {fileID: 7938253628205793418}
   target: {fileID: 0}
   stats:
@@ -241,6 +242,7 @@ MonoBehaviour:
     detectionObject: {fileID: 3942418549401694524}
     objectType: 0
     objectAttackable: 0
+    unitType: 0
   hitTargets: []
 --- !u!95 &3942418549125014673
 Animator:
@@ -368,7 +370,7 @@ BoxCollider:
   m_GameObject: {fileID: 3942418549125014684}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1.076071}
   m_Center: {x: 0, y: 0.5, z: 0.038035586}
@@ -606,7 +608,6 @@ GameObject:
   - component: {fileID: 3942418549655852459}
   - component: {fileID: 3942418549655852449}
   - component: {fileID: 3942418549655852462}
-  - component: {fileID: 3942418549655852463}
   m_Layer: 0
   m_Name: Agent
   m_TagString: Untagged
@@ -678,19 +679,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3942418549655852463
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3942418549655852456}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.5, z: 1.8609114}
-  m_Center: {x: 0, y: 1, z: 0.18045568}
 --- !u!1 &9050080329345120554
 GameObject:
   m_ObjectHideFlags: 0

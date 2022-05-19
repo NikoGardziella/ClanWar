@@ -56,7 +56,15 @@ public class unit : Photon.MonoBehaviour, IDamageable
 		List<GameObject> objects = GameManager.Instance.Objects;
 		objects = GameManager.GetAllEnemies(transform.position, objects, gameObject.tag);
 		target = GameFunctions.GetNearestTarget(objects, stats.DetectionObject, gameObject.tag);
+		StartCoroutine(SetCollider());
 	}
+
+	IEnumerator SetCollider()
+	{
+		gameObject.GetComponent<BoxCollider>().enabled = true;
+		yield return new WaitForSeconds(0.5f);
+	}
+
 	private void Update()
 	{
 		if (stats.CurrentHealth > 0)
@@ -176,23 +184,23 @@ public class unit : Photon.MonoBehaviour, IDamageable
 	{
 		if (stream.isWriting)
 		{
+			if(stats.CurrentHealth < 0)
+			{
+				PhotonNetwork.Destroy(gameObject);
+				Debug.Log("photon destroyd gameobject");
+			}
 			if (photonView.isMine)
 			{
-			stream.SendNext(stats.CurrentHealth);
-			stream.SendNext(stats.HealthBar.fillAmount);
-				if(stats.CurrentHealth < 0)
-				{
-					PhotonNetwork.Destroy(gameObject);
-					Debug.Log("photon destroyd gameobject");
-				}
+				stream.SendNext(stats.CurrentHealth);
+				stream.SendNext(stats.HealthBar.fillAmount);
 			}
 		}
 		else
 		{
 		//	if (!photonView.isMine)
 			//{
-			//	stats.CurrentHealth = (float)stream.ReceiveNext();
-			//	stats.HealthBar.fillAmount = (float)stream.ReceiveNext();
+				stats.CurrentHealth = (float)stream.ReceiveNext();
+				stats.HealthBar.fillAmount = (float)stream.ReceiveNext();
 			//}
 
 		}

@@ -137,14 +137,14 @@ public static class GameFunctions
 
 	public static void SpawnUnit(string prefab, Transform parent, Vector3 pos) // GameFunctions.SpawnUnit(cardInfo.Prefab.name, playerInfo.UnitTransform, pos);
 	{
-		
 		Vector3 newPos = new Vector3(pos.x, 0, pos.z);
 		GameObject go = PhotonNetwork.Instantiate(prefab, newPos, Quaternion.identity, 0); // 10.5 Vector3.zero to pos
 		go.GetComponent<unit>().enabled = true;
 		go.tag = GameConstants.PLAYER_TAG;
 		go.transform.SetParent(parent, true); // 9.5 commented
-		go.transform.position = new Vector3(pos.x, 0, pos.z);
+		//go.transform.position = new Vector3(pos.x, 0, pos.z);
 		GameManager.AddObject(go);
+		//go.GetComponent<BoxCollider>().enabled = true;
 	}
 
 	public static AccountStats FoundPlayer(int mmr, AccountStats[] accountStats)
