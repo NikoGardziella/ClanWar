@@ -41,6 +41,15 @@ public class PlayerStats : MonoBehaviour
 	[SerializeField]
 	private GameObject rightArea;
 
+
+	[SerializeField]
+	public CameraMovement cameraMovement;
+	public CameraMovement CameraMovement
+	{
+		get { return cameraMovement; }
+		set { cameraMovement = value; }
+	}
+
 	public Card NextCard
 	{
 		get
@@ -162,11 +171,16 @@ public class PlayerStats : MonoBehaviour
 	private void Start()
 	{
 		playersDeck.Start();
+		cameraMovement = gameObject.GetComponent<CameraMovement>();
 	}
 
 	private void Update()
 	{
-		if(GetCurrResource < GameConstants.RESOURCE_MAX + 1)
+		/*if (onDragging == true)
+			cameraMovement.canDrag = false;
+		else if(onDragging == false)
+			cameraMovement.canDrag = true; */
+		if (GetCurrResource < GameConstants.RESOURCE_MAX + 1)
 		{
 			resources[GetCurrResource].fillAmount = currResource - GetCurrResource;
 			currResource += Time.deltaTime * GameConstants.RESOURCE_SPEED;
