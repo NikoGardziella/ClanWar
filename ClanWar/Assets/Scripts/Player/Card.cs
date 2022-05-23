@@ -19,7 +19,6 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 	[SerializeField]
 	private bool canDrag;
 
-
 	public bool CanDrag
 	{
 

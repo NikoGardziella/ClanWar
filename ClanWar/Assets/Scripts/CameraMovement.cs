@@ -23,13 +23,14 @@ public class CameraMovement : MonoBehaviour
 
 	private void Start()
 	{
+
 		resetCamera = Camera.main.transform.position;
 	}
 
 	private void Update()
 	{
 		//canDrag = playerStats.OnDragging;
-		if (Input.GetMouseButton(0) && canDrag == true)
+		if (Input.GetMouseButton(0) && canDrag)
 		{
 			difference = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - Camera.main.transform.position);
 			if (cameraDrag == false)

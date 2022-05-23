@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 
 public class PlayerStats : MonoBehaviour
 {
+	public Camera cam;
+
 	[SerializeField]
 	private Deck playersDeck;
 	[SerializeField]
@@ -43,7 +45,7 @@ public class PlayerStats : MonoBehaviour
 
 
 	[SerializeField]
-	public CameraMovement cameraMovement;
+	private CameraMovement cameraMovement;
 	public CameraMovement CameraMovement
 	{
 		get { return cameraMovement; }
@@ -168,10 +170,9 @@ public class PlayerStats : MonoBehaviour
 		set { endGameText = value; }
 	}
 
-	private void Start()
+	void Start()
 	{
 		playersDeck.Start();
-		cameraMovement = gameObject.GetComponent<CameraMovement>();
 	}
 
 	private void Update()

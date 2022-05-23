@@ -2333,6 +2333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebaad0c60a9cb244aa1261e53155afec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 0}
   playersDeck:
     cards: []
     hand: []

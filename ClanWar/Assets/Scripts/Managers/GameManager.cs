@@ -12,9 +12,24 @@ public class GameManager : MonoBehaviour
 	private List<PlayerStats> players;
 	[SerializeField]
 	Text enemyScore;
-
 	[SerializeField]
 	private Text endGameText;
+	[SerializeField]
+	private PlayerStats playerStats;
+	[SerializeField]
+	private CameraMovement camMovement;
+	public CameraMovement CamMovement
+	{
+		get { return camMovement; }
+		set { camMovement = value; }
+	}
+
+	public PlayerStats PlayerStats
+	{
+		get { return playerStats; }
+		set { playerStats = value; }
+	}
+
 	public Text EndGameText
 	{
 		get { return endGameText; }
@@ -34,7 +49,7 @@ public class GameManager : MonoBehaviour
 		get { return objects; }
 	}
 
-
+	
 
 	public static GameManager Instance {get { return instance; } }
 
@@ -89,13 +104,23 @@ public class GameManager : MonoBehaviour
 
 	}
 
-	private void Update()
+	void Update()
 	{
 
 		objects = FindAllObjects();
 		players = FindAllPlayerStats();
 
-
+		if (PlayerStats.FindObjectOfType<PlayerStats>().OnDragging == true)
+		{
+			Debug.Log("OnDragging == true    camMovement.canDrag = false");
+			camMovement.GetComponent<CameraMovement>().canDrag = false;
+		}
+		else if (PlayerStats.FindObjectOfType<PlayerStats>().OnDragging == false && PlayerStats.FindObjectOfType<PlayerStats>().gameObject.CompareTag("Player"))
+		{
+			//Debug.Log("OnDragging == false            camMovement.canDrag = true");
+			camMovement.GetComponent<CameraMovement>().canDrag = true;
+			//camMovement.canDrag = true;
+		}
 	}
 
 	public static void RemoveObjectFromList(GameObject go)

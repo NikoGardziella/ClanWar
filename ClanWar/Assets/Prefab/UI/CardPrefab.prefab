@@ -180,10 +180,12 @@ MonoBehaviour:
     icon: {fileID: 0}
     cost: 0
     prefab: {fileID: 0}
+    inDeck: 0
   icon: {fileID: 2591315480502238191}
   cardName: {fileID: 2591315480291289704}
   cost: {fileID: 2591315481331153967}
   canDrag: 1
+  camMovement: {fileID: 0}
 --- !u!225 &-5958463850102861357
 CanvasGroup:
   m_ObjectHideFlags: 0
