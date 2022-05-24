@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+
 	private static GameManager instance;
 	[SerializeField]
 	private List<GameObject> objects;
@@ -15,19 +16,25 @@ public class GameManager : MonoBehaviour
 	[SerializeField]
 	private Text endGameText;
 	[SerializeField]
-	private PlayerStats playerStats;
+	private PlayerStats playerInfo;
 	[SerializeField]
 	private CameraMovement camMovement;
+	private Card card;
+	public Card Card
+	{
+		get { return card; }
+		set { card = value; }
+	}
 	public CameraMovement CamMovement
 	{
 		get { return camMovement; }
 		set { camMovement = value; }
 	}
 
-	public PlayerStats PlayerStats
+	public PlayerStats PlayerInfo
 	{
-		get { return playerStats; }
-		set { playerStats = value; }
+		get { return playerInfo; }
+		set { playerInfo = value; }
 	}
 
 	public Text EndGameText
@@ -71,6 +78,7 @@ public class GameManager : MonoBehaviour
 		go.tag = GameConstants.PLAYER_TAG;
 		PlayerStats ps = go.GetComponent<PlayerStats>();
 		ps.enabled = true;
+		playerInfo = ps;
 
 		ps.TextScore = go.transform.GetChild(2).GetChild(1).GetChild(1).GetComponent<Text>(); 
 
@@ -110,17 +118,25 @@ public class GameManager : MonoBehaviour
 		objects = FindAllObjects();
 		players = FindAllPlayerStats();
 
-		if (PlayerStats.FindObjectOfType<PlayerStats>().OnDragging == true)
+		/*if (PlayerStats.FindObjectOfType<PlayerStats>().OnDragging == true)
 		{
 			Debug.Log("OnDragging == true    camMovement.canDrag = false");
 			camMovement.GetComponent<CameraMovement>().canDrag = false;
 		}
-		else if (PlayerStats.FindObjectOfType<PlayerStats>().OnDragging == false && PlayerStats.FindObjectOfType<PlayerStats>().gameObject.CompareTag("Player"))
+		else if (PlayerStats.FindObjectOfType<PlayerStats>().OnDragging == false)
 		{
 			//Debug.Log("OnDragging == false            camMovement.canDrag = true");
 			camMovement.GetComponent<CameraMovement>().canDrag = true;
 			//camMovement.canDrag = true;
 		}
+		if (GameObject.Find("InGamePlayer(Clone)"))
+			Debug.Log("GameObject.Find(InGamePlayer(Clone) "); */
+		if (playerInfo.OnDragging)
+			camMovement.canDrag = false;
+		else if (!playerInfo.OnDragging)
+			camMovement.canDrag = true;
+
+
 	}
 
 	public static void RemoveObjectFromList(GameObject go)

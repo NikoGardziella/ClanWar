@@ -138,6 +138,7 @@ public static class GameFunctions
 	public static void SpawnUnit(string prefab, Transform parent, Vector3 pos) // GameFunctions.SpawnUnit(cardInfo.Prefab.name, playerInfo.UnitTransform, pos);
 	{
 		Vector3 newPos = new Vector3(pos.x, 0, pos.z);
+		Debug.Log(newPos);
 		GameObject go = PhotonNetwork.Instantiate(prefab, newPos, Quaternion.identity, 0); // 10.5 Vector3.zero to pos
 		go.GetComponent<unit>().enabled = true;
 		go.tag = GameConstants.PLAYER_TAG;

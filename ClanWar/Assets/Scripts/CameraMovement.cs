@@ -13,6 +13,13 @@ public class CameraMovement : MonoBehaviour
 
 	[SerializeField]
 	private PlayerStats playerStats;
+	[SerializeField]
+	private Card card;
+	public Card Card
+	{
+		get { return card; }
+		set { card = value; }
+	}
 	public PlayerStats PlayerStats
 	{
 		get { return playerStats; }

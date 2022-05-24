@@ -26,6 +26,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 		set { canDrag = value; }
 	}
 
+
 	public Text Cost
 	{
 		get { return cost; }
@@ -64,7 +65,6 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
 	public void Start()
 	{
-		
 	}
 
 	private void SpawnUnit()
@@ -73,7 +73,11 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 		{
 			playerInfo.PlayersDeck.RemoveHand(cardInfo.Index);
 			playerInfo.RemoveResource(cardInfo.Cost);
-			Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition); // other value??
+
+			Vector3 mousePos = Input.mousePosition;
+			mousePos.z = Camera.main.nearClipPlane;
+
+			Vector3 pos = Camera.main.ScreenToWorldPoint(mousePos); // 24.5 changed from screentoworldpoint
 			GameFunctions.SpawnUnit(cardInfo.Prefab.name, playerInfo.UnitTransform, pos);
 			Destroy(gameObject);
 		}

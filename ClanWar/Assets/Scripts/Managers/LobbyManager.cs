@@ -190,8 +190,11 @@ public class LobbyManager : MonoBehaviour , IPunCallbacks
 
 	public void OnDisconnectedFromPhoton()
 	{
+		OnJoinedRoom();
 		Debug.Log("OnDisconnectedFromPhoton");
+
 	}
+
 
 	public void OnPhotonInstantiate(PhotonMessageInfo info)
 	{
