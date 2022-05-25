@@ -79,6 +79,7 @@ public class unit : Photon.MonoBehaviour, IDamageable
 		{
 			print(gameObject.name + "has Died");
 			GameManager.RemoveObjectFromList(gameObject);
+			PhotonNetwork.Destroy(gameObject);
 			Destroy(gameObject);
 		}
 	}

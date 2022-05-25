@@ -137,6 +137,8 @@ public static class GameFunctions
 
 	public static void SpawnUnit(string prefab, Transform parent, Vector3 pos) // GameFunctions.SpawnUnit(cardInfo.Prefab.name, playerInfo.UnitTransform, pos);
 	{
+		pos.x = pos.x - 2f;
+		pos.z = pos.z + 2f;
 		Vector3 newPos = new Vector3(pos.x, 0, pos.z);
 		Debug.Log(newPos);
 		GameObject go = PhotonNetwork.Instantiate(prefab, newPos, Quaternion.identity, 0); // 10.5 Vector3.zero to pos

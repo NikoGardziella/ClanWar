@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 721dd833f6ccc8c4b9a0a7501c2b6c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackGameObjectArrow: {fileID: 5052389538394308349, guid: cc4f8dcd9bdf59b4ca435844c3e15152, type: 3}
+  attackGameObjectArrow: {fileID: 7463639982194092549, guid: dec897afb2f59f6448605fd43f24fee0, type: 3}
   stats:
     currentHealth: 100
     maxHealth: 100
