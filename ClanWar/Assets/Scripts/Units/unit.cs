@@ -5,6 +5,7 @@ using UnityEngine;
 public class unit : Photon.MonoBehaviour, IDamageable
 {
 	public GameObject attackGameObjectArrow;
+	public Material redMaterial;
 
 	[SerializeField]
 	private Actor3D agent;
@@ -14,7 +15,14 @@ public class unit : Photon.MonoBehaviour, IDamageable
 	private baseStats stats;
 	[SerializeField]
 	private List<GameObject> hitTargets;
+	[SerializeField]
+	List<Material> currentMats = new List<Material>();
 
+	public List<Material> CurrentMats
+	{
+		get { return currentMats; }
+		set { currentMats = value; }
+	}
 	public List<GameObject> HitTargets
 	{
 		get { return hitTargets; }
@@ -53,6 +61,10 @@ public class unit : Photon.MonoBehaviour, IDamageable
 
 	private void Start()
 	{
+
+
+
+
 		List<GameObject> objects = GameManager.Instance.Objects;
 		objects = GameManager.GetAllEnemies(transform.position, objects, gameObject.tag);
 		target = GameFunctions.GetNearestTarget(objects, stats.DetectionObject, gameObject.tag);

@@ -7290,3 +7290,190 @@ ClanWar/Library/Artifacts/c1/c18d5f460ad370a2219303c73f9d1b7a
 ClanWar/Library/Artifacts/dc/dc72029a357f4398a163e2b6318a3d5a
 ClanWar/Library/Artifacts/e6/e6035a972f1602d2e93d63a2f010be45
 ClanWar/Library/Artifacts/f2/f2e872ba02e075f48631dc3a8b61fa38
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Textures/StandardPBR/Normal.png
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Textures/StandardPBR/MetallicSmoothness.png
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Textures/StandardPBR/Emission.png
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Textures/StandardPBR/AO.png
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Textures/StandardPBR/Albedo.png
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Textures/MaskTintPBR/MaskTintAlbedo.png
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Textures/MaskTintPBR/Mask.png
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Textures/MaskTintPBR/MADS.png
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Textures/.alg_meta/Ambient Occlusion Map from Mesh lambert1.png
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Shader/URPmaskTint.shadergraph
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Scenes/StandardPBRSettings.lighting
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Scenes/StandardPBR.unity
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Scenes/Settings/WeaponsSceneSettings.lighting
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Scenes/Settings/UniversalRP-HighQuality.asset
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Scenes/Settings/RootMotionSceneSettings.lighting
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Scenes/Settings/Post-process Volume.prefab
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Scenes/Settings/ModularSceneSettings.lighting
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Scenes/Settings/MaskTintSceneSettings.lighting
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Scenes/Settings/MainSceneSettings.lighting
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Scenes/Settings/Main Camera.prefab
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Scenes/Settings/DMProfile.asset
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Scenes/Settings/Directional Light.prefab
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Scenes/Settings/AnimLayerSceneSettings.lighting
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Scenes/MaskTintPBR03Settings.lighting
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Scenes/MaskTintPBR03.unity
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Scenes/MaskTintPBR02Settings.lighting
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Scenes/MaskTintPBR02.unity
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Scenes/MaskTintPBR01Settings.lighting
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Scenes/MaskTintPBR01.unity
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Prefabs/Worker_Standard_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Prefabs/Worker_MaskTint_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Prefabs/SiegeEngine_Standard_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Prefabs/SiegeEngine_MaskTint_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Prefabs/Mage_Standard_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Prefabs/Mage_MaskTint_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Prefabs/Knight_Standard_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Prefabs/Knight_MaskTint_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Prefabs/Horseman_Standard_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Prefabs/Horseman_MaskTint_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Prefabs/Griffin_Standard_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Prefabs/Griffin_MaskTint_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Prefabs/Footman_Standard_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Prefabs/Footman_MaskTint_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Prefabs/Arrow_Standard_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Prefabs/Arrow_MaskTint_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Prefabs/Archer_Standard_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Prefabs/Archer_MaskTint_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Materials/StandardPBR.mat
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Materials/Stage.mat
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Materials/Skybox_Mat.mat
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Materials/MaskTintPBR.mat
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Materials/MaskTintPBR 2.mat
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP/Materials/MaskTintPBR 1.mat
+ClanWar/Assets/Mini Legion Human PBR/SRP/URP.zip
+ClanWar/Assets/Mini Legion Human PBR/SRP/HowToTestSRPs.txt
+ClanWar/Assets/Mini Legion Human PBR/SRP/HDRP.zip
+ClanWar/Assets/Mini Legion Human PBR/Shader/PBRMaskTint.shader
+ClanWar/Assets/Mini Legion Human PBR/Scenes/StandardPBRSettings.lighting
+ClanWar/Assets/Mini Legion Human PBR/Scenes/StandardPBR.unity
+ClanWar/Assets/Mini Legion Human PBR/Scenes/MaskTintPBR03Settings.lighting
+ClanWar/Assets/Mini Legion Human PBR/Scenes/MaskTintPBR03.unity
+ClanWar/Assets/Mini Legion Human PBR/Scenes/MaskTintPBR02Settings.lighting
+ClanWar/Assets/Mini Legion Human PBR/Scenes/MaskTintPBR02.unity
+ClanWar/Assets/Mini Legion Human PBR/Scenes/MaskTintPBR01Settings.lighting
+ClanWar/Assets/Mini Legion Human PBR/Scenes/MaskTintPBR01.unity
+ClanWar/Assets/Mini Legion Human PBR/Prefabs/Worker_Standard_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/Prefabs/Worker_MaskTint_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/Prefabs/SiegeEngine_Standard_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/Prefabs/SiegeEngine_MaskTint_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/Prefabs/Mage_Standard_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/Prefabs/Mage_MaskTint_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/Prefabs/Knight_Standard_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/Prefabs/Knight_MaskTint_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/Prefabs/Horseman_Standard_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/Prefabs/Horseman_MaskTint_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/Prefabs/Griffin_Standard_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/Prefabs/Griffin_MaskTint_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/Prefabs/Footman_Standard_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/Prefabs/Footman_MaskTint_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/Prefabs/Arrow_Standard_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/Prefabs/Arrow_MaskTint_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/Prefabs/Archer_Standard_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/Prefabs/Archer_MaskTint_PBR.prefab
+ClanWar/Assets/Mini Legion Human PBR/Meshes/Worker_Default.fbx
+ClanWar/Assets/Mini Legion Human PBR/Meshes/Stage.fbx
+ClanWar/Assets/Mini Legion Human PBR/Meshes/SiegeEngine_Default.fbx
+ClanWar/Assets/Mini Legion Human PBR/Meshes/Mage_Default.fbx
+ClanWar/Assets/Mini Legion Human PBR/Meshes/Horseman_Default.fbx
+ClanWar/Assets/Mini Legion Human PBR/Meshes/Griffin_Default.fbx
+ClanWar/Assets/Mini Legion Human PBR/Meshes/Footman_Default.fbx
+ClanWar/Assets/Mini Legion Human PBR/Meshes/Archer_Default.fbx
+ClanWar/Assets/Mini Legion Human PBR/Meshes/Archer_Arrow.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Worker/Worker_Work_Start.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Worker/Worker_Work_Routine.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Worker/Worker_Walk.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Worker/Worker_Victory.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Worker/Worker_Run.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Worker/Worker_Pickup.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Worker/Worker_Idle.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Worker/Worker_GetHit.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Worker/Worker_Death.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Worker/Worker.controller
+ClanWar/Assets/Mini Legion Human PBR/Animations/SiegeEngine/SiegeEngine_Victory.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/SiegeEngine/SiegeEngine_Move.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/SiegeEngine/SiegeEngine_Idle.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/SiegeEngine/SiegeEngine_GetHit.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/SiegeEngine/SiegeEngine_Death.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/SiegeEngine/SiegeEngine_Attack02.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/SiegeEngine/SiegeEngine_Attack01.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/SiegeEngine/SiegeEngine.controller
+ClanWar/Assets/Mini Legion Human PBR/Animations/Mage/Mage_Walk.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Mage/Mage_Victory.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Mage/Mage_Run.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Mage/Mage_Idle.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Mage/Mage_GetHit.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Mage/Mage_Death.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Mage/Mage_Channeling.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Mage/Mage_Attack02.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Mage/Mage_Attack01.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Mage/Mage.controller
+ClanWar/Assets/Mini Legion Human PBR/Animations/Horseman/Horseman_Walk.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Horseman/Horseman_Victory.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Horseman/Horseman_Run.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Horseman/Horseman_Idle.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Horseman/Horseman_GetHit.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Horseman/Horseman_Death.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Horseman/Horseman_Attack02.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Horseman/Horseman_Attack01.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Horseman/Horseman.controller
+ClanWar/Assets/Mini Legion Human PBR/Animations/Griffin/Griffin_Victory.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Griffin/Griffin_Idle.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Griffin/Griffin_GetHit.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Griffin/Griffin_Fly.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Griffin/Griffin_Death.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Griffin/Griffin_Attack02.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Griffin/Griffin_Attack01.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Griffin/Griffin.controller
+ClanWar/Assets/Mini Legion Human PBR/Animations/Footman/Footman_Walk.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Footman/Footman_Victory.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Footman/Footman_Run.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Footman/Footman_Idle.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Footman/Footman_GetHit.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Footman/Footman_Defend.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Footman/Footman_Death.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Footman/Footman_Attack02.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Footman/Footman_Attack01.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Footman/Footman.controller
+ClanWar/Assets/Mini Legion Human PBR/Animations/Archer/Take 001.anim
+ClanWar/Assets/Mini Legion Human PBR/Animations/Archer/Archer_Walk.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Archer/Archer_Victory.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Archer/Archer_Run.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Archer/Archer_Idle.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Archer/Archer_GetHit.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Archer/Archer_Death.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Archer/Archer_attack02_Start.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Archer/Archer_Attack02_Routine.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Archer/Archer_Attack01_Start.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Archer/Archer_Attack01_Routine.fbx
+ClanWar/Assets/Mini Legion Human PBR/Animations/Archer/Archer.controller
+ClanWar/Assets/materials/UnitColorRed.mat
+ClanWar/Assets/materials/UnitColorBlue.mat
+ClanWar/Assets/Materials 1/StandardPBR.mat
+ClanWar/Assets/Materials 1/Stage.mat
+ClanWar/Assets/Materials 1/MaskTintPBR.mat
+ClanWar/Assets/Materials 1/MaskTintPBR 2.mat
+ClanWar/Assets/Materials 1/MaskTintPBR 1.mat
+ClanWar/Assets/Knight Textures/StandardPBR/Normal.png
+ClanWar/Assets/Knight Textures/StandardPBR/MetallicSmoothness.png
+ClanWar/Assets/Knight Textures/StandardPBR/Emission.png
+ClanWar/Assets/Knight Textures/StandardPBR/AO.png
+ClanWar/Assets/Knight Textures/StandardPBR/Albedo.png
+ClanWar/Assets/Knight Textures/MaskTintPBR/SAM.png
+ClanWar/Assets/Knight Textures/MaskTintPBR/Materials/Mask.mat
+ClanWar/Assets/Knight Textures/MaskTintPBR/MaskTintAlbedo.png
+ClanWar/Assets/Knight Textures/MaskTintPBR/Mask.png
+ClanWar/Assets/Materials 1/StandardPBR.mat
+ClanWar/Assets/Materials 1/Stage.mat
+ClanWar/Assets/Materials 1/MaskTintPBR.mat
+ClanWar/Assets/Materials 1/MaskTintPBR 2.mat
+ClanWar/Assets/Materials 1/MaskTintPBR 1.mat
+ClanWar/Assets/Knight Textures/StandardPBR/Normal.png
+ClanWar/Assets/Knight Textures/StandardPBR/MetallicSmoothness.png
+ClanWar/Assets/Knight Textures/StandardPBR/Emission.png
+ClanWar/Assets/Knight Textures/StandardPBR/AO.png
+ClanWar/Assets/Knight Textures/StandardPBR/Albedo.png
+ClanWar/Assets/Knight Textures/MaskTintPBR/SAM.png
+ClanWar/Assets/Knight Textures/MaskTintPBR/Materials/Mask.mat
