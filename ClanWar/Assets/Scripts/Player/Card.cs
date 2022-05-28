@@ -75,10 +75,25 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 			playerInfo.RemoveResource(cardInfo.Cost);
 
 			Vector3 mousePos = Input.mousePosition;
+			Vector3 wordPos;
+			Ray ray = Camera.main.ScreenPointToRay(mousePos);
+			RaycastHit hit;
+			if (Physics.Raycast(ray, out hit, 1000f))
+			{
+				wordPos = hit.point;
+			}
+			else
+			{
+				wordPos = Camera.main.ScreenToWorldPoint(mousePos);
+			}
+
+			//or for tandom rotarion use Quaternion.LookRotation(Random.insideUnitSphere)
+
+			/*Vector3 mousePos = Input.mousePosition;
 			mousePos.z = Camera.main.nearClipPlane;
 
-			Vector3 pos = Camera.main.ScreenToWorldPoint(mousePos); // 24.5 changed from screentoworldpoint
-			GameFunctions.SpawnUnit(cardInfo.Prefab.name, playerInfo.UnitTransform, pos);
+			Vector3 pos = Camera.main.ScreenToWorldPoint(mousePos); // 24.5 changed from screentoworldpoint */
+			GameFunctions.SpawnUnit(cardInfo.Prefab.name, playerInfo.UnitTransform, wordPos); 
 			Destroy(gameObject);
 		}
 		else

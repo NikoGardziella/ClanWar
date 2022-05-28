@@ -35,13 +35,13 @@ public class Actor3D : MonoBehaviour
 			//anim.SetBool("isWalking", agent.velocity == Vector3.zero ? false : true); commented 10.5
 			if (Mathf.Abs(agent.velocity.z) >= Mathf.Abs(agent.velocity.x))
 			{
-				anim.SetFloat("TargetZ", -agent.velocity.z);
-				anim.SetFloat("TargetX", 0);
+				//anim.SetFloat("TargetZ", -agent.velocity.z);
+				//anim.SetFloat("TargetX", 0);
 			}
 			else if (Mathf.Abs(agent.velocity.z) >= Mathf.Abs(agent.velocity.x))
 			{
-				anim.SetFloat("TargetX", agent.velocity.x);
-				anim.SetFloat("TargetZ", 0);
+				//anim.SetFloat("TargetX", agent.velocity.x);
+				//anim.SetFloat("TargetZ", 0);
 			}
 		}
 	}
