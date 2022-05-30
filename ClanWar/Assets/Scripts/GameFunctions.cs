@@ -49,8 +49,11 @@ public static class GameFunctions
 		if (hitTargets.Count > 0)
 		{
 			GameObject go = hitTargets[0];
-
+			if (go == null)
+				return (null);
 			Component targetComponent = hitTargets[0].GetComponent(typeof(IDamageable));
+			if (targetComponent == null)
+				return (null);
 			SphereCollider targetSc = (targetComponent as IDamageable).Stats.DetectionObject;
 
 			float dist = Vector3.Distance(mySc.transform.position, targetSc.transform.position);
@@ -145,7 +148,7 @@ public static class GameFunctions
 		go.GetComponent<unit>().enabled = true;
 		go.tag = GameConstants.PLAYER_TAG;
 		go.transform.SetParent(parent, true); // 9.5 commented
-		//go.transform.position = new Vector3(pos.x, 0, pos.z);
+		go.transform.position = new Vector3(pos.x, pos.y, pos.z);
 		GameManager.AddObject(go);
 		//go.GetComponent<BoxCollider>().enabled = true;
 	}

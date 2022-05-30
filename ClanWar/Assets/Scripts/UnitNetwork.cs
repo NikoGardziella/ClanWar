@@ -35,10 +35,10 @@ public class UnitNetwork : Photon.MonoBehaviour
 		//	unitLocation.transform.position  = Vector3.Lerp(unitLocation.transform.position, newUnitPosition, .1f);
 		//}
 
-		//if (oldAgentPosition != agentLocation.transform.localPosition)
-		//{
-		//	agentLocation.transform.localPosition = Vector3.Lerp(agentLocation.transform.localPosition, oldAgentPosition, .1f);
-		//}
+		if (oldAgentPosition != agentLocation.transform.localPosition)
+		{
+			agentLocation.transform.localPosition = Vector3.Lerp(agentLocation.transform.localPosition, oldAgentPosition, .1f);
+		}
 	}
 
 	/*private void Awake()
@@ -54,11 +54,14 @@ public class UnitNetwork : Photon.MonoBehaviour
 
 	private void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
 	{
+
 		if (stream.isWriting)
 		{
+
 			stream.SendNext(unitLocation.transform.position);
 			stream.SendNext(unitLocation.transform.rotation);
-			//stream.SendNext(agentLocation.transform.localPosition);
+
+			stream.SendNext(agentLocation.transform.localPosition);
 		}
 		else
 		{
@@ -67,7 +70,8 @@ public class UnitNetwork : Photon.MonoBehaviour
 			newUnitRotation.y -= 180f;
 			//newUnitRotation.w *= -1f;
 			newUnitPosition = -newUnitPosition; // this is the weirdest possible solutution.
-			//oldAgentPosition = (Vector3)stream.ReceiveNext();
+
+			oldAgentPosition = (Vector3)stream.ReceiveNext();
 		}
 	}
 

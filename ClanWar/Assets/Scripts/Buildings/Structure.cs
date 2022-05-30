@@ -173,6 +173,8 @@ public class Structure : MonoBehaviour, IDamageable
 				{
 					target = go;
 				}
+				else if (go == null)
+					return ;
 			}
 		}
 	}

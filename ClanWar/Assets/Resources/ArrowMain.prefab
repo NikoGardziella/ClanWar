@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c5ddab8ed2c934ebe7b3ee36a7421c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 3
+  velocity: 6
   hitBoxRadius: 0.25
   target: {fileID: 0}
   damage: 10

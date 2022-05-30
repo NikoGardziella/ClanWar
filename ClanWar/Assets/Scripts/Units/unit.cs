@@ -61,6 +61,11 @@ public class unit : Photon.MonoBehaviour, IDamageable
 
 	private void Start()
 	{
+		if (gameObject.tag == "Enemy")
+		{
+			Debug.Log("setting photon transform in active");
+			gameObject.GetComponent<PhotonTransformView>().gameObject.SetActive(false);
+		}
 
 
 
