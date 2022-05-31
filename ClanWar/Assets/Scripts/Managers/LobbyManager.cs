@@ -77,6 +77,8 @@ public class LobbyManager : MonoBehaviour , IPunCallbacks
 		else
 		{
 			players = GetPlayers();
+			if (players == null)
+				Debug.Log("Players not found");
 			if (myPlayer.looking)
 			{
 				if (currTime < GameConstants.LOOKING_TIMER)
@@ -90,7 +92,7 @@ public class LobbyManager : MonoBehaviour , IPunCallbacks
 						//Debug.Log("roomName: " + roomName);
 						acc.gameObject.GetComponent<PhotonView>().RPC("ChangeRoomName", PhotonTargets.All, roomName);
 						myPlayer.levelName = roomName; // move hgher
-						//levelManager.LoadLevel(GameConstants.GAME_SCENE);
+													   //levelManager.LoadLevel(GameConstants.GAME_SCENE);
 					}
 				}
 				else
@@ -129,6 +131,9 @@ public class LobbyManager : MonoBehaviour , IPunCallbacks
 		{
 			stats.level = int.Parse(record.Value);
 		}
+		else
+			Debug.Log("Error: Try get values");
+		
 
 		myPlayer = stats;
 

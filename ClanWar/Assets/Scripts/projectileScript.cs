@@ -33,7 +33,7 @@ public class projectileScript : MonoBehaviour
             gameObject.transform.Translate(Vector3.forward * velocity * Time.deltaTime);
             if (Vector3.Distance(gameObject.transform.position, target.transform.position) <= hitBoxRadius)
             {
-                if (useDamageArea)
+                if (useDamageArea) // this is not working
                 {
                     //  var Properties = target.GetComponent<properties>();
                     var possibleEnemy = Physics.OverlapSphere(transform.position, damageAreaRadius);
@@ -44,8 +44,12 @@ public class projectileScript : MonoBehaviour
                         //  var properties_target = possibleEnemy[i].gameObject.GetComponent<properties>();
                         //  if (projectileOfTeam != properties_target.team)
                         // {
-                        Component damageable = target.GetComponent(typeof(IDamageable));
-                        GameFunctions.Attack(damageable, stats.BaseDamage);
+                        //  Component damageable = target.GetComponent(typeof(IDamageable));
+                        //  GameFunctions.Attack(damageable, stats.BaseDamage);
+
+                        var Properties = possibleEnemy[i].gameObject.GetComponent<unit>();
+                        //   var Properties = target.GetComponent<unit>();
+                        Properties.Stats.CurrentHealth -= damage;
 
                         //properties_target.currentHealth -= damage;
                         //  }

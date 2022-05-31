@@ -5,6 +5,7 @@ using UnityEngine;
 public class Structure : MonoBehaviour, IDamageable
 {
 	public GameObject attackGameObjectArrow;
+	public GameObject attackGameObjectBall;
 
 	[SerializeField]
 	private baseStats stats;
@@ -124,7 +125,9 @@ public class Structure : MonoBehaviour, IDamageable
 	public void rangedAttack(Component damageable, float baseDamage, GameObject arget)
 	{
 		var myInfo = gameObject.GetComponent<Structure>();
-		var shoot = Instantiate(attackGameObjectArrow, transform.position, Quaternion.identity);
+		Vector3 pos = transform.position;
+		pos.y = pos.y + 2f;
+		var shoot = Instantiate(attackGameObjectArrow, pos, Quaternion.identity);
 		var shootInfo = shoot.GetComponent<projectileScript>();
 		shootInfo.target = target;
 		//shootInfo.projectileOfTeam = myInfo.team;
