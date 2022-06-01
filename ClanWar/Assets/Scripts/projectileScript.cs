@@ -47,7 +47,7 @@ public class projectileScript : MonoBehaviour
                         //  Component damageable = target.GetComponent(typeof(IDamageable));
                         //  GameFunctions.Attack(damageable, stats.BaseDamage);
 
-                        var Properties = possibleEnemy[i].gameObject.GetComponent<unit>();
+                        var Properties = possibleEnemy[i].transform.parent.parent.parent.GetComponent<unit>(); //  gameObject.GetComponent<unit>();
                         //   var Properties = target.GetComponent<unit>();
                         Properties.Stats.CurrentHealth -= damage;
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class unit : Photon.MonoBehaviour, IDamageable
 {
@@ -65,6 +66,10 @@ public class unit : Photon.MonoBehaviour, IDamageable
 		{
 			Debug.Log("setting photon transform in active");
 			gameObject.GetComponent<PhotonTransformView>().enabled = false;
+		}
+		if (gameObject.tag == "Enemy")
+		{
+			gameObject.GetComponent<NavMeshAgent>().enabled = false;
 		}
 
 
