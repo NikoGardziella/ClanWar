@@ -261,6 +261,12 @@ public class GameManager : MonoBehaviour
 			if (go.GetComponent<Structure>() != null || go.GetComponent<unit>() != null)
 				gotObjects.Add(go);
 		}
+		GameObject[] neutrals = GameObject.FindGameObjectsWithTag(GameConstants.NEUTRAL_TAG);
+		foreach (GameObject go in enemies)
+		{
+			if (go.GetComponent<Structure>() != null || go.GetComponent<unit>() != null)
+				gotObjects.Add(go);
+		}
 
 		return gotObjects;
 	}
@@ -284,6 +290,12 @@ public class GameManager : MonoBehaviour
 				gotObjects.Add(go.GetComponent<PlayerStats>());
 		}
 
+		GameObject[] neutrals = GameObject.FindGameObjectsWithTag(GameConstants.NEUTRAL_TAG);
+		foreach (GameObject go in neutrals)
+		{
+			if (go.GetComponent<PlayerStats>() != null)
+				gotObjects.Add(go.GetComponent<PlayerStats>());
+		}
 		return gotObjects;
 	}
 

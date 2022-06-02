@@ -18,6 +18,11 @@ public class CaptureZone : MonoBehaviour
     private HashSet<GameObject> _BlueInZone = new HashSet<GameObject>();
     private HashSet<GameObject> _RedInZone = new HashSet<GameObject>();
 
+    public Image LeftZone;
+    public Image RightZone;
+    public bool leftzoneBool;
+    private string team;
+
     void Start()
 	{
         totalTime = realStartingtime;
@@ -38,16 +43,26 @@ public class CaptureZone : MonoBehaviour
         if(seconds <= 0 && timerOn)
 		{
             CheckTags();
-            if (gameObject.CompareTag("Player"))
+            if (team == "blue")
 			{
                 Debug.Log("Player entered capture zone");
-                //set spawnzone inactive;
+                if (leftzoneBool)
+                    LeftZone.enabled = false;
+                else
+                    RightZone.enabled = false;
                 gameObject.GetComponent<Renderer>().material.color = Color.blue;
+                gameObject.tag = "Player";
+                gameObject.transform.GetChild(0).tag = "Player";
             }
-            if (gameObject.CompareTag("Enemy"))
+            if (team == "red")
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.red;
-                //set spawn zone active
+                if (leftzoneBool)
+                    LeftZone.enabled = true;
+                else
+                    RightZone.enabled = false;
+                gameObject.transform.GetChild(0).tag = "Enemy";
+                gameObject.tag = "Enemy";
                 Debug.Log("Enemy entered capture zone");
             }
 
@@ -63,20 +78,10 @@ public class CaptureZone : MonoBehaviour
 
 	public void OnTriggerEnter(Collider other)
     {
-     /*   var allUnits = Physics.OverlapSphere(transform.position, 4);
-        Debug.Log("number of units" + allUnits.Length);
-		for (int i = 0; i < allUnits.Length; i++)
-		{
-            if(!allUnits[i].CompareTag(allUnits[i + 1].tag))
-			{
-                Debug.Log("Different tags in area");
-                ResetTextTimer();
-    		}
-		} */
 
-        Debug.Log(other + "Entered capture zone");
 
-        CheckTags();
+
+        //CheckTags();
         if (other.transform.parent.parent.parent.CompareTag("Player"))
         {
            _BlueInZone.Add(other.gameObject);
@@ -84,17 +89,15 @@ public class CaptureZone : MonoBehaviour
             stopTextTimer = false;
             ResetTextTimer();
 
-
-            gameObject.tag = "Player";
             Debug.Log("Player hit capture zone");
         }
-        if (other.transform.parent.parent.parent.CompareTag("Enemy"))
+        else if (other.transform.parent.parent.parent.CompareTag("Enemy"))
         {
             _RedInZone.Add(other.gameObject);
             timerOn = true;
             stopTextTimer = false;
             ResetTextTimer();
-            gameObject.tag = "Enemy";
+
             Debug.Log("Target hit capture zone");
         }
     }
@@ -117,13 +120,16 @@ public class CaptureZone : MonoBehaviour
         }
     }
 
-
-    void CheckTags()
+	void CheckTags()
 	{
         if (_RedInZone.Count > 0 && _BlueInZone.Count > 0)
+		{
             ResetTextTimer();
-        else
-            return ;
-       
-	}
+		}
+        else if (_RedInZone.Count > 0)
+            team = "red";
+        else if (_BlueInZone.Count > 0)
+            team = "blue";
+
+    }
 }

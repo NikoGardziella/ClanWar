@@ -30,6 +30,7 @@ public static class GameConstants
 	public static string HUD_CANVAS = "HUD - Canvas";
 	public static string PLAYER_TAG = "Player";
 	public static string ENEMY_TAG = "Enemy";
+	public static string NEUTRAL_TAG = "Neutral";
 	public static int LOGIN_SCENE = 0;
 	public static int MAIN_SCENE = 1;
 	public static int GAME_SCENE = 2;
