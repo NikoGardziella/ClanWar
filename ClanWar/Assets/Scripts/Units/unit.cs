@@ -18,7 +18,13 @@ public class unit : Photon.MonoBehaviour, IDamageable
 	private List<GameObject> hitTargets;
 	[SerializeField]
 	List<Material> currentMats = new List<Material>();
+	public int priority;
 
+	public int Priority
+	{
+		get { return priority; }
+		set { priority = value; }
+	}
 	public List<Material> CurrentMats
 	{
 		get { return currentMats; }

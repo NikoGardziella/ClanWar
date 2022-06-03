@@ -16,6 +16,14 @@ public class Structure : MonoBehaviour, IDamageable
 	[SerializeField]
 	private bool leftTower;
 
+	public int priority;
+
+	public int Priority
+	{
+		get { return priority; }
+		set { priority = value; }
+	}
+
 	public bool LeftTower
 	{
 		get { return leftTower; }

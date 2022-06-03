@@ -112,7 +112,8 @@ public class baseStats
 
 	public void UpdateStats()
 	{
-		healthBar.fillAmount = percetHealth;
+		if(healthBar != null)
+			healthBar.fillAmount = percetHealth;
 		detectionObject.radius = range;
 		if(currentAttackDelay < attackDelay)
 		{

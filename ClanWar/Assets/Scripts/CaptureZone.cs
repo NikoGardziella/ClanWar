@@ -18,10 +18,20 @@ public class CaptureZone : MonoBehaviour
     private HashSet<GameObject> _BlueInZone = new HashSet<GameObject>();
     private HashSet<GameObject> _RedInZone = new HashSet<GameObject>();
 
-    public Image LeftZone;
-    public Image RightZone;
+    public bool LeftZone;
+    public bool RightZone;
     public bool leftzoneBool;
     private string team;
+
+    [SerializeField]
+    public GameManager gameManager;
+
+
+    public GameManager GameManager
+    {
+        get { return gameManager; }
+        set { gameManager = value; }
+    }
 
     void Start()
 	{
@@ -43,24 +53,28 @@ public class CaptureZone : MonoBehaviour
         if(seconds <= 0 && timerOn)
 		{
             CheckTags();
+            Debug.Log("team is;" + team);
             if (team == "blue")
 			{
-                Debug.Log("Player entered capture zone");
-                if (leftzoneBool)
-                    LeftZone.enabled = false;
-                else
-                    RightZone.enabled = false;
+                /*  Debug.Log("Player entered capture zone");
+                  if (leftzoneBool)
+                      LeftZone = false;
+                  else
+                      RightZone = false; */
+                GameManager.updateZones(team, leftzoneBool);
                 gameObject.GetComponent<Renderer>().material.color = Color.blue;
                 gameObject.tag = "Player";
                 gameObject.transform.GetChild(0).tag = "Player";
             }
             if (team == "red")
             {
+                /*  gameObject.GetComponent<Renderer>().material.color = Color.red;
+                  if (leftzoneBool)
+                      LeftZone = true;
+                  else
+                     RightZone = false; */
                 gameObject.GetComponent<Renderer>().material.color = Color.red;
-                if (leftzoneBool)
-                    LeftZone.enabled = true;
-                else
-                    RightZone.enabled = false;
+                GameManager.updateZones(team, leftzoneBool);
                 gameObject.transform.GetChild(0).tag = "Enemy";
                 gameObject.tag = "Enemy";
                 Debug.Log("Enemy entered capture zone");
@@ -126,10 +140,18 @@ public class CaptureZone : MonoBehaviour
 		{
             ResetTextTimer();
 		}
-        else if (_RedInZone.Count > 0)
+        else if (_RedInZone.Count != 0)
+		{
+            Debug.Log("team set red");
             team = "red";
-        else if (_BlueInZone.Count > 0)
+
+		}
+        if (_BlueInZone.Count != 0)
+		{
+            Debug.Log("team set blue");
             team = "blue";
+		}
+        Debug.Log("reds:" + _RedInZone.Count + "blues:" + _BlueInZone);
 
     }
 }

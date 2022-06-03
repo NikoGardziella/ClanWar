@@ -187,16 +187,15 @@ public class PlayerStats : MonoBehaviour
 			currResource += Time.deltaTime * GameConstants.RESOURCE_SPEED;
 		}
 
-		if (spawnZone)
+		leftArea.SetActive(!leftZone ? true : false);
+		rightArea.SetActive(!rightZone ? true : false);
+
+		if (!spawnZone)
 		{
-			leftArea.SetActive(!leftZone ? true : false);
-			rightArea.SetActive(!rightZone ? true : false);
+				leftArea.SetActive(false);
+				rightArea.SetActive(false);
 		}
-		else
-		{
-			leftArea.SetActive(false);
-			rightArea.SetActive(false);
-		}
+
 
 		UpdateText();
 		UpdateDeck();

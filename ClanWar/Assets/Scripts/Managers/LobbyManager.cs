@@ -101,6 +101,8 @@ public class LobbyManager : MonoBehaviour , IPunCallbacks
 					currTime = 0;
 				}
 			}
+			else if (myPlayer == null)
+				return;
 		}
 	}
 

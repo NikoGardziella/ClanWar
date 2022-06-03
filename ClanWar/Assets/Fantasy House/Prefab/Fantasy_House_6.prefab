@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 621199863}
   m_Layer: 0
   m_Name: Fantasy_House_6
-  m_TagString: Neutral
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,7 +106,7 @@ MonoBehaviour:
     currentAttackDelay: 0
     movementSpeed: 0
     healthBar: {fileID: 0}
-    detectionObject: {fileID: 621199863}
+    detectionObject: {fileID: 0}
     objectType: 0
     objectAttackable: 0
     unitType: 0

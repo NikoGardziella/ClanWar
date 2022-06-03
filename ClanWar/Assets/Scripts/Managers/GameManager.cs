@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,15 @@ public class GameManager : MonoBehaviour
 	private PlayerStats playerInfo;
 	[SerializeField]
 	private CameraMovement camMovement;
+
+	private CaptureZone captureZone;
+	public CaptureZone CaptureZone
+	{
+		get { return captureZone; }
+		set { captureZone = value; }
+	}
+
+
 	private Card card;
 	public Card Card
 	{
@@ -112,6 +122,25 @@ public class GameManager : MonoBehaviour
 
 	}
 
+	internal void updateZones(string team, bool leftzoneBool)
+	{
+		if (team == "blue")
+		{
+			if (!leftzoneBool)
+				instance.players[0].LeftZone = true;
+			else
+				instance.players[0].RightZone = true;
+		}
+		else if (team == "red")
+		{
+			
+			if (!leftzoneBool)
+				instance.players[0].LeftZone = false;
+			else
+				instance.players[0].RightZone = false;
+		}
+	}
+
 	void Update()
 	{
 
@@ -135,6 +164,8 @@ public class GameManager : MonoBehaviour
 			camMovement.canDrag = false;
 		else if (!playerInfo.OnDragging)
 			camMovement.canDrag = true;
+
+
 
 
 	}
@@ -298,7 +329,6 @@ public class GameManager : MonoBehaviour
 		}
 		return gotObjects;
 	}
-
 
 }
 
