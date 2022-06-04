@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
+using System;
 
 public static class GameFunctions
 {
@@ -100,6 +101,11 @@ public static class GameFunctions
 	{
 		if (hitTargets.Count > 0)
 		{
+			foreach (GameObject ht in hitTargets)
+			{
+				Debug.Log(ht);
+			}
+			hitTargets.Sort(prioritise);
 			GameObject go = hitTargets[0];
 
 			Component targetComponent = hitTargets[0].GetComponent(typeof(IDamageable));
@@ -109,6 +115,7 @@ public static class GameFunctions
 
 			foreach (GameObject ht in hitTargets)
 			{
+				Debug.Log(ht.GetComponent<unit>().priority);
 				targetComponent = ht.GetComponent(typeof(IDamageable));
 
 				if (targetComponent)
@@ -132,6 +139,16 @@ public static class GameFunctions
 		}
 		return null;
 	}
+
+	private static int prioritise(GameObject x, GameObject y)
+	{
+		if (x.gameObject.GetComponent<unit>().priority > y.gameObject.GetComponent<unit>().priority)
+			return x.gameObject.GetComponent<unit>().priority;
+		else
+			return y.gameObject.GetComponent<unit>().priority;
+	}
+
+
 
 	public static Transform GetCanvas()
 	{

@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour
 
 	}
 
-	internal void updateZones(string team, bool leftzoneBool)
+	internal void UpdateZones(string team, bool leftzoneBool)
 	{
 		if (team == "blue")
 		{
@@ -293,7 +293,7 @@ public class GameManager : MonoBehaviour
 				gotObjects.Add(go);
 		}
 		GameObject[] neutrals = GameObject.FindGameObjectsWithTag(GameConstants.NEUTRAL_TAG);
-		foreach (GameObject go in enemies)
+		foreach (GameObject go in neutrals)
 		{
 			if (go.GetComponent<Structure>() != null || go.GetComponent<unit>() != null)
 				gotObjects.Add(go);
@@ -321,12 +321,12 @@ public class GameManager : MonoBehaviour
 				gotObjects.Add(go.GetComponent<PlayerStats>());
 		}
 
-		GameObject[] neutrals = GameObject.FindGameObjectsWithTag(GameConstants.NEUTRAL_TAG);
+		/* GameObject[] neutrals = GameObject.FindGameObjectsWithTag(GameConstants.NEUTRAL_TAG);
 		foreach (GameObject go in neutrals)
 		{
 			if (go.GetComponent<PlayerStats>() != null)
 				gotObjects.Add(go.GetComponent<PlayerStats>());
-		}
+		} */
 		return gotObjects;
 	}
 

@@ -18,6 +18,7 @@ public class unit : Photon.MonoBehaviour, IDamageable
 	private List<GameObject> hitTargets;
 	[SerializeField]
 	List<Material> currentMats = new List<Material>();
+	[SerializeField]
 	public int priority;
 
 	public int Priority
@@ -125,7 +126,7 @@ public class unit : Photon.MonoBehaviour, IDamageable
 			{
 				Component damageable = target.GetComponent(typeof(IDamageable));
 
-				if (damageable)
+				if (damageable || target.tag == GameConstants.NEUTRAL_TAG)
 				{
 					if (hitTargets.Contains(target))
 					{
