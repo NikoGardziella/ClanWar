@@ -171,7 +171,7 @@ public class unit : Photon.MonoBehaviour, IDamageable
 
 	public void OnTriggerEnter(Collider other) // 13.5 does not work
 	{
-		Debug.Log("OnTriggerEnter : " + other);
+		//Debug.Log("OnTriggerEnter : " + other);
 		if (!other.CompareTag(gameObject.tag)) // 10.5  if (!other.transform.parent.parent.CompareTag(gameObject.tag))
 		{
 			Component damageable = other.gameObject.GetComponent(typeof(IDamageable)); // Component damageable = other.transform.parent.parent.gameObject.GetComponent(typeof(IDamageable));
@@ -185,7 +185,8 @@ public class unit : Photon.MonoBehaviour, IDamageable
 					Debug.Log("hitTargets.Contains(damageable.gameObject");
 			}
 			else
-				Debug.Log("not damageable");
+				return ;
+				//Debug.Log("not damageable");
 		}
 	}
 

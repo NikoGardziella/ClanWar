@@ -56,7 +56,7 @@ public class CaptureZone : MonoBehaviour
         if(seconds <= 0 && timerOn)
 		{
             CheckTags();
-            Debug.Log("team is;" + team);
+            //Debug.Log("team is;" + team);
             if (team == "blue")
 			{
                 Debug.Log("Player  capture zone");
@@ -89,7 +89,7 @@ public class CaptureZone : MonoBehaviour
 
     void ResetTextTimer()
 	{
-        Debug.Log("resetting timer");
+     //   Debug.Log("resetting timer");
         totalTime = 11;
         seconds = (int)(totalTime % 60);
         text.text = seconds.ToString();
@@ -113,7 +113,7 @@ public class CaptureZone : MonoBehaviour
             stopTextTimer = false;
             ResetTextTimer();
 
-            Debug.Log("Player hit capture zone");
+          //  Debug.Log("Player hit capture zone");
         }
         else if (other.transform.parent.parent.parent.CompareTag("Enemy"))
         {
@@ -123,7 +123,7 @@ public class CaptureZone : MonoBehaviour
             stopTextTimer = false;
             ResetTextTimer();
 
-            Debug.Log("Target hit capture zone");
+           // Debug.Log("Target hit capture zone");
         }
     }
 
@@ -159,7 +159,7 @@ public class CaptureZone : MonoBehaviour
 
         foreach (var gameObject in hitColliders)
 		{
-            Debug.Log(gameObject.tag);
+          //  Debug.Log(gameObject.tag);
             if(gameObject.tag == "Player")
             {
                 blueInZone += 1;
@@ -178,18 +178,18 @@ public class CaptureZone : MonoBehaviour
 		}
         if (redInZone > 0 && blueInZone == 0)
 		{
-            Debug.Log("team set red");
+       //     Debug.Log("team set red");
          //   gameObject.tag = "Enemy";
             team = "red";
 
 		}
         if (blueInZone > 0 && redInZone == 0)
         { 
-            Debug.Log("team set blue");
+       //     Debug.Log("team set blue");
          //   gameObject.tag = "Player";
             team = "blue";
 		}
-        Debug.Log("reds:" + redInZone + "blues:" + blueInZone); 
+       // Debug.Log("reds:" + redInZone + "blues:" + blueInZone); 
         return;
     }
 }

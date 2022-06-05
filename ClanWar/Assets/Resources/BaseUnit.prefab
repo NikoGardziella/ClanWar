@@ -260,6 +260,7 @@ MonoBehaviour:
     unitType: 0
   hitTargets: []
   currentMats: []
+  priority: 2
 --- !u!95 &3942418549125014673
 Animator:
   serializedVersion: 3

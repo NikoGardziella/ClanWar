@@ -113,7 +113,7 @@ MonoBehaviour:
   hitTargets: []
   target: {fileID: 0}
   leftTower: 1
-  priority: 0
+  priority: 1
 --- !u!135 &621199863
 SphereCollider:
   m_ObjectHideFlags: 0

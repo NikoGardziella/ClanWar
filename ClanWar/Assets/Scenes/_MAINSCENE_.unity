@@ -1558,6 +1558,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2288830937928413792, guid: adde041c2b93410438e7291b2f259770, type: 3}
   m_PrefabInstance: {fileID: 158910413}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &168338730 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4017359017750083363, guid: fb539cc724255d2498155cd1c8c64d87, type: 3}
+  m_PrefabInstance: {fileID: 7797283118669705202}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &181599623
 GameObject:
   m_ObjectHideFlags: 0
@@ -11985,6 +11990,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5949396454199936283, guid: 676d58fdc42b3da4dbe7d3871a504531, type: 3}
+      propertyPath: objects.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5949396454199936283, guid: 676d58fdc42b3da4dbe7d3871a504531, type: 3}
+      propertyPath: objects.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5949396454199936283, guid: 676d58fdc42b3da4dbe7d3871a504531, type: 3}
+      propertyPath: objects.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5949396454199936283, guid: 676d58fdc42b3da4dbe7d3871a504531, type: 3}
+      propertyPath: objects.Array.data[2]
+      value: 
+      objectReference: {fileID: 168338730}
     - target: {fileID: 5949396454599971112, guid: 676d58fdc42b3da4dbe7d3871a504531, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.38
@@ -12344,6 +12365,10 @@ PrefabInstance:
     - target: {fileID: 4017359017750083363, guid: fb539cc724255d2498155cd1c8c64d87, type: 3}
       propertyPath: m_Name
       value: Fantasy_House_6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6140737030545334630, guid: fb539cc724255d2498155cd1c8c64d87, type: 3}
+      propertyPath: priority
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb539cc724255d2498155cd1c8c64d87, type: 3}

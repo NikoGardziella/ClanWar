@@ -5,6 +5,7 @@ using PlayFab;
 using PlayFab.ClientModels;
 using System;
 
+
 public static class GameFunctions
 {
 
@@ -101,11 +102,33 @@ public static class GameFunctions
 	{
 		if (hitTargets.Count > 0)
 		{
-			foreach (GameObject ht in hitTargets)
+			/*	foreach (GameObject ht in hitTargets)
+				{
+					Debug.Log("list hitTargets: "+ ht);
+				}
+				// hitTargets.Sort(Prioritise);
+
+
+				foreach (GameObject ht in hitTargets)
+				{
+					Debug.Log("list after sort: " + ht);
+					Debug.Log(ht);
+				} */
+
+			Debug.Log("ht before:" + hitTargets[0]);
+
+			for (int i = 0; i < hitTargets.Count; i++)
 			{
-				Debug.Log(ht);
+				if (hitTargets[i].CompareTag(GameConstants.NEUTRAL_TAG))
+					i++;
+				else
+				{
+					hitTargets[0] = hitTargets[i]; // swap?
+					break;
+				}
 			}
-			hitTargets.Sort(prioritise);
+			Debug.Log("ht after:" + hitTargets[0]);
+
 			GameObject go = hitTargets[0];
 
 			Component targetComponent = hitTargets[0].GetComponent(typeof(IDamageable));
@@ -115,7 +138,7 @@ public static class GameFunctions
 
 			foreach (GameObject ht in hitTargets)
 			{
-				Debug.Log(ht.GetComponent<unit>().priority);
+				//Debug.Log(ht.GetComponent<unit>().priority);
 				targetComponent = ht.GetComponent(typeof(IDamageable));
 
 				if (targetComponent)
@@ -128,24 +151,25 @@ public static class GameFunctions
 					{
 						if (!ht.CompareTag(tag))
 						{
-							//Debug.Log("UNIT: go = ht");
 							dist = newDist;
 							go = ht;
+							Debug.Log("UNIT:" + go);
 						}
 					}
 				}
 			}
+			Debug.Log("Unit Go without loop" + go);
 			return go;
 		}
 		return null;
 	}
 
-	private static int prioritise(GameObject x, GameObject y)
+	private static int Prioritise(GameObject x, GameObject y)
 	{
-		if (x.gameObject.GetComponent<unit>().priority > y.gameObject.GetComponent<unit>().priority)
-			return x.gameObject.GetComponent<unit>().priority;
+		if (x.GetComponent<unit>().Priority > y.GetComponent<unit>().Priority)
+			return 1;
 		else
-			return y.gameObject.GetComponent<unit>().priority;
+			return -1;
 	}
 
 
