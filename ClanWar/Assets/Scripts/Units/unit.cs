@@ -76,6 +76,7 @@ public class unit : Photon.MonoBehaviour, IDamageable
 		}
 		if (gameObject.tag == "Enemy")
 		{
+			gameObject.GetComponent<Renderer>();
 			gameObject.GetComponent<NavMeshAgent>().enabled = false;
 		}
 
@@ -117,17 +118,48 @@ public class unit : Photon.MonoBehaviour, IDamageable
 	{
 		if (target != null)
 		{
-			List<GameObject> objects = GameManager.Instance.Objects;
-			objects = GameManager.GetAllEnemies(transform.position, objects, gameObject.tag);
-			target = GameFunctions.GetNearestTarget(objects, stats.DetectionObject, gameObject.tag); // error
+				List<GameObject> objects = GameManager.Instance.Objects;
+				objects = GameManager.GetAllEnemies(transform.position, objects, gameObject.tag);
+				target = GameFunctions.GetNearestTarget(objects, stats.DetectionObject, gameObject.tag); // error
+
+
+			/*
+			 			Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position, transform.localScale / 2, Quaternion.identity);
+
+				if (hitColliders[0].CompareTag(GameConstants.ENEMY_TAG))
+				{
+					Debug.Log("Found enemy near");
+					target = hitColliders[0].gameObject;
+				}
+			*/
+
+			/*for (int i = 0; i < hitColliders.Length; i++)
+			{
+
+			} */
+
 			if (target == null)
 				Debug.LogError("target null");
 			if (stats.CurrentAttackDelay >= stats.AttackDelay)
 			{
+				//	target = GameFunctions.GetNearestTarget(objects, stats.DetectionObject, gameObject.tag);
+
+			/*	Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position, transform.localScale / 2, Quaternion.identity);
+				foreach (var ht in hitColliders)
+				{
+					if (ht.CompareTag(GameConstants.ENEMY_TAG))
+					{
+						Debug.Log("Found enemy near");
+						target = ht.gameObject;
+					}
+				} */
+
+
 				Component damageable = target.GetComponent(typeof(IDamageable));
 
 				if (damageable || target.tag == GameConstants.NEUTRAL_TAG)
 				{
+					Debug.Log("target:" + target);
 					if (hitTargets.Contains(target))
 					{
 						float distance = Vector3.Distance(target.transform.position, gameObject.transform.position);

@@ -98,11 +98,11 @@ public class CaptureZone : MonoBehaviour
 	public void OnTriggerEnter(Collider other)
     {
 
-		if (!gameObject.CompareTag(other.transform.parent.parent.parent.tag)) 
+	/*	if (!gameObject.CompareTag(other.transform.parent.parent.parent.tag)) 
         {
             gameObject.tag = "Neutral";
             gameObject.transform.GetChild(0).tag = GameConstants.NEUTRAL_TAG;
-        }
+        } */
 
         //CheckTags();
         if (other.transform.parent.parent.parent.CompareTag("Player"))
@@ -174,6 +174,8 @@ public class CaptureZone : MonoBehaviour
 
         if (redInZone > 0 && blueInZone > 0)
 		{
+           /* gameObject.transform.GetChild(0).tag = GameConstants.NEUTRAL_TAG;
+            gameObject.tag = GameConstants.NEUTRAL_TAG; */
             ResetTextTimer();
 		}
         if (redInZone > 0 && blueInZone == 0)

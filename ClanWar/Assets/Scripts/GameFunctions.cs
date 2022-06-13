@@ -100,6 +100,8 @@ public static class GameFunctions
 
 	public static GameObject GetNearestTarget(List<GameObject> hitTargets, SphereCollider mySc, string tag) // FOR UNIT
 	{
+		//bool EnemyInZone = false;
+
 		if (hitTargets.Count > 0)
 		{
 			/*	foreach (GameObject ht in hitTargets)
@@ -115,51 +117,80 @@ public static class GameFunctions
 					Debug.Log(ht);
 				} */
 
-			Debug.Log("ht before:" + hitTargets[0]);
+			/*	Debug.Log("ht before:" + hitTargets[0]);
 
-			for (int i = 0; i < hitTargets.Count; i++)
-			{
-				if (hitTargets[i].CompareTag(GameConstants.NEUTRAL_TAG))
-					i++;
-				else
+				for (int i = 0; i < hitTargets.Count; i++)
 				{
-					hitTargets[0] = hitTargets[i]; // swap?
-					break;
+					if (hitTargets[i].CompareTag(GameConstants.NEUTRAL_TAG))
+						i++;
+					else
+					{
+						GameObject temp;
+						temp = hitTargets[0];
+						hitTargets[0] = hitTargets[i]; // swap?
+						hitTargets[i] = temp;
+						break;
+					}
+				}
+				Debug.Log("ht after:" + hitTargets[0]); */
+			Collider[] hitColliders = Physics.OverlapBox(mySc.transform.position, mySc.transform.localScale / 2, Quaternion.identity);
+			foreach (var ht in hitColliders)
+			{
+				if (ht.CompareTag(GameConstants.ENEMY_TAG))
+				{
+					Debug.Log("Found enemy near");
+					return ht.gameObject;
 				}
 			}
-			Debug.Log("ht after:" + hitTargets[0]);
 
 			GameObject go = hitTargets[0];
+
 
 			Component targetComponent = hitTargets[0].GetComponent(typeof(IDamageable));
 			SphereCollider targetSc = (targetComponent as IDamageable).Stats.DetectionObject;
 
 			float dist = Vector3.Distance(mySc.transform.position, targetSc.transform.position);
+			
 
 			foreach (GameObject ht in hitTargets)
 			{
+				/*if (ht.CompareTag(GameConstants.ENEMY_TAG))
+				{
+					targetSc = (targetComponent as IDamageable).Stats.DetectionObject; // change to units box colllider ??
+					float newDist = Vector3.Distance(mySc.transform.position, targetSc.transform.position);
+					if (dist >= newDist)
+					{
+						//EnemyInZone = true;
+					}
+				}*/
 				//Debug.Log(ht.GetComponent<unit>().priority);
+
 				targetComponent = ht.GetComponent(typeof(IDamageable));
 
 				if (targetComponent)
 				{
-					targetSc = (targetComponent as IDamageable).Stats.DetectionObject;
+					targetSc = (targetComponent as IDamageable).Stats.DetectionObject; // change to units box colllider ??
 
 					float newDist = Vector3.Distance(mySc.transform.position, targetSc.transform.position);
 
-					if (dist >= newDist)
+					if (dist >= newDist) // >=
 					{
 						if (!ht.CompareTag(tag))
 						{
 							dist = newDist;
 							go = ht;
-							Debug.Log("UNIT:" + go);
+						//	Debug.Log("UNIT:" + go);
 						}
 					}
 				}
+				/*else if (ht.CompareTag(GameConstants.NEUTRAL_TAG))
+				{
+					go = ht;
+				} */
 			}
-			Debug.Log("Unit Go without loop" + go);
-			return go;
+			Debug.Log("return: Unit Go" + go);
+		//	if(!go.CompareTag(tag))
+				return go;
 		}
 		return null;
 	}
