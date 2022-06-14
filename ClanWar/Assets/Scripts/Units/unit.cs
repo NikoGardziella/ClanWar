@@ -160,11 +160,14 @@ public class unit : Photon.MonoBehaviour, IDamageable
 				if (damageable || target.tag == GameConstants.NEUTRAL_TAG)
 				{
 					Debug.Log("target:" + target);
-					if (hitTargets.Contains(target))
+					if (target) // if (hitTargets.Contains(target)) 15.6
 					{
 						float distance = Vector3.Distance(target.transform.position, gameObject.transform.position);
+						Debug.Log("distance:" + distance + "         stats.range:" + stats.Range);
+
 						if (distance < stats.Range)
 						{
+							Debug.Log("distance 2:" + distance + "         stats.range 2:" + stats.Range);
 							if (GameFunctions.CanAttack(gameObject.tag, target.tag, damageable, stats))
 							{
 								Debug.Log(gameObject.tag + "attacking" + target.tag);
@@ -178,8 +181,8 @@ public class unit : Photon.MonoBehaviour, IDamageable
 								Debug.Log("CanT Attack");
 						}
 					}
-					//else
-					//	Debug.Log("hitTargets does not Contains(target):" + target);
+					else
+						Debug.Log("hitTargets does not Contains(target):" + target);
 				}
 			}
 

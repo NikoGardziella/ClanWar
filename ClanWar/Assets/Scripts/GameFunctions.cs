@@ -30,9 +30,15 @@ public static class GameFunctions
 						return true;
 					else if ((stats.ObjectAttackable == GameConstants.OBJECT_ATTACKABLE.FLYING && (damageable as IDamageable).Stats.ObjectType == GameConstants.OBJECT_TYPE.FLYING))
 						return true;
+					else
+						Debug.Log("error: object attackable");
 				}
 			}
+			else
+				Debug.Log("playertag:" + playerTag + "enemytag:" +enemyTag);
 		}
+		else
+			Debug.Log("not damageable");
 		return false;
 	}
 
